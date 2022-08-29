@@ -31,7 +31,7 @@ language 'plpgsql' volatile;
 comment on function eed_private.grant_permissions(text, text, text, text) is
   'A generic function for granting access-control permissions on all columns of a table';
 
--- Grants permissions on speeedic columns in a table
+-- Grants permissions on select columns in a table
 create or replace function eed_private.grant_permissions(
   operation text,
   table_name text,
