@@ -11,5 +11,5 @@ trigger_functions/update_timestamps 2022-08-29T02:45:59Z Mike Vesprini <mike@but
 util_functions/verify_grant 2022-08-29T03:13:18Z Mike Vesprini <mike@button.is> # Create eed_private.verify_grant util function
 trigger_functions/archived_records_are_immutable 2022-08-29T04:31:16Z Mike Vesprini <mike@button.is> # Create eed_private.archived_records_are_immutable trigger function
 util_functions/upsert_timestamp_columns 2022-08-29T04:46:55Z Mike Vesprini <mike@button.is> # Create eed_private.upsert_timestamp_columns util function
-tables/data_provider 2022-08-29T03:14:17Z Mike Vesprini <mike@button.is> # Create eed.data_provider table
 tables/eed_user 2022-08-29T03:44:31Z Mike Vesprini <mike@button.is> # Create eed.eed_user table
+tables/data_provider 2022-08-29T03:14:17Z Mike Vesprini <mike@button.is> # Create eed.data_provider table
