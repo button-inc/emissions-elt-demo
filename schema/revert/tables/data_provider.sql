@@ -1,7 +1,7 @@
 -- Revert eed:tables/data_provider from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+drop table eed.data_provider;
 
-COMMIT;
+commit;
