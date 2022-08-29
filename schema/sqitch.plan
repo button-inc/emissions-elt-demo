@@ -4,3 +4,4 @@
 
 create-roles 2022-08-28T23:59:50Z Mike Vesprini <mike@button.is> # Create the roles used by the application
 schemas/main 2022-08-29T00:08:53Z Mike Vesprini <mike@button.is> # Create the eed schema
+schemas/private 2022-08-29T00:11:29Z Mike Vesprini <mike@button.is> # Create the eed_private schema
