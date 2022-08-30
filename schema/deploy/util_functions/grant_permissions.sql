@@ -62,6 +62,6 @@ $function$
 language 'plpgsql' volatile;
 
 comment on function eed_private.grant_permissions(text, text, text, text[], text) is
-  'A generic function for granting access-control permissions on speeedic columns of a table';
+  'A generic function for granting access-control permissions on specific columns of a table';
 
 commit;
