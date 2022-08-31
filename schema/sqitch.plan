@@ -20,3 +20,4 @@ tables/sector_type_code [schemas/main] 2022-08-31T18:12:23Z Thomas Mastromonaco 
 tables/subsector_type_code [schemas/main] 2022-08-31T18:15:52Z Thomas Mastromonaco <thomas@button.is> # Creates eed.subsector_type_code table
 tables/secondary_indicator [schemas/main] 2022-08-31T18:20:39Z Thomas Mastromonaco <thomas@button.is> # Creates eed.secondary_indicator table
 tables/subsecondary_indicator [schemas/main] 2022-08-31T18:27:10Z Thomas Mastromonaco <thomas@button.is> # Creates subsecondary_indicator table
+tables/indicator_detail_type [schemas/main] 2022-08-31T18:32:51Z Thomas Mastromonaco <thomas@button.is> # Creates indicator_detail_type table

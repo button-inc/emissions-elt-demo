@@ -2,6 +2,6 @@
 
 BEGIN;
 
-drop table eed.subsector_type_code
+drop table eed.subsector_type_code;
 
 COMMIT;
