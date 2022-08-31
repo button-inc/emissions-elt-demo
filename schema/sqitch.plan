@@ -25,3 +25,4 @@ tables/vehicle_class [schemas/main] 2022-08-31T18:40:19Z Thomas Mastromonaco <th
 tables/postal_code [schemas/main] 2022-08-31T18:49:41Z Thomas Mastromonaco <thomas@button.is> # Creates postal_code table
 tables/rate_class [schemas/main] 2022-08-31T18:54:39Z Thomas Mastromonaco <thomas@button.is> # Creates rate_class table
 tables/org_unit [schemas/main] 2022-08-31T18:57:41Z Thomas Mastromonaco <thomas@button.is> # Creates org_unit table
+tables/org_unit_type_code [schemas/main] 2022-08-31T19:03:29Z Thomas Mastromonaco <thomas@button.is> # Creates org_unit_type_code table
