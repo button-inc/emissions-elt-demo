@@ -14,3 +14,4 @@ util_functions/upsert_timestamp_columns 2022-08-29T04:46:55Z Mike Vesprini <mike
 tables/eed_user 2022-08-29T03:44:31Z Mike Vesprini <mike@button.is> # Create eed.eed_user table
 tables/data_provider 2022-08-29T03:14:17Z Mike Vesprini <mike@button.is> # Create eed.data_provider table
 tables/housing_type_code [schemas/main] 2022-08-31T16:55:02Z Thomas Mastromonaco <thomas@button.is> # Creates eed.housing_type_code table
+tables/livestock_type_code [schemas/main] 2022-08-31T17:48:13Z Thomas Mastromonaco <thomas@button.is> # Creates eed.livestock_type_code table
