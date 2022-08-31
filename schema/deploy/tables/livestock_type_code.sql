@@ -4,7 +4,7 @@
 begin;
 
 create table eed.livestock_type_code(
-  livestock_type_code integer not null,
+  livestock_type_code numeric(3) not null,
   livestock_type_desc varchar(100) not null,
   effective_date date not null,
   expiry_date date
