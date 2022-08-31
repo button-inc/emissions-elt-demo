@@ -18,3 +18,4 @@ tables/livestock_type_code [schemas/main] 2022-08-31T17:48:13Z Thomas Mastromona
 tables/measurement_type_code [schemas/main] 2022-08-31T17:54:41Z Thomas Mastromonaco <thomas@button.is> # Creates eed.measurement_type_code table
 tables/sector_type_code [schemas/main] 2022-08-31T18:12:23Z Thomas Mastromonaco <thomas@button.is> # Creates eed.sector_type_code table
 tables/subsector_type_code [schemas/main] 2022-08-31T18:15:52Z Thomas Mastromonaco <thomas@button.is> # Creates eed.subsector_type_code table
+tables/secondary_indicator [schemas/main] 2022-08-31T18:20:39Z Thomas Mastromonaco <thomas@button.is> # Creates eed.secondary_indicator table
