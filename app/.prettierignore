@@ -6,4 +6,4 @@ schema/schema.json
 schema/schema.graphql
 coverage
 ../chart/**/templates/**/*.yaml
-../.github/*
+../.github/ISSUE_TEMPLATE/
