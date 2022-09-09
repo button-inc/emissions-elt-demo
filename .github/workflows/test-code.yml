@@ -26,6 +26,19 @@ jobs:
       - run: yarn install --frozen-lockfile
         working-directory: ./app
 
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+
+      - name: Install and bootstrap packages
+        run: yarn install --frozen-lockfile --ignore-engines --network-timeout 1000000
+
+      - name: Run prettier
+        run: yarn check-format
+
   trivy-scan-code:
     runs-on: ubuntu-latest
     timeout-minutes: 60
