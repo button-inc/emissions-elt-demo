@@ -1,5 +1,5 @@
 # Tests that rely on the committed code, without needing the docker images to be built
-name: test code
+name: Test EED app
 
 on:
   push:

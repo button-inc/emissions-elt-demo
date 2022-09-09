@@ -1,0 +1,8 @@
+.next/
+__generated__/
+dist/
+*.min.css
+schema/schema.json
+schema/schema.graphql
+coverage
+../chart/**/templates/**/*.yaml
