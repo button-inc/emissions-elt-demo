@@ -3,7 +3,7 @@ module.exports = {
   env: { es6: true, browser: true, node: true },
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: ["./tsconfig.json"],
+    project: ["**/tsconfig.json"],
   },
   rules: {
     // "react/prop-types": 0, // don't need react/prop-types when components are typed with typescript
