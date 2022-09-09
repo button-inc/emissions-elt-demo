@@ -94,7 +94,7 @@ jobs:
           path: |
             ./.pre-commit-cache
           key: pre-commit-${{ env.PY }}-${{ hashFiles('.pre-commit-config.yaml') }}-v3
-      - run: pre-commit run --all-files
+      - run: pre-commit run --color=always --show-diff-on-failure
 
   db-tests:
     needs: install-dev-tools
