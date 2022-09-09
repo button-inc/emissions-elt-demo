@@ -96,15 +96,15 @@ jobs:
           key: pre-commit-${{ env.PY }}-${{ hashFiles('.pre-commit-config.yaml') }}-v3
       - run: pre-commit run --all-files --color=always --show-diff-on-failure
 
-  db-tests:
-    needs: install-dev-tools
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: dev env setup
-        uses: ./.github/actions/dev-env-setup
-      - run: make db_unit_tests
-      - run: make db_style_tests
+  # db-tests:
+  #   needs: install-dev-tools
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: dev env setup
+  #       uses: ./.github/actions/dev-env-setup
+  #     - run: make db_unit_tests
+  #     - run: make db_style_tests
   # zap-owasp:
   #   needs: ["docker-build", "install-dev-tools"]
   #   runs-on: ubuntu-latest
