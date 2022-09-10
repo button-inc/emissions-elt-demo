@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["airbnb", "airbnb-typescript", "next", "prettier"],
+  extends: ["airbnb-typescript", "next", "prettier"],
   env: { es6: true, browser: true, node: true },
   parser: "@typescript-eslint/parser",
   parserOptions: {
