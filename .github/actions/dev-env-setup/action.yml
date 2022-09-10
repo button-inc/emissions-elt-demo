@@ -23,13 +23,13 @@ runs:
       with:
         path: |
           ~/.asdf
-        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}-v2
+        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}
     - uses: actions/cache@v3
       id: perl-cache
       with:
         path: |
           ~/perl5
-        key: ${{ runner.os }}-perl-cache-${{ hashFiles('cpanfile') }}-v2
+        key: ${{ runner.os }}-perl-cache-${{ hashFiles('cpanfile') }}
     - uses: actions/cache@v3
       id: yarn-cache
       with:
@@ -37,4 +37,4 @@ runs:
           ~/.cache/yarn
           ~/.cache/Cypress
           ./app/node_modules
-        key: ${{ runner.os }}-yarn-cache-${{ hashFiles('app/yarn.lock') }}-v2
+        key: ${{ runner.os }}-yarn-cache-${{ hashFiles('app/yarn.lock') }}
