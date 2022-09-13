@@ -23,10 +23,10 @@ provider "google-beta" {
 
 # create db instance
 resource "google_sql_database_instance" "postgresql" {
-  name             = "demo-db"
-  project          = var.project
-  region           = var.region
-  database_version = var.db_version
+  name                = "demo-db"
+  project             = var.project
+  region              = var.region
+  database_version    = var.db_version
   deletion_protection = false
 
   settings {
@@ -47,8 +47,8 @@ resource "google_sql_database_instance" "postgresql" {
     }
 
     backup_configuration {
-      enabled            = true
-      start_time         = "00:00"
+      enabled    = true
+      start_time = "00:00"
     }
 
     ip_configuration {
