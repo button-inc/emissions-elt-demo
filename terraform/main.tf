@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("emissions-elt-demo-0d5982a5127a.json")
+  credentials = file("gcp_sa_secret.json")
 
   project = var.project
   region  = var.region
