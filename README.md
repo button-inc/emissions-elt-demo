@@ -6,7 +6,7 @@ Large files are being stored with [git-lfs](https://git-lfs.github.com/).
 The list of what it is tracking can be found in `.gitattributes`, currently `terraform/.terraform`.
 
 To add to the tracked list, use
-`git lfs track <>` where <> could be `"*.someFileExtension`, `path/to/dir/**` for an entire directory.
+`git lfs track <>` where <> could be `"*.someFileExtension"`, `path/to/dir/**` for an entire directory.
 
 ## Terraform
 
