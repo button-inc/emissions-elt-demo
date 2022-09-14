@@ -15,6 +15,7 @@
   # Entrypoint, timeout and environment variables
   - name: "gcr.io/cloud-builders/gcloud"
     args: [
+      'beta',
       'run',
       'jobs',
       'create',
