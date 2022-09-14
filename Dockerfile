@@ -4,4 +4,5 @@ COPY schema/ schema/
 
 WORKDIR ./schema
 
-RUN sqitch deploy -d eed
+# RUN sqitch deploy -d eed
+ENTRYPOINT ["/deploy-data.sh"]
