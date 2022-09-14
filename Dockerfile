@@ -1,9 +1,9 @@
-FROM perl:5.34
+FROM sqitch/sqitch
 
 ENV HOME=/root
 WORKDIR ${HOME}
 
-# COPY schema/ ${HOME}/schema/
+COPY schema/ ${HOME}/schema/
 # COPY cpanfile ${HOME}/cpanfile
 
 # RUN apt-get update && \
@@ -19,7 +19,6 @@ WORKDIR ${HOME}
 # does not apply to them.
 # ENV PERL5LIB=${HOME}/extlib/lib/perl5
 
-# WORKDIR ./schema
+WORKDIR ${HOME}/schema
 
-RUN echo "I was called"
 CMD ["sqitch", "deploy", "-d", "eed"]
