@@ -15,14 +15,6 @@
            'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations']
 
   # Entrypoint, timeout and environment variables
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    timeout: 240s
-    args: ['compute', 'instances',
-           'create-with-container', 'deploy-db-vm',
-           '--container-image',
-           'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations']
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-west1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-west1-a'
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ['run', 'deploy', 'deploy-db-migrations', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations', '--region', 'us-west1', '--allow-unauthenticated', '--platform', 'managed']
 }
