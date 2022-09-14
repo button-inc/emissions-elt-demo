@@ -22,4 +22,6 @@
       'deploy-db-migrations',
       '--image',
       'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations',
+      '--region',
+      'us-west1',
       '--execute-now']
