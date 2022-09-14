@@ -3,15 +3,15 @@
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations',
+           'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations:tag1',
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',
-           'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations']
+           'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations:tag1']
 
   # Entrypoint, timeout and environment variables
   - name: "gcr.io/cloud-builders/gcloud"
-    args: ['run', 'deploy', 'deploy-db-migrations', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations', '--region', 'us-west1', '--allow-unauthenticated', '--platform', 'managed']
+    args: ['run', 'deploy', 'deploy-db-migrations', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations:tag1', '--region', 'us-west1', '--allow-unauthenticated', '--platform', 'managed']
 }
