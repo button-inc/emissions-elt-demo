@@ -4,5 +4,5 @@ COPY schema/ schema/
 
 WORKDIR ./schema
 
-# RUN sqitch deploy -d eed
-ENTRYPOINT ["/deploy-data.sh"]
+RUN echo "I was called"
+CMD ["sqitch", "deploy", "-d", "eed"]
