@@ -1,7 +1,7 @@
 FROM perl:5.34
 
 ENV USER_ID=1001
-ENV HOME=.
+ENV HOME=/root
 WORKDIR ${HOME}
 
 COPY schema/ ${HOME}/schema/
