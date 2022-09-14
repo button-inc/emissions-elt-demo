@@ -1,7 +1,4 @@
-{
-  steps:
-  # Docker Build
-  - name: 'ubuntu'
-    args: ['bash', '-c',
-           'echo ${PROJECT_ID}']
-}
+steps:
+- name: 'ubuntu'
+  args: ['bash', '-c',
+          'echo ${PROJECT_ID}']
