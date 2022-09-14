@@ -34,7 +34,7 @@ variable "db_instance_access_cidr" {
 # database settings
 variable "db_name" {
   description = "Name of the default database to create"
-  default     = "dem"
+  default     = "eed"
 }
 variable "db_charset" {
   description = "The charset for the default database"

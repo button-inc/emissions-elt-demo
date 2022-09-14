@@ -23,7 +23,7 @@ provider "google-beta" {
 
 # create db instance
 resource "google_sql_database_instance" "postgresql" {
-  name                = "demo-db"
+  name                = var.db_name
   project             = var.project
   region              = var.region
   database_version    = var.db_version
