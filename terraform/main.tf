@@ -81,3 +81,12 @@ resource "google_sql_user" "postgresql_user" {
   password = (var.db_user_password == "" ?
   random_id.user_password.hex : var.db_user_password)
 }
+
+# create Docker artifact repository
+resource "google_artifact_registry_repository" "eed-artifacts" {
+  provider      = google-beta
+  location      = var.region
+  repository_id = var.artifact_respository_name
+  description   = "eed docker repository"
+  format        = "DOCKER"
+}
