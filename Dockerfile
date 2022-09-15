@@ -27,4 +27,6 @@ ARG PGUSER
 ARG PGPASSWORD
 ARG PGHOST
 
-CMD ["sh", "-c", "echo PGUSER: ${PG_USER}"]
+ENV ENV_PG_USER=$PGUSER
+
+CMD ["sh", "-c", "echo PGUSER: ${ENV_PG_USER}"]
