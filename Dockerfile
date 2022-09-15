@@ -21,4 +21,4 @@ ENV PERL5LIB=${HOME}/extlib/lib/perl5
 
 WORKDIR ./schema
 
-CMD ["sqitch", "-t", "db:pg://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/eed","deploy"
+CMD ["sqitch", "-t", "db:pg://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/eed","deploy"]
