@@ -23,7 +23,7 @@
       '--image',
       'us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations',
       '--set-secrets',
-      'PGUSER=eed_db_user:latest,PGPASSWORD=eed_pg_pass:latest,PGHOST=eed_pg_host:latest',
+      'PGUSER=eed_pg_user:latest,PGPASSWORD=eed_pg_pass:latest,PGHOST=eed_db_host:latest',
       '--region',
       'us-west1',
       '--execute-now']
