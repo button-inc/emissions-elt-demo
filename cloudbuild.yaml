@@ -6,7 +6,7 @@
     entrypoint: 'bash'
     args: [
       '-c',
-      'docker build -t us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER=$PGUSER --build-arg=PGPASSWORD=$PGPASSWORD --build-arg=PGHOST=$PGHOST .'
+      'docker build -t us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER=$$PGUSER --build-arg=PGPASSWORD=$$PGPASSWORD --build-arg=PGHOST=$$PGHOST .'
     ]
     secretEnv: ['PGUSER', 'PGPASSWORD', 'PGHOST']
 
