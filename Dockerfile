@@ -31,4 +31,4 @@ ENV PGHOST=$PGHOST_ARG
 ENV PGPORT=5432
 ENV SQITCH_TARGET=db:pg:
 
-CMD ["sqitch", "deploy"]
+CMD ["sqitch", "-d", "eed", "deploy"]
