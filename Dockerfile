@@ -23,4 +23,8 @@ FROM perl:5.34
 
 # CMD ["sqitch", "-t", "db:pg://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/eed","deploy"]
 
+ARG PGUSER
+ARG PGPASSWORD
+ARG PGHOST
+
 CMD ["sh", "-c", "echo PGUSER: ${PG_USER}"]
