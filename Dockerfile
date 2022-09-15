@@ -6,9 +6,9 @@ WORKDIR ${HOME}
 COPY schema/ ${HOME}/schema/
 COPY cpanfile ${HOME}/cpanfile
 
-# RUN apt-get update && \
-#   apt-get install -y postgresql-client && \
-#   apt-get clean
+RUN apt-get update && \
+  apt-get install -y postgresql-client && \
+  apt-get clean
 
 # CPAN needs to install dependencies for all schemas, one directory up
 RUN cpanm --notest --local-lib ./extlib --installdeps .
