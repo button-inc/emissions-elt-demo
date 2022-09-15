@@ -81,3 +81,10 @@ resource "google_sql_user" "postgresql_user" {
   password = (var.db_user_password == "" ?
   random_id.user_password.hex : var.db_user_password)
 }
+
+resource "google_project_service" "apis" {
+  for_each = toset(var.apis)
+  service  = each.value
+
+  disable_dependent_services = true
+}
