@@ -1,0 +1,46 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  # Docker Build
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker build -t us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER_ARG=$$PGUSER --build-arg=PGPASSWORD_ARG=$$PGPASSWORD --build-arg=PGHOST_ARG=$$PGHOST ./schema",
+      ]
+    secretEnv: ["PGUSER", "PGPASSWORD", "PGHOST"]
+
+  # Docker Push
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations",
+      ]
+
+  # Entrypoint, timeout and environment variables
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "jobs",
+        "create",
+        "deploy-db-migrations-${COMMIT_SHA}",
+        "--image",
+        "us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations",
+        "--set-secrets",
+        "PGUSER=eed_pg_user:latest,PGPASSWORD=eed_pg_pass:latest,PGHOST=eed_db_host:latest",
+        "--region",
+        "us-west1",
+        "--execute-now",
+      ]
+availableSecrets:
+  secretManager:
+    - versionName: projects/${PROJECT_ID}/secrets/eed_pg_user/versions/latest
+      env: "PGUSER"
+    - versionName: projects/${PROJECT_ID}/secrets/eed_pg_pass/versions/latest
+      env: "PGPASSWORD"
+    - versionName: projects/${PROJECT_ID}/secrets/eed_db_host/versions/latest
+      env: "PGHOST"
