@@ -40,8 +40,6 @@ RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
     # Make everything in the home group-writable to support OpenShift's restricted SCC
     # Needs to be done as root to chown
     # same layer as yarn install to keep re-chowned files from using up several hundred MBs more space
-    chown -R app:0 ${HOME} && \
-    chmod -R g+rwX ${HOME}
 
 EXPOSE 3000 9000
 
