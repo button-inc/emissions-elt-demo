@@ -3,8 +3,8 @@ FROM perl:5.34
 ENV HOME=/root
 WORKDIR ${HOME}
 
-COPY schema/ ${HOME}/schema/
-COPY cpanfile ${HOME}/cpanfile
+COPY . ${HOME}/schema/
+COPY ../cpanfile ${HOME}/cpanfile
 
 RUN apt-get update && \
   apt-get install -y postgresql-client && \
@@ -19,7 +19,7 @@ ENV PATH="$PATH:$HOME/extlib/bin"
 # does not apply to them.
 ENV PERL5LIB=${HOME}/extlib/lib/perl5
 
-WORKDIR ./schema
+WORKDIR ${HOME}/schema
 
 ARG PGUSER_ARG
 ARG PGPASSWORD_ARG
