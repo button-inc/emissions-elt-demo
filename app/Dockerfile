@@ -36,11 +36,11 @@ RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
     # yarn build:server && \
     yarn build:next && \
     yarn install --frozen-lockfile --production=true && \
-    yarn cache clean && \
+    yarn cache clean
     # Make everything in the home group-writable to support OpenShift's restricted SCC
     # Needs to be done as root to chown
     # same layer as yarn install to keep re-chowned files from using up several hundred MBs more space
 
-EXPOSE 3000 9000
+
 
 CMD ["/usr/bin/env", "bash", "-c", "yarn start"]
