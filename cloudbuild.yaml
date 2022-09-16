@@ -52,21 +52,13 @@ steps:
     args:
       ["push", "us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app"]
 
-  # Entrypoint, timeout and environment variables
-  # - name: "gcr.io/cloud-builders/gcloud"
-  #   args:
-  #     [
-  #       "beta",
-  #       "run",
-  #       "jobs",
-  #       "create",
-  #       "app-${COMMIT_SHA}",
-  #       "--image",
-  #       "us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app"
-  #       "--region",
-  #       "us-west1",
-  #       "--execute-now",
-  #     ]
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=kubernetes
+      - --image=us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app
+      - --location=us-west1
+      - --cluster=eed-gke
 availableSecrets:
   secretManager:
     - versionName: projects/${PROJECT_ID}/secrets/eed_pg_user/versions/latest
