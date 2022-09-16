@@ -7,7 +7,7 @@ steps:
     args:
       [
         "-c",
-        "docker build -t us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER_ARG=$$PGUSER --build-arg=PGPASSWORD_ARG=$$PGPASSWORD --build-arg=PGHOST_ARG=$$PGHOST ./schema",
+        "docker build -f ./schema/Dockerfile -t us-west1-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER_ARG=$$PGUSER --build-arg=PGPASSWORD_ARG=$$PGPASSWORD --build-arg=PGHOST_ARG=$$PGHOST .",
       ]
     secretEnv: ["PGUSER", "PGPASSWORD", "PGHOST"]
 
