@@ -33,7 +33,7 @@ ENV NODE_ENV=production
 RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
     yarn install --frozen-lockfile --production=false && \
     # yarn build:relay && \
-    yarn build:server && \
+    # yarn build:server && \
     yarn build:next && \
     yarn install --frozen-lockfile --production=true && \
     yarn cache clean && \
