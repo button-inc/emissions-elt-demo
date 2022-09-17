@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      bb: web
+      app: eed
   template:
     metadata:
       labels:
-        bb: web
+        app: eed
     spec:
       containers:
         - name: eed-app
