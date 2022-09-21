@@ -1,3 +1,16 @@
+variable "project" {
+  default     = "gcp-elt"
+  description = "project id from GCP"
+}
+variable "zone" {
+  default     = "us-west1-a"
+  description = "GCP zone"
+}
+variable "region" {
+  default     = "us-west1"
+  description = "GCP region"
+}
+
 # database instance settings
 variable "db_version" {
   description = "The version of of the database."
