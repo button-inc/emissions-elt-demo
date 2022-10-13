@@ -3,7 +3,6 @@ variable "project" {
   description = "project id from GCP"
 }
 variable "project_number" {
-  default     = "emissions-elt-demo"
   description = "project number from GCP"
 }
 variable "region" {
