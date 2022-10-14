@@ -122,3 +122,10 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   cluster    = google_container_cluster.primary.name
   node_count = 1
 }
+
+module "cloud_compose" {
+  source         = "./modules/cloud_compose"
+  project        = var.project
+  region         = var.region
+  project_number = var.project_number
+}
