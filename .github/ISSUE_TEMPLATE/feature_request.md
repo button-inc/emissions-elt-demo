@@ -7,11 +7,6 @@ assignees: ''
 
 ---
 
----
-name: Feature request
-about: Suggest an idea for this project
----
-
 ### Description
 
 Specify which part of the system we're working in.
