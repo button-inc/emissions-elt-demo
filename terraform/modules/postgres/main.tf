@@ -14,10 +14,6 @@ resource "google_sql_database_instance" "postgresql" {
     disk_type         = var.db_disk_type
     pricing_plan      = var.db_pricing_plan
 
-    location_preference {
-      zone = var.zone
-    }
-
     maintenance_window {
       day  = "7" # sunday
       hour = "3" # 3am

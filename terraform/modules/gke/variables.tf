@@ -4,13 +4,8 @@ variable "project" {
 }
 
 variable "region" {
-  default     = "us-west1"
+  default     = "us-west4"
   description = "GCP region"
-}
-
-variable "zone" {
-  default     = "us-west1-a"
-  description = "GCP zone"
 }
 
 variable "gcp_service_account_email" {
