@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:next": "next build"
   },
   "dependencies": {
     "next": "12.2.5",
