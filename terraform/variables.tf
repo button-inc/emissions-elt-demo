@@ -3,12 +3,17 @@ variable "project" {
   description = "project id from GCP"
 }
 
+variable "project_number" {
+  default     = 77682378143
+  description = "project number from GCP"
+}
+
 variable "region" {
   default     = "us-west4"
   description = "GCP region"
 }
 
-variable "artifact_respository_name" {
-  default     = "eed-docker-artifact-repository"
-  description = "name of the Docker artifact repository for the project"
+variable "zone" {
+  default     = "us-west4-a"
+  description = "GCP zone"
 }
