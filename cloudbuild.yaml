@@ -60,7 +60,7 @@ steps:
       - run
       - --filename=kubernetes
       - --image=us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app
-      - --location=us-west4
+      - --location=us-west4-a
       - --cluster=eed-gke
 availableSecrets:
   secretManager:
