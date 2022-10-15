@@ -7,7 +7,7 @@ steps:
     args:
       [
         "-c",
-        "docker build -f ./schema/Dockerfile -t us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations --build-arg=PGUSER_ARG=$$PGUSER --build-arg=PGPASSWORD_ARG=$$PGPASSWORD --build-arg=PGHOST_ARG=$$PGHOST .",
+        "docker build -f ./schema/Dockerfile -t us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/deploy-db-migrations --build-arg=PGUSER_ARG=$$PGUSER --build-arg=PGPASSWORD_ARG=$$PGPASSWORD --build-arg=PGHOST_ARG=$$PGHOST .",
       ]
     secretEnv: ["PGUSER", "PGPASSWORD", "PGHOST"]
 
@@ -16,7 +16,7 @@ steps:
     args:
       [
         "push",
-        "us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations",
+        "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/deploy-db-migrations",
       ]
 
   # Entrypoint, timeout and environment variables
@@ -29,7 +29,7 @@ steps:
         "create",
         "deploy-db-migrations-${COMMIT_SHA}",
         "--image",
-        "us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/deploy-db-migrations",
+        "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/deploy-db-migrations",
         "--set-secrets",
         "PGUSER=eed_pg_user:latest,PGPASSWORD=eed_pg_pass:latest,PGHOST=eed_db_host:latest",
         "--region",
@@ -43,20 +43,23 @@ steps:
     args:
       [
         "-c",
-        "docker build -f ./app/Dockerfile -t us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app .",
+        "docker build -f ./app/Dockerfile -t us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app .",
       ]
     secretEnv: ["PGUSER", "PGPASSWORD", "PGHOST"]
 
   # Docker Push
   - name: "gcr.io/cloud-builders/docker"
     args:
-      ["push", "us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app"]
+      [
+        "push",
+        "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app",
+      ]
 
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
       - --filename=kubernetes
-      - --image=us-west4-docker.pkg.dev/${PROJECT_ID}/elt-demo-docker-repo/app
+      - --image=us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app
       - --location=us-west4
       - --cluster=eed-gke
 availableSecrets:

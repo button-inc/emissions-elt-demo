@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
         - name: eed-app
-          image: us-west4-docker.pkg.dev/emissions-elt-demo/elt-demo-docker-repo/app
+          image: us-west4-docker.pkg.dev/emissions-elt-demo/eed-docker-artifact-repository/app
