@@ -27,7 +27,7 @@ resource "google_container_cluster" "primary" {
 
   initial_node_count = 1
   # Disable the Google Cloud Logging service because you may overrun the Logging free tier allocation, and it may be expensive
-  logging_service    = "none"
+  logging_service = "none"
 
   # This is set to maintain idempotency. Without this empty block declared,
   # deafult settings are applied, and on every `terraform apply` it forces
@@ -42,5 +42,13 @@ resource "google_container_cluster" "primary" {
     machine_type = var.machine_type
     disk_size_gb = var.disk_size_gb
     tags         = ["${var.gke_cluster_name}"]
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/trace.append",
+      "https://www.googleapis.com/auth/service.management.readonly",
+      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/servicecontrol",
+    ]
   }
 }
