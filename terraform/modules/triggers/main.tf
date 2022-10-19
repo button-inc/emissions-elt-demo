@@ -18,12 +18,14 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
   }
 
   github {
+    owner = "button-inc"
+    name = "emissions-elt-demo"
     push {
       branch = "^feat/import-dags$"
     }
   }
 
   substitutions = {
-    _GCS_BUCKET = "bar"
+    _GCS_BUCKET = var.composer_dags_bucket
   }
 }

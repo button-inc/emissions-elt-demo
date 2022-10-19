@@ -74,3 +74,8 @@ resource "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
   secret      = google_secret_manager_secret.airflow_gcs_bucket_name.id
   secret_data = google_composer_environment.eed_cloud_compose_env.config.0.dag_gcs_prefix
 }
+
+data "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
+  provider = google-beta
+  secret   = "airflow_gcs_bucket_name"
+}

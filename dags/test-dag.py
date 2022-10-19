@@ -30,10 +30,10 @@ def get_absolute_path(path):
     else:
         return os.path.join(HOME_DIR, path)
 postgres_kwargs = dict(
-    user=os.environ['ELT_DB_USER'],
-    password=os.environ['ELT_DB_PASS'],
+    user=os.environ['eed_db_user'],
+    password=os.environ['eed_db_pass'],
     public_port=5432,
-    public_ip=os.environ['ELT_DB_HOST'],
+    public_ip=os.environ['eed_db_host'],
     project_id="emission-elt-demo",
     location="us-west-4",
     instance="eed",

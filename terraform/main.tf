@@ -51,4 +51,5 @@ module "tfstate_bucket" {
 
 module "triggers" {
   source = "./modules/triggers"
+  composer_dags_bucket = module.cloud_composer.composer_dags_bucket
 }
