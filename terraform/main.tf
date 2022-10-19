@@ -46,5 +46,14 @@ module "cloud_composer" {
 
 module "tfstate_bucket" {
   source = "./modules/tfstate_bucket"
-  region   = var.region
+  region = var.region
+}
+
+module "secret_manager" {
+  source      = "./modules/secret_manager"
+  eed_db_host = module.postgres.db_instance_address
+  eed_db_user = module.postgres.db_instance_username
+  eed_db_pass = module.postgres.db_instance_generated_user_password
+
+  depends_on = [module.postgres]
 }
