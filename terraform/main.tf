@@ -39,3 +39,8 @@ module "cloud_composer" {
   project_number = var.project_number
   region         = var.region
 }
+
+module "tfstate_bucket" {
+  source = "./modules/tfstate_bucket"
+  region   = var.region
+}
