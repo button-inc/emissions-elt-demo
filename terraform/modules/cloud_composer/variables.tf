@@ -10,17 +10,17 @@ variable "region" {
   description = "GCP region"
 }
 
-variable "ELT_DB_HOST" {
+variable "eed_db_host" {
   default     = ""
   description = "Host IP for the ELT database"
 }
 
-variable "ELT_DB_USER" {
+variable "eed_db_user" {
   default     = ""
   description = "Username for the ELT database"
 }
 
-variable "ELT_DB_PASS" {
+variable "eed_db_pass" {
   default     = ""
   description = "Password for the ELT database"
 }

@@ -47,9 +47,9 @@ resource "google_composer_environment" "eed_cloud_compose_env" {
     software_config {
       image_version = "composer-2.0.26-airflow-2.2.5"
       env_variables = {
-        ELT_DB_HOST = var.ELT_DB_HOST
-        ELT_DB_USER = var.ELT_DB_USER
-        ELT_DB_PASS = var.ELT_DB_PASS
+        eed_db_host = var.eed_db_host
+        eed_db_user = var.eed_db_user
+        eed_db_pass = var.eed_db_pass
       }
     }
 
@@ -58,4 +58,19 @@ resource "google_composer_environment" "eed_cloud_compose_env" {
     }
 
   }
+}
+
+# Create secret for the DAGs bucket name
+resource "google_secret_manager_secret" "airflow_gcs_bucket_name" {
+  provider = google-beta
+
+  secret_id = "airflow_gcs_bucket_name"
+  replication {
+    automatic = true
+  }
+}
+# Add the secret data
+resource "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
+  secret      = google_secret_manager_secret.airflow_gcs_bucket_name.id
+  secret_data = google_composer_environment.eed_cloud_compose_env.config.0.dag_gcs_prefix
 }
