@@ -50,5 +50,5 @@ module "tfstate_bucket" {
 }
 
 module "triggers" {
-  source   = "./modules/triggers"
+  source = "./modules/triggers"
 }
