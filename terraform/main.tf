@@ -48,3 +48,7 @@ module "tfstate_bucket" {
   source = "./modules/tfstate_bucket"
   region = var.region
 }
+
+module "triggers" {
+  source   = "./modules/triggers"
+}

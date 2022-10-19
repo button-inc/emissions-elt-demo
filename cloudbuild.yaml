@@ -1,6 +1,17 @@
 options:
   logging: CLOUD_LOGGING_ONLY
 steps:
+
+  # Import DAGs to Cloud Composer
+  - name: gcr.io/cloud-builders/gsutil
+    args:
+      - '-m'
+      - 'rsync'
+      - '-d'
+      - '-r'
+      - 'dags'
+      - 'gs://${_GCS_BUCKET}/dags'
+
   # Docker Build Schema
   - name: "gcr.io/cloud-builders/docker"
     entrypoint: "bash"
