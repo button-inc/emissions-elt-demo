@@ -1,7 +1,6 @@
 options:
   logging: CLOUD_LOGGING_ONLY
 steps:
-
   # Import DAGs to Cloud Composer
   - name: gcr.io/cloud-builders/gsutil
     args:
