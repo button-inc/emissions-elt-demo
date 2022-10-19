@@ -46,6 +46,11 @@ resource "google_composer_environment" "eed_cloud_compose_env" {
   config {
     software_config {
       image_version = "composer-2.0.26-airflow-2.2.5"
+      env_variables = {
+        ELT_DB_HOST = var.ELT_DB_HOST
+        ELT_DB_USER = var.ELT_DB_USER
+        ELT_DB_PASS = var.ELT_DB_PASS
+      }
     }
 
     node_config {
