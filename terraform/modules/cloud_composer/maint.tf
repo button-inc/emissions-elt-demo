@@ -59,3 +59,18 @@ resource "google_composer_environment" "eed_cloud_compose_env" {
 
   }
 }
+
+# Create secret for the DAGs bucket name
+resource "google_secret_manager_secret" "airflow_gcs_bucket_name" {
+  provider = google-beta
+
+  secret_id = "airflow_gcs_bucket_name"
+  replication {
+    automatic = true
+  }
+}
+# Add the secret data
+resource "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
+  secret      = google_secret_manager_secret.airflow_gcs_bucket_name.id
+  secret_data = google_composer_environment.eed_cloud_compose_env.config.0.dag_gcs_prefix
+}

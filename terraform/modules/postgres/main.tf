@@ -54,3 +54,48 @@ resource "google_sql_user" "postgresql_user" {
   password = (var.db_user_password == "" ?
   random_id.user_password.hex : var.db_user_password)
 }
+
+# Create a secret for database host
+resource "google_secret_manager_secret" "eed_db_host" {
+  provider = google-beta
+
+  secret_id = "eed_db_host"
+  replication {
+    automatic = true
+  }
+}
+# Add the secret data
+resource "google_secret_manager_secret_version" "eed_db_host" {
+  secret      = google_secret_manager_secret.eed_db_host.id
+  secret_data = google_sql_database_instance.postgresql.ip_address.0.ip_address
+}
+
+# Create a secret for database username
+resource "google_secret_manager_secret" "eed_db_user" {
+  provider = google-beta
+
+  secret_id = "eed_db_user"
+  replication {
+    automatic = true
+  }
+}
+# Add the secret data
+resource "google_secret_manager_secret_version" "eed_db_user" {
+  secret      = google_secret_manager_secret.eed_db_user.id
+  secret_data = var.db_user_name
+}
+
+# Create a secret for database password
+resource "google_secret_manager_secret" "eed_db_pass" {
+  provider = google-beta
+
+  secret_id = "eed_db_pass"
+  replication {
+    automatic = true
+  }
+}
+# Add the secret data
+resource "google_secret_manager_secret_version" "eed_db_pass" {
+  secret      = google_secret_manager_secret.eed_db_pass.id
+  secret_data = random_id.user_password.hex
+}

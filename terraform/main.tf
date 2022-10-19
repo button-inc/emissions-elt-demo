@@ -41,19 +41,10 @@ module "cloud_composer" {
   ELT_DB_HOST    = module.postgres.db_instance_address
   ELT_DB_USER    = module.postgres.db_instance_username
   ELT_DB_PASS    = module.postgres.db_instance_generated_user_password
-  depends_on = [module.postgres]
+  depends_on     = [module.postgres]
 }
 
 module "tfstate_bucket" {
   source = "./modules/tfstate_bucket"
   region = var.region
-}
-
-module "secret_manager" {
-  source      = "./modules/secret_manager"
-  eed_db_host = module.postgres.db_instance_address
-  eed_db_user = module.postgres.db_instance_username
-  eed_db_pass = module.postgres.db_instance_generated_user_password
-
-  depends_on = [module.postgres]
 }
