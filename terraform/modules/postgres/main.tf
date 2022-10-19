@@ -99,3 +99,19 @@ resource "google_secret_manager_secret_version" "eed_db_pass" {
   secret      = google_secret_manager_secret.eed_db_pass.id
   secret_data = random_id.user_password.hex
 }
+
+# read secret data to use in outputs
+data "google_secret_manager_secret_version" "eed_db_host" {
+  provider = google-beta
+  secret   = "eed_db_host"
+}
+
+data "google_secret_manager_secret_version" "eed_db_pass" {
+  provider = google-beta
+  secret   = "eed_db_pass"
+}
+
+data "google_secret_manager_secret_version" "eed_db_user" {
+  provider = google-beta
+  secret   = "eed_db_user"
+}
