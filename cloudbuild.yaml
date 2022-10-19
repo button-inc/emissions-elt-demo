@@ -9,7 +9,7 @@ steps:
       - "-d"
       - "-r"
       - "dags"
-      - "gs://${_GCS_BUCKET}/dags"
+      - "${_GCS_BUCKET}"
 
   # Docker Build Schema
   - name: "gcr.io/cloud-builders/docker"
