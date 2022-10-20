@@ -6,6 +6,7 @@ resource "google_project_iam_custom_role" "build-trigger-role" {
   title       = "Build Trigger Role"
   description = "A description"
   permissions = [
+    "artifactregistry.repositories.downloadArtifacts",
     "artifactregistry.repositories.uploadArtifacts",
     "container.clusters.get",
     "container.clusters.getCredentials",
