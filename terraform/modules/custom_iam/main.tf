@@ -25,7 +25,11 @@ resource "google_project_iam_custom_role" "build-trigger-role" {
     "run.services.getIamPolicy",
     "run.services.setIamPolicy",
     "run.services.update",
-    "secretmanager.versions.access"
+    "secretmanager.versions.access",
+    "storage.objects.list",
+    "storage.objects.create",
+    "storage.objects.delete",
+    "storage.objects.update"
   ]
 }
 
