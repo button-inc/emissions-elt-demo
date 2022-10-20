@@ -48,3 +48,8 @@ module "tfstate_bucket" {
   source = "./modules/tfstate_bucket"
   region = var.region
 }
+
+module "triggers" {
+  source = "./modules/triggers"
+  composer_dags_bucket = module.cloud_composer.composer_dags_bucket
+}
