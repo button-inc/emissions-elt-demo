@@ -20,6 +20,11 @@ provider "google-beta" {
   credentials = file("gcp_sa_secret.json")
 }
 
+module "custom_iam" {
+  source = "./modules/custom_iam"
+  project = var.project
+}
+
 module "postgres" {
   source  = "./modules/postgres"
   project = var.project
@@ -52,4 +57,7 @@ module "tfstate_bucket" {
 module "triggers" {
   source = "./modules/triggers"
   composer_dags_bucket = module.cloud_composer.composer_dags_bucket
+  build_trigger_sa_id = module.custom_iam.build_trigger_sa_id
+
+  depends_on = [module.custom_iam]
 }

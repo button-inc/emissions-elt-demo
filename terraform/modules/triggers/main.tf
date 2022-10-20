@@ -4,6 +4,7 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
   location    = "global"
   name        = "elt-build-trigger"
   description = "triggers the cloudbuild.yaml from source github repo on branch push"
+  service_account = var.build_trigger_sa_id
 
   source_to_build {
     repo_type = "GITHUB"
