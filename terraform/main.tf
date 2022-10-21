@@ -21,7 +21,7 @@ provider "google-beta" {
 }
 
 module "custom_iam" {
-  source = "./modules/custom_iam"
+  source  = "./modules/custom_iam"
   project = var.project
 }
 
@@ -32,10 +32,11 @@ module "postgres" {
 }
 
 module "gke" {
-  source  = "./modules/gke"
-  project = var.project
-  region  = var.region
-  zone    = var.zone
+  source                 = "./modules/gke"
+  project                = var.project
+  region                 = var.region
+  zone                   = var.zone
+  cloud_compute_sa_email = module.custom_iam.cloud_compute_sa_email
 }
 
 module "cloud_composer" {
@@ -55,9 +56,9 @@ module "tfstate_bucket" {
 }
 
 module "triggers" {
-  source = "./modules/triggers"
+  source               = "./modules/triggers"
   composer_dags_bucket = module.cloud_composer.composer_dags_bucket
-  build_trigger_sa_id = module.custom_iam.build_trigger_sa_id
+  build_trigger_sa_id  = module.custom_iam.build_trigger_sa_id
 
   depends_on = [module.custom_iam]
 }

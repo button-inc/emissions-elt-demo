@@ -37,3 +37,7 @@ variable "artifact_respository_name" {
   default     = "eed-docker-artifact-repository"
   description = "name of the Docker artifact repository for the project"
 }
+
+variable "cloud_compute_sa_email" {
+  description = "Cloud compute service account email"
+}

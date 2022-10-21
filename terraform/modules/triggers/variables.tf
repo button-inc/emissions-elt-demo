@@ -4,7 +4,7 @@ variable "project" {
 }
 
 variable "composer_dags_bucket" {
-  default    = ""
+  default     = ""
   description = "gcs bucket where composer dags are located"
 }
 

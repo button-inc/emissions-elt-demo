@@ -1,9 +1,9 @@
 resource "google_cloudbuild_trigger" "elt-build-trigger" {
-  provider    = google-beta
-  project     = var.project
-  location    = "global"
-  name        = "elt-build-trigger"
-  description = "triggers the cloudbuild.yaml from source github repo on branch push"
+  provider        = google-beta
+  project         = var.project
+  location        = "global"
+  name            = "elt-build-trigger"
+  description     = "triggers the cloudbuild.yaml from source github repo on branch push"
   service_account = var.build_trigger_sa_id
 
   source_to_build {
@@ -20,7 +20,7 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
 
   github {
     owner = "button-inc"
-    name = "emissions-elt-demo"
+    name  = "emissions-elt-demo"
     push {
       branch = "^feat/gcp-roles$"
     }

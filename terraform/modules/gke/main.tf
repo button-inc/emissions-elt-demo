@@ -15,11 +15,6 @@ resource "google_artifact_registry_repository" "eed-artifacts" {
   format        = "DOCKER"
 }
 
-resource "google_service_account" "default" {
-  account_id   = "service-account-id"
-  display_name = "Service Account"
-}
-
 resource "google_container_cluster" "primary" {
   provider = google-beta
   name     = var.gke_cluster_name
@@ -50,5 +45,6 @@ resource "google_container_cluster" "primary" {
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/servicecontrol",
     ]
+    service_account = var.cloud_compute_sa_email
   }
 }
