@@ -1,11 +1,3 @@
-provider "google-beta" {
-  # Run 'gcloud auth application-default login' to get credentials.json
-  # credentials = "${file("credentials.json")}"
-  project = var.project
-  region  = var.region
-}
-
-
 # create Docker artifact repository
 resource "google_artifact_registry_repository" "eed-artifacts" {
   provider      = google-beta

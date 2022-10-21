@@ -36,7 +36,9 @@ module "gke" {
   project                = var.project
   region                 = var.region
   zone                   = var.zone
-  cloud_compute_sa_email = module.custom_iam.cloud_compute_sa_email
+  cloud_compute_sa_email = module.custom_iam.gke_cloud_compute_sa_email
+
+  depends_on = [module.custom_iam]
 }
 
 module "cloud_composer" {

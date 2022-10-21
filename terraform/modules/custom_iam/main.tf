@@ -69,7 +69,7 @@ resource "google_project_iam_custom_role" "gke-cloud-compute-role" {
 
 resource "google_service_account" "gke_cloud_compute_sa" {
   provider     = google-beta
-  account_id   = "build-trigger-sa"
+  account_id   = "gke-cloud-compute-sa"
   display_name = "Service account for Cloud Compute"
 }
 
