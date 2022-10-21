@@ -31,7 +31,6 @@ steps:
 
   # Entrypoint, timeout and environment variables=
   - name: "gcr.io/cloud-builders/gcloud"
-    serviceAccount: "projects/${PROJECT_ID}/"
     args:
       [
         "beta",
