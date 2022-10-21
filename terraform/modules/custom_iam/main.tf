@@ -47,7 +47,7 @@ resource "google_project_iam_member" "build_trigger_sa" {
   role     = "projects/emissions-elt-demo/roles/build_trigger_role"
 }
 
-# Cloud Compute Role
+# Cloud Compute Roles
 resource "google_project_iam_custom_role" "gke-cloud-compute-role" {
   role_id     = "gke_cloud_compute_role"
   title       = "Cloud Compute Role"
