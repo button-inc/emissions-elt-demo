@@ -79,3 +79,39 @@ resource "google_project_iam_member" "gke_cloud_compute_sa" {
   member   = format("serviceAccount:%s", google_service_account.gke_cloud_compute_sa.email)
   role     = "projects/emissions-elt-demo/roles/gke_cloud_compute_role"
 }
+
+# Cloud build Roles
+resource "google_project_iam_custom_role" "cloud-build-role" {
+  role_id     = "custom_cloud_build_role"
+  title       = "Cloud Build Role"
+  description = "Role for Cloud Build service account"
+  permissions = [
+    # cloud build service account
+    "artifactregistry.repositories.uploadArtifacts",
+    "cloudbuild.builds.create",
+    "logging.logEntries.create",
+    "pubsub.topics.publish",
+    "resourcemanager.projects.get",
+    "source.repos.get",
+    "source.repos.list",
+    # cloud run admin
+    "resourcemanager.projects.get",
+    "run.services.get",
+    "run.services.update",
+    # secret manager
+    "secretmanager.versions.access"
+  ]
+}
+
+resource "google_service_account" "cloud_build_sa" {
+  provider     = google-beta
+  account_id   = "cloud-build-sa"
+  display_name = "Service account for Cloud Build"
+}
+
+resource "google_project_iam_member" "cloud_build_sa" {
+  provider = google-beta
+  project  = var.project
+  member   = format("serviceAccount:%s", google_service_account.cloud_build_sa.email)
+  role     = "projects/emissions-elt-demo/roles/custom_cloud_build_role"
+}

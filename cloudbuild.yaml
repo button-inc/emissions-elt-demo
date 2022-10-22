@@ -1,5 +1,6 @@
 options:
   logging: CLOUD_LOGGING_ONLY
+serviceAccount: "cloud-build-sa@emissions-elt-demo.iam.gserviceaccount.com"
 steps:
   # Import DAGs to Cloud Composer
   - name: gcr.io/cloud-builders/gsutil
