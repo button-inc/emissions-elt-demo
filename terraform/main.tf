@@ -20,6 +20,12 @@ provider "google-beta" {
   credentials = file("gcp_sa_secret.json")
 }
 
+module "tfstate_bucket" {
+  source = "./modules/tfstate_bucket"
+  region = var.region
+}
+
+
 module "custom_iam" {
   source  = "./modules/custom_iam"
   project = var.project
@@ -49,12 +55,7 @@ module "cloud_composer" {
   eed_db_host    = module.postgres.db_instance_address
   eed_db_user    = module.postgres.db_instance_username
   eed_db_pass    = module.postgres.db_instance_generated_user_password
-  depends_on     = [module.postgres]
-}
-
-module "tfstate_bucket" {
-  source = "./modules/tfstate_bucket"
-  region = var.region
+  depends_on     = [module.postgres, module.custom_iam]
 }
 
 module "triggers" {
