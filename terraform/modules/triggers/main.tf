@@ -9,7 +9,7 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
   source_to_build {
     repo_type = "GITHUB"
     uri       = "https://github.com/button-inc/emissions-elt-demo"
-    ref       = "refs/heads/feat/gcp-roles"
+    ref       = "refs/heads/develop"
   }
 
   git_file_source {
@@ -22,7 +22,7 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
     owner = "button-inc"
     name  = "emissions-elt-demo"
     push {
-      branch = "^feat/gcp-roles$"
+      branch = "^develop$"
     }
   }
 
