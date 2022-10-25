@@ -20,6 +20,17 @@ provider "google-beta" {
   credentials = file("gcp_sa_secret.json")
 }
 
+module "tfstate_bucket" {
+  source = "./modules/tfstate_bucket"
+  region = var.region
+}
+
+
+module "custom_iam" {
+  source  = "./modules/custom_iam"
+  project = var.project
+}
+
 module "postgres" {
   source  = "./modules/postgres"
   project = var.project
@@ -27,10 +38,13 @@ module "postgres" {
 }
 
 module "gke" {
-  source  = "./modules/gke"
-  project = var.project
-  region  = var.region
-  zone    = var.zone
+  source                 = "./modules/gke"
+  project                = var.project
+  region                 = var.region
+  zone                   = var.zone
+  cloud_compute_sa_email = module.custom_iam.gke_cloud_compute_sa_email
+
+  depends_on = [module.custom_iam]
 }
 
 module "cloud_composer" {
@@ -41,15 +55,13 @@ module "cloud_composer" {
   eed_db_host    = module.postgres.db_instance_address
   eed_db_user    = module.postgres.db_instance_username
   eed_db_pass    = module.postgres.db_instance_generated_user_password
-  depends_on     = [module.postgres]
-}
-
-module "tfstate_bucket" {
-  source = "./modules/tfstate_bucket"
-  region = var.region
+  depends_on     = [module.postgres, module.custom_iam]
 }
 
 module "triggers" {
-  source = "./modules/triggers"
+  source               = "./modules/triggers"
   composer_dags_bucket = module.cloud_composer.composer_dags_bucket
+  build_trigger_sa_id  = module.custom_iam.build_trigger_sa_id
+
+  depends_on = [module.custom_iam]
 }

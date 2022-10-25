@@ -1,5 +1,6 @@
 options:
   logging: CLOUD_LOGGING_ONLY
+serviceAccount: "cloud-build-sa@emissions-elt-demo.iam.gserviceaccount.com"
 steps:
   # Import DAGs to Cloud Composer
   - name: gcr.io/cloud-builders/gsutil
@@ -29,7 +30,7 @@ steps:
         "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/deploy-db-migrations",
       ]
 
-  # Entrypoint, timeout and environment variables
+  # Entrypoint, timeout and environment variables=
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
@@ -37,6 +38,8 @@ steps:
         "run",
         "jobs",
         "create",
+        "--service-account",
+        "gke-cloud-compute-sa@emissions-elt-demo.iam.gserviceaccount.com",
         "deploy-db-migrations-${COMMIT_SHA}",
         "--image",
         "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/deploy-db-migrations",

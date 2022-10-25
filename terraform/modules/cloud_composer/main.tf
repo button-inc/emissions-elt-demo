@@ -15,7 +15,7 @@ resource "google_project_service" "composer_api" {
 # Note: This service account might need additional permissions to access other resources in your project.
 resource "google_service_account" "cloud_compose_sa" {
   provider     = google-beta
-  account_id   = "cloud-compose-sa"
+  account_id   = "cloud-composer-sa"
   display_name = "Service account for cloud compose"
 }
 
@@ -58,24 +58,28 @@ resource "google_composer_environment" "eed_cloud_compose_env" {
     }
 
   }
+  depends_on = [google_service_account_iam_member.cloud_compose_sa]
 }
 
 # Create secret for the DAGs bucket name
-resource "google_secret_manager_secret" "airflow_gcs_bucket_name" {
+resource "google_secret_manager_secret" "airflow_gcs_bucket" {
   provider = google-beta
 
-  secret_id = "airflow_gcs_bucket_name"
+  secret_id = "airflow_gcs_bucket"
   replication {
     automatic = true
   }
+  depends_on = [google_composer_environment.eed_cloud_compose_env]
 }
 # Add the secret data
-resource "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
-  secret      = google_secret_manager_secret.airflow_gcs_bucket_name.id
+resource "google_secret_manager_secret_version" "airflow_gcs_bucket" {
+  secret      = google_secret_manager_secret.airflow_gcs_bucket.id
   secret_data = google_composer_environment.eed_cloud_compose_env.config.0.dag_gcs_prefix
+  depends_on = [google_secret_manager_secret.airflow_gcs_bucket]
 }
 
-data "google_secret_manager_secret_version" "airflow_gcs_bucket_name" {
+data "google_secret_manager_secret_version" "airflow_gcs_bucket" {
   provider = google-beta
-  secret   = "airflow_gcs_bucket_name"
+  secret   = "airflow_gcs_bucket"
+  depends_on = [google_secret_manager_secret_version.airflow_gcs_bucket]
 }

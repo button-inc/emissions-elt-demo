@@ -1,14 +1,15 @@
 resource "google_cloudbuild_trigger" "elt-build-trigger" {
-  provider    = google-beta
-  project     = var.project
-  location    = "global"
-  name        = "elt-build-trigger"
-  description = "triggers the cloudbuild.yaml from source github repo on branch push"
+  provider        = google-beta
+  project         = var.project
+  location        = "global"
+  name            = "elt-build-trigger"
+  description     = "triggers the cloudbuild.yaml from source github repo on branch push"
+  service_account = var.build_trigger_sa_id
 
   source_to_build {
     repo_type = "GITHUB"
     uri       = "https://github.com/button-inc/emissions-elt-demo"
-    ref       = "refs/heads/feat/import-dags"
+    ref       = "refs/heads/develop"
   }
 
   git_file_source {
@@ -19,9 +20,9 @@ resource "google_cloudbuild_trigger" "elt-build-trigger" {
 
   github {
     owner = "button-inc"
-    name = "emissions-elt-demo"
+    name  = "emissions-elt-demo"
     push {
-      branch = "^feat/import-dags$"
+      branch = "^develop$"
     }
   }
 

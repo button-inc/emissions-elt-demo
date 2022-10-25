@@ -1,11 +1,3 @@
-provider "google-beta" {
-  # Run 'gcloud auth application-default login' to get credentials.json
-  # credentials = "${file("credentials.json")}"
-  project = var.project
-  region  = var.region
-}
-
-
 # create Docker artifact repository
 resource "google_artifact_registry_repository" "eed-artifacts" {
   provider      = google-beta
@@ -13,11 +5,6 @@ resource "google_artifact_registry_repository" "eed-artifacts" {
   repository_id = var.artifact_respository_name
   description   = "eed docker repository"
   format        = "DOCKER"
-}
-
-resource "google_service_account" "default" {
-  account_id   = "service-account-id"
-  display_name = "Service Account"
 }
 
 resource "google_container_cluster" "primary" {
@@ -50,5 +37,6 @@ resource "google_container_cluster" "primary" {
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/servicecontrol",
     ]
+    service_account = var.cloud_compute_sa_email
   }
 }
