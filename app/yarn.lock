@@ -160,10 +160,10 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
-"@button-inc/button-theme@^1.0.0-alpha.6":
-  version "1.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@button-inc/button-theme/-/button-theme-1.0.0-alpha.6.tgz#d2cfa796243413b69c396401632d8fd9cc7ccc5e"
-  integrity sha512-Hzln77VIuJedYRzgDaXhVpTuFkK83pr+2yi+It1uIsW1Tj+3LkC1AfPAkv8W96FNSY57cS77zqd9nkZxqu2AdA==
+"@button-inc/button-theme@^1.0.0-alpha.7":
+  version "1.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@button-inc/button-theme/-/button-theme-1.0.0-alpha.7.tgz#1ffbe6b808d99a3dac66da5b0a0c6b2079c7ad0d"
+  integrity sha512-rSWHJnyyK1KVJoPibsjEHErAxtCLhgN5PPoeDrgmARC6HaDa23W9hDjAuB4O/d67+jvx8wh7bXRO2nTlYew+AA==
   dependencies:
     "@babel/runtime" "^7.4.2"
     "@button-inc/component-library" "1.0.3"
