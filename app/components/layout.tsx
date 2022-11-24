@@ -1,4 +1,4 @@
-import { Footer, Header } from '@button-inc/button-theme';
+import { Footer, Header } from "@button-inc/button-theme";
 
 export default function Layout({ children }) {
   return (
