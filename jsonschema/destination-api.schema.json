@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "destination-api.schema.json",
+  "title": "Destination API Job Response",
+  "description": "A response from Telus's Destination API ",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "description": "The unique job id",
+      "type": "string",
+      "format": "uuid"
+    },
+    "api": {
+      "description": "The type of response from Telus Insights",
+      "type": "string"
+    },
+    "active": {
+      "description": "",
+      "type": "boolean"
+    },
+    "study_zones": {
+      "description": "The core of the response, parsed data from Insights",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input_geoid": {
+            "description": "The geoid of the origin",
+            "type": "string"
+          },
+          "buckets": {
+            "description": "The origin broken down into time buckets. For our uses, there should only be a single, year-long bucket for each origin",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timeframe_bucket": {
+                  "description": "The start time of a bucket. ISO 8601 to whole seconds `yyyy-mm-ddThh:mm:ss",
+                  "type": "string"
+                },
+                "outputs": {
+                  "properties": {
+                    "count": {
+                      "description": "The count of identifiers having moved from the Origin to the Destination",
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "requestId": {
+                      "description": "The unique job id",
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "output_geoid": {
+                      "description": "The geoid of the destination",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "count",
+                    "requestId",
+                    "output_geoid"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "input_geoid",
+          "buckets"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "requestId",
+    "api",
+    "active",
+    "study_zones"
+  ]
+}
