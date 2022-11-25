@@ -14,19 +14,19 @@ export default function Admin() {
       <DefaultLayout>
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
-          {adminOptions.map((option) => (
-            <Grid.Col key={option.title} span="4">
-              <Link href={option.link}>
-                <Button 
-                  size="large" 
-                  variant="secondary" 
-                  style={{ width: "100%" }}
-                >
-                  {option.title}
-                </Button>
-              </Link>
-            </Grid.Col>
-          ))}
+            {adminOptions.map((option) => (
+              <Grid.Col key={option.title} span="4">
+                <Link href={option.link}>
+                  <Button 
+                    size="large" 
+                    variant="secondary" 
+                    style={{ width: "100%" }}
+                  >
+                    {option.title}
+                  </Button>
+                </Link>
+              </Grid.Col>
+            ))}
           </Grid.Row>
         </Grid>
       </DefaultLayout>
