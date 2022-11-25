@@ -7,5 +7,5 @@ export default function Layout({ children }) {
       <main className="content--vertical-center">{children}</main>
       <Footer className="footer" />
     </div>
-  )
+  );
 }
