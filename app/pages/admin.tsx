@@ -17,9 +17,9 @@ export default function Admin() {
             {adminOptions.map((option) => (
               <Grid.Col key={option.title} span="4">
                 <Link href={option.link}>
-                  <Button 
-                    size="large" 
-                    variant="secondary" 
+                  <Button
+                    size="large"
+                    variant="secondary"
                     style={{ width: "100%" }}
                   >
                     {option.title}
