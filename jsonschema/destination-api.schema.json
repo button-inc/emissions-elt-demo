@@ -12,7 +12,8 @@
     },
     "api": {
       "description": "The type of response from Telus Insights",
-      "type": "string"
+      "type": "string",
+      "pattern": "destination"
     },
     "active": {
       "description": "",
@@ -36,7 +37,8 @@
               "properties": {
                 "timeframe_bucket": {
                   "description": "The start time of a bucket. ISO 8601 to whole seconds `yyyy-mm-ddThh:mm:ss",
-                  "type": "string"
+                  "type": "string",
+                  "format": "date-time"
                 },
                 "outputs": {
                   "properties": {
@@ -61,7 +63,11 @@
                     "output_geoid"
                   ]
                 }
-              }
+              },
+              "required": [
+                "timeframe_bucket",
+                "outputs"
+              ]
             }
           }
         },
@@ -69,8 +75,7 @@
           "input_geoid",
           "buckets"
         ]
-      },
-      "minItems": 1
+      }
     }
   },
   "required": [
