@@ -3,10 +3,7 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Login() {
-  // TODO(JG): Add links to actual pages once created
-  const loginOptions = [
-    { title: "Log in", link: "home" },
-  ];
+  const loginOptions = [{ title: "Log in", link: "home" }];
   return (
     <>
       <DefaultLayout>

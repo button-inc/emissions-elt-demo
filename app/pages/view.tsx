@@ -3,7 +3,6 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function View() {
-  // TODO(JG): Add links to actual pages once created
   const viewOptions = [
     { title: "View Data", link: "#" },
     { title: "Rerun", link: "#" },

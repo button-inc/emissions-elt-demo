@@ -3,10 +3,7 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Insights() {
-  // TODO(JG): Add links to actual pages once created
-  const insightsOptions = [
-    { title: "Datasets", link: "#" },
-  ];
+  const insightsOptions = [{ title: "Datasets", link: "#" }];
   return (
     <>
       <DefaultLayout>

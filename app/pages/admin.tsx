@@ -3,7 +3,6 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Admin() {
-  // TODO(JG): Add links to actual pages once created
   const adminOptions = [
     { title: "Add a New Dataset", link: "import" },
     { title: "View Imported Datasets", link: "view" },

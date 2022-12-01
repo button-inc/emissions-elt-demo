@@ -3,7 +3,6 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Home() {
-  // TODO(JG): Add links to actual pages once created
   const homeOptions = [
     { title: "Dashboard", link: "admin" }, // Dashboard is called admin
     { title: "Profile", link: "#" },

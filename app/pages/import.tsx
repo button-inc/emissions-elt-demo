@@ -3,7 +3,6 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Import() {
-  // TODO(JG): Add links to actual pages once created
   const importOptions = [
     { title: "Upload", link: "#" },
     { title: "Submit", link: "admin" },
