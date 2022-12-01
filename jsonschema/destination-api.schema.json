@@ -57,31 +57,16 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "count",
-                    "requestId",
-                    "output_geoid"
-                  ]
+                  "required": ["count", "requestId", "output_geoid"]
                 }
               },
-              "required": [
-                "timeframe_bucket",
-                "outputs"
-              ]
+              "required": ["timeframe_bucket", "outputs"]
             }
           }
         },
-        "required": [
-          "input_geoid",
-          "buckets"
-        ]
+        "required": ["input_geoid", "buckets"]
       }
     }
   },
-  "required": [
-    "requestId",
-    "api",
-    "active",
-    "study_zones"
-  ]
+  "required": ["requestId", "api", "active", "study_zones"]
 }
