@@ -2,7 +2,6 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +9,7 @@
     "lint": "next lint",
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
-    "generate:destination-insights": "node scripts/generate-insights-data.js"
+    "generate:destination-insights": "node scripts/generate-insights-data.mjs"
   },
   "dependencies": {
     "@button-inc/button-theme": "^1.0.0-alpha.7",
