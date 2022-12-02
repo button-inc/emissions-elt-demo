@@ -2,19 +2,19 @@ import { Button, Grid } from "@button-inc/button-theme";
 import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
-export default function Admin() {
-  const adminOptions = [
-    { title: "Add a New Dataset", link: "import" },
-    { title: "View Imported Datasets", link: "view" },
-    { title: "Data Insights (Metabase)", link: "insights" },
+export default function Home() {
+  const homeOptions = [
+    { title: "Dashboard", link: "admin" }, // Dashboard is called admin
+    { title: "Profile", link: "#" },
+    { title: "Log out", link: "#" },
   ];
   return (
     <>
       <DefaultLayout>
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
-            {adminOptions.map((option) => (
-              <Grid.Col key={option.title} span="120">
+            {homeOptions.map((option) => (
+              <Grid.Col key={option.title} span="4120">
                 <Link href={option.link}>
                   <Button
                     size="large"
