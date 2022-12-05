@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "build:server": "tsc --project tsconfig.server.json",
-    "build:next": "next build"
+    "build:next": "next build",
+    "generate:destination-insights": "node scripts/generate-insights-data.mjs"
   },
   "dependencies": {
     "@button-inc/button-theme": "^1.0.0-alpha.7",
+    "json-schema-faker": "^0.5.0-rcv.46",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
