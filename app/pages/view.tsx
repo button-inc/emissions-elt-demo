@@ -6,6 +6,7 @@ export default function View() {
   const viewOptions = [
     { title: "View Data", link: "#" },
     { title: "Rerun", link: "#" },
+    { title: "Cancel", link: "admin" },
   ];
   return (
     <>
@@ -13,7 +14,7 @@ export default function View() {
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
             {viewOptions.map((option) => (
-              <Grid.Col key={option.title} span="430">
+              <Grid.Col key={option.title} span="30">
                 <Link href={option.link}>
                   <Button
                     size="large"

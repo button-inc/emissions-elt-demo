@@ -6,6 +6,7 @@ export default function Import() {
   const importOptions = [
     { title: "Upload", link: "#" },
     { title: "Submit", link: "admin" },
+    { title: "Cancel", link: "admin" },
   ];
   return (
     <>

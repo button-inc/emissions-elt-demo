@@ -3,7 +3,10 @@ import Link from "next/link";
 import DefaultLayout from "components/DefaultLayout";
 
 export default function Insights() {
-  const insightsOptions = [{ title: "Datasets", link: "#" }];
+  const insightsOptions = [
+    { title: "Datasets", link: "#" },
+    { title: "Cancel", link: "admin" },
+  ];
   return (
     <>
       <DefaultLayout>

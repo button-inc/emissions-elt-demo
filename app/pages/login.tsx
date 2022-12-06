@@ -10,7 +10,7 @@ export default function Login() {
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
             {loginOptions.map((option) => (
-              <Grid.Col key={option.title} span="138">
+              <Grid.Col key={option.title} span="30">
                 <Link href={option.link}>
                   <Button
                     size="large"

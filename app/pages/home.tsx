@@ -6,7 +6,7 @@ export default function Home() {
   const homeOptions = [
     { title: "Dashboard", link: "admin" }, // Dashboard is called admin
     { title: "Profile", link: "#" },
-    { title: "Log out", link: "#" },
+    { title: "Log out", link: "login" },
   ];
   return (
     <>
@@ -14,7 +14,7 @@ export default function Home() {
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
             {homeOptions.map((option) => (
-              <Grid.Col key={option.title} span="4120">
+              <Grid.Col key={option.title} span="30">
                 <Link href={option.link}>
                   <Button
                     size="large"

@@ -7,6 +7,7 @@ export default function Admin() {
     { title: "Add a New Dataset", link: "import" },
     { title: "View Imported Datasets", link: "view" },
     { title: "Data Insights (Metabase)", link: "insights" },
+    { title: "Back", link: "home" },
   ];
   return (
     <>
@@ -14,7 +15,7 @@ export default function Admin() {
         <Grid style={{ padding: "2rem" }}>
           <Grid.Row justify="space-around" align="center">
             {adminOptions.map((option) => (
-              <Grid.Col key={option.title} span="120">
+              <Grid.Col key={option.title} span="30">
                 <Link href={option.link}>
                   <Button
                     size="large"
