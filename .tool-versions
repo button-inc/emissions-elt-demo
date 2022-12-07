@@ -3,3 +3,4 @@ yarn 1.22.18
 postgres 14.1
 python 3.9.11
 terraform 1.2.9
+pre-commit 2.20.0
