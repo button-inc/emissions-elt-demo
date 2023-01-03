@@ -8,3 +8,9 @@ schemas/private 2022-08-29T00:11:29Z Mike Vesprini <mike@button.is> # Create the
 util_functions/verify_function_not_present 2022-08-29T00:24:58Z Mike Vesprini <mike@button.is> # Create private util function to verify a function is not present
 util_functions/grant_permissions 2022-08-29T00:31:54Z Mike Vesprini <mike@button.is> # Private util-function to grant permissions
 trigger_functions/update_timestamps 2022-08-29T02:45:59Z Mike Vesprini <mike@button.is> # Create the eed_private.update_timestamps trigger function
+users 2022-12-21T17:15:57Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Creates table of users.
+insert_user [users] 2022-12-21T17:39:17Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Create a function to insert a user.
+change_password [users] 2022-12-21T17:40:37Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Create a function to change user password.
+add_table 2022-12-22T17:15:28Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Add a table.
+verify_grant 2022-12-23T05:52:10Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Verify that roles have been granted privileges.
+add_test_user 2022-12-23T20:24:40Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Add a user to test login and permissions.

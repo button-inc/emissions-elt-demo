@@ -2,6 +2,8 @@
 
 begin;
 
+SET client_min_messages = 'warning';
+
 -- The create roles affects the database globally. Cannot drop the roles once created.
 do
 $do$
@@ -34,13 +36,13 @@ begin
   if not exists (
     select true
     from   pg_catalog.pg_roles
-    where  rolname = 'eedapp') then
+    where  rolname = 'eed_app') then
 
-    create user eedapp;
+    create user eed_app;
   end if;
 
-  grant eed_admin, eed_internal, eed_external to eedapp;
-  execute format('grant create, connect on database %I to eedapp', current_database());
+  grant eed_admin, eed_internal, eed_external to eed_app;
+  execute format('grant create, connect on database %I to eed_app', current_database());
 
 end
 $do$;
