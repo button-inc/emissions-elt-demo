@@ -14,3 +14,4 @@ change_password [users] 2022-12-21T17:40:37Z Ballard Robinett,,, <ballardrobinet
 add_table 2022-12-22T17:15:28Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Add a table.
 verify_grant 2022-12-23T05:52:10Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Verify that roles have been granted privileges.
 add_test_user 2022-12-23T20:24:40Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Add a user to test login and permissions.
+tables/import_record 2022-12-15T22:13:38Z Josh Gamache <joshua@button.is> # table for the record of data submissions
