@@ -2,16 +2,35 @@
 name: User Story Template
 about: Template for new user stories
 title: ''
-labels: Story
+labels: ''
 assignees: ''
 
 ---
 
-### Description
-As a <user>
-I want <what>
-So that <this is important because ...>
-### Tasks (How)
-- [ ] Task
-- [ ] Task
-- [ ] Task
+As a 
+I want 
+so that 
+
+## Acceptance Criteria:
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
+## Not included:
+-
+-
+
+## Ultra Refinement
+DB:
+ .
+Frontend:
+ .
+Integration/API:
+ .
+Tests:
+ .
+Documentation:
+ .
+
+## Wireframes
