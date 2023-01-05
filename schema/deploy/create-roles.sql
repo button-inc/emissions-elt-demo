@@ -17,6 +17,8 @@ begin
     create role eed_internal;
   end if;
 
+  alter role eed_internal WITH LOGIN PASSWORD 'secret';
+
   if not exists (
     select true
     from   pg_catalog.pg_roles

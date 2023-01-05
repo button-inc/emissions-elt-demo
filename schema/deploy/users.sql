@@ -7,14 +7,12 @@ SET client_min_messages = 'warning';
 -- Create users table
 CREATE TABLE eed.users (
     id integer primary key generated always as identity,
-    uuid uuid not null,
     username varchar(1000) not null,
-    password varchar(1000) not null,
-    email varchar(1000)
+    email varchar(1000),
+    user_role varchar(1000)
 );
 
 -- Create unique index to enforce uniqueness constraint on fields
-create unique index eed_user_uuid on eed.users(uuid);
 create unique index eed_user_username on eed.users(username);
 
 -- Grant permissions for each table to roles. args = (permission, table, role). eed_app has the combined permissions of these roles.
@@ -41,9 +39,8 @@ alter table eed.users enable row level security;
 
 comment on table eed.users is 'Table containing information about application users';
 comment on column eed.users.id is 'Unique ID for the user';
-comment on column eed.users.uuid is 'Universally unique ID for the user, defined by the single sign-on provider';
 comment on column eed.users.username is 'Unique username';
-comment on column eed.users.password is 'Password hashed with md5';
 comment on column eed.users.email is 'Email account associated with user';
+comment on column eed.users.user_role is 'Role determines user permissions';
 
 COMMIT;
