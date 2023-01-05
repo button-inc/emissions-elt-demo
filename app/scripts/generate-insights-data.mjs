@@ -6,7 +6,7 @@ let rawDestinationSchema = fs.readFileSync(
 
 let destinationSchema = JSON.parse(rawDestinationSchema);
 
-const apiFakeResponseCount = 500;
+const apiFakeResponseCount = 50;
 
 JSONSchemaFaker.option("minItems", apiFakeResponseCount);
 JSONSchemaFaker.option("fillProperties", false);
