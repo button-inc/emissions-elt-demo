@@ -7,15 +7,15 @@ assignees: ''
 
 ---
 
-As a 
-I want 
-so that 
+As a
+I want
+so that
 
 ## Acceptance Criteria:
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 
 ## Not included:
 -
