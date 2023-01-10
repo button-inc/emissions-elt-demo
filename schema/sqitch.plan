@@ -16,3 +16,4 @@ verify_grant 2022-12-23T05:52:10Z Ballard Robinett,,, <ballardrobinett@system76-
 add_test_user 2022-12-23T20:24:40Z Ballard Robinett,,, <ballardrobinett@system76-pc> # Add a user to test login and permissions.
 tables/import_record 2022-12-15T22:13:38Z Josh Gamache <joshua@button.is> # table for the record of data submissions
 tables/insight-destination-processed 2022-12-19T21:56:29Z Josh Gamache <joshua@button.is> # tables for processed Insights/Destination API data
+add_users 2023-01-10T16:44:08Z eed_test_user <eed_test_user@button.is> # Add default users to db
