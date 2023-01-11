@@ -41,23 +41,27 @@
                   "format": "date-time"
                 },
                 "outputs": {
-                  "properties": {
-                    "count": {
-                      "description": "The count of identifiers having moved from the Origin to the Destination",
-                      "type": "integer",
-                      "minimum": 0
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "description": "The count of identifiers having moved from the Origin to the Destination",
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "requestId": {
+                        "description": "The unique job id",
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "output_geoid": {
+                        "description": "The geoid of the destination",
+                        "type": "string"
+                      }
                     },
-                    "requestId": {
-                      "description": "The unique job id",
-                      "type": "string",
-                      "format": "uuid"
-                    },
-                    "output_geoid": {
-                      "description": "The geoid of the destination",
-                      "type": "string"
-                    }
-                  },
-                  "required": ["count", "requestId", "output_geoid"]
+                    "required": ["count", "requestId", "output_geoid"]
+                  }
                 }
               },
               "required": ["timeframe_bucket", "outputs"]
