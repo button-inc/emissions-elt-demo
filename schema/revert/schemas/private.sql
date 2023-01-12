@@ -2,6 +2,6 @@
 
 begin;
 
-drop schema eed_private;
+drop schema eed_private CASCADE;
 
 commit;
