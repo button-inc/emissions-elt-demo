@@ -22,6 +22,9 @@ begin
   elsif(select not exists(select true from pg_roles where rolname='manager')) then
     raise exception 'role manager does not exist.';
 
+  elsif(select not exists(select true from pg_roles where rolname='dropper')) then
+    raise exception 'role dropper does not exist.';
+
 
   end if;
 
