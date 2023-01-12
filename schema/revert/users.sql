@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE eed.users;
+DROP TABLE eed.permissions;
 
 COMMIT;
