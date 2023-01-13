@@ -44,6 +44,31 @@ begin
   end if;
 
   grant eed_admin, eed_internal, eed_external to eed_app;
+
+  if not exists (
+    select true
+    from   pg_catalog.pg_roles
+    where  rolname = 'analyst') then
+
+    create role analyst;
+  end if;
+
+  if not exists (
+    select true
+    from   pg_catalog.pg_roles
+    where  rolname = 'manager') then
+
+    create role manager;
+  end if;
+
+  if not exists (
+    select true
+    from   pg_catalog.pg_roles
+    where  rolname = 'dropper') then
+
+    create role dropper;
+  end if;
+
   execute format('grant create, connect on database %I to eed_app', current_database());
 
 end
