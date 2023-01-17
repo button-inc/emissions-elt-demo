@@ -15,3 +15,4 @@ tables/import_record 2022-12-15T22:13:38Z Josh Gamache <joshua@button.is> # tabl
 tables/insight-destination-processed 2022-12-19T21:56:29Z Josh Gamache <joshua@button.is> # tables for processed Insights/Destination API data
 add_users 2023-01-10T16:44:08Z eed_test_user <eed_test_user@button.is> # Add default users to db
 postgis_extension 2023-01-06T21:21:20Z Josh Gamache <joshua@button.is> # enable postGIS extension, allowing geospacial data to be utilized
+add_data_schemas 2023-01-17T02:37:23Z eed_test_user <eed_test_user@button.is> # Add schemas that will hold data

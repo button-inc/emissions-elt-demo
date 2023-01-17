@@ -53,6 +53,8 @@ begin
     create role analyst;
   end if;
 
+  alter role analyst WITH LOGIN PASSWORD 'analyst_password';
+
   if not exists (
     select true
     from   pg_catalog.pg_roles
@@ -61,6 +63,8 @@ begin
     create role manager;
   end if;
 
+  alter role manager WITH LOGIN PASSWORD 'manager_password';
+
   if not exists (
     select true
     from   pg_catalog.pg_roles
@@ -68,6 +72,8 @@ begin
 
     create role dropper;
   end if;
+
+  alter role dropper WITH LOGIN PASSWORD 'dropper_password';
 
   execute format('grant create, connect on database %I to eed_app', current_database());
 
