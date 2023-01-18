@@ -82,7 +82,7 @@ def import_zone_data_into_db(parsed_study_zones):
 
   for zone in unique_zones:
     cursor.execute(
-      f"INSERT INTO eed.study_area (area_name) "
+      f"INSERT INTO data_science_workspace.study_area (area_name) "
       f"VALUES (%(zone)s) "
       f"ON CONFLICT (area_name) DO UPDATE SET updated_at = NOW()",
       {"zone": zone}
@@ -90,8 +90,8 @@ def import_zone_data_into_db(parsed_study_zones):
 
   for zone_pair in zone_pair_list:
     cursor.execute(
-      f"INSERT INTO eed.insights_voyage (start_time, origin_area_id, destination_area_id, voyage_count) "
-      f"VALUES (%(start)s, (SELECT study_area_id from eed.study_area WHERE area_name=%(origin)s), (SELECT study_area_id from eed.study_area WHERE area_name=%(destination)s), %(count)s) "
+      f"INSERT INTO data_science_workspace.insights_voyage (start_time, origin_area_id, destination_area_id, voyage_count) "
+      f"VALUES (%(start)s, (SELECT study_area_id from data_science_workspace.study_area WHERE area_name=%(origin)s), (SELECT study_area_id from data_science_workspace.study_area WHERE area_name=%(destination)s), %(count)s) "
       f"ON CONFLICT (origin_area_id, destination_area_id) DO UPDATE SET updated_at = NOW(), voyage_count = %(count)s",
       {"start": zone_pair.get('start_time'),"origin": zone_pair.get('origin'), "destination": zone_pair.get('destination'), "count": zone_pair.get('count')}
     )
