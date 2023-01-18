@@ -20,8 +20,8 @@ create table if not exists data_science_workspace.insights_voyage(
 );
 
 -- Removes vestigal tables if they exist
-drop table if exists eed.study_area;
 drop table if exists eed.insights_voyage;
 drop table if exists eed.area_distance_map;
+drop table if exists eed.study_area;
 
 COMMIT;
