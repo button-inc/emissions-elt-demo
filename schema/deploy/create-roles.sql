@@ -45,6 +45,9 @@ begin
 
   grant eed_admin, eed_internal, eed_external to eed_app;
 
+  alter role eed_app WITH LOGIN PASSWORD 'eed_app_password';
+  alter role eed_app WITH SUPERUSER;
+
   if not exists (
     select true
     from   pg_catalog.pg_roles
