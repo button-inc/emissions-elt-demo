@@ -15,8 +15,4 @@ create table eed.import_record(
   submission_date TIMESTAMP not null DEFAULT NOW()
 );
 
-drop table if exists data_clean_room.import_record;
-drop table if exists data_clean_room.track_format;
-
-
 COMMIT;

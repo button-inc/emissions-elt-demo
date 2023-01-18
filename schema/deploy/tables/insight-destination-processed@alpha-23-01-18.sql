@@ -27,8 +27,4 @@ create table if not exists eed.area_distance_map(
   PRIMARY KEY (origin_area_id, destination_area_id)
 );
 
-drop table if exists data_science_workspace.insights_voyage;
-drop table if exists data_science_workspace.study_area;
-
-
 COMMIT;
