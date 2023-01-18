@@ -14,12 +14,27 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "../*", "__generated__/*"]
+      "*": ["*", "../*", "__generated__/*"],
+      "@/components/*": ["app/components/*"],
+      "@/i18n": ["app/i18n"],
+      "@/i18n/*": ["app/i18n/*"],
+      "@/lib/*": ["lib/*"],
+      "@/styles/*": ["app/styles/*"]
     },
     "allowJs": true,
     "downlevelIteration": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [".next", "node_modules", "public"],
-  "include": ["./**/*", "./.eslintrc.js", "../commitlint.config.js"]
+  "include": [
+    "./**/*",
+    "./.eslintrc.js",
+    "../commitlint.config.js",
+    ".next/types/**/*.ts"
+  ]
 }
