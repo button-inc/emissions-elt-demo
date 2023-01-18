@@ -24,6 +24,8 @@ After asdf has already been run to install pre-commit, run: `pre-commit install`
 
 > If pre-commit hooks are not running (or are incomplete), try `pre-commit uninstall` and `pre-commit install` to refresh.
 
+> For pre-commit install errors; such as, no module named ‘\_sqlite3’. Install db-sqlite3, see [here](https://www.notion.so/buttoninc/how-to-fix-selected-pre-commit-errors-30d35eb093b24a0da50a155c3fe5bfcf)
+
 ### GitLint
 
 After pre-commit is installed, run `pre-commit install --hook-type commit-msg` to enable [gitlint](https://jorisroovers.com/gitlint/#using-gitlint-through-pre-commit)
