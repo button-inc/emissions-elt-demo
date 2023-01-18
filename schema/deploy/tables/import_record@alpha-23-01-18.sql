@@ -15,8 +15,4 @@ create table eed.import_record(
   submission_date TIMESTAMP not null DEFAULT NOW()
 );
 
-drop table data_science_workspace.track_format;
-drop table data_science_workspace.import_record;
-
-
 COMMIT;
