@@ -1,7 +1,7 @@
-'use client';
-import { Header } from '@button-inc/button-theme';
-import { SessionProvider } from 'next-auth/react';
-import '@/styles/globals.css';
+"use client";
+import { Header } from "@button-inc/button-theme";
+import { SessionProvider } from "next-auth/react";
+import "@/styles/globals.css";
 
 export default function DefaultLayout({ children }) {
   return (

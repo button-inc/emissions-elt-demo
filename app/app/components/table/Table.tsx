@@ -1,7 +1,7 @@
-import { styled } from '@stitches/react';
+import { styled } from "@stitches/react";
 
-import { TableHeader } from './TableHeader';
-import { TableRow } from './TableRow';
+import { TableHeader } from "./TableHeader";
+import { TableRow } from "./TableRow";
 
 export interface IColumnType<T> {
   key: string;
@@ -15,10 +15,10 @@ interface Props<T> {
   columns: IColumnType<T>[];
 }
 
-const TableWrapper = styled('table', {
-  borderCollapse: 'collapse',
-  border: 'none',
-  fontFamily: 'Anek Telugu',
+const TableWrapper = styled("table", {
+  borderCollapse: "collapse",
+  border: "none",
+  fontFamily: "Anek Telugu",
 });
 
 export function Table<T>({ data, columns }: Props<T>): JSX.Element {

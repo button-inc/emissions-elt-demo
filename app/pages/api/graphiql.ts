@@ -1,5 +1,5 @@
-import { postgraphile } from 'postgraphile';
-import { pgAdmin } from '@/lib/postgraphile/pool/pgAdmin';
+import { postgraphile } from "postgraphile";
+import { pgAdmin } from "@/lib/postgraphile/pool/pgAdmin";
 
 // 👇️ graphql API- works with api\graphql
 export const requestHandler = postgraphile(
@@ -8,8 +8,8 @@ export const requestHandler = postgraphile(
   {
     enhanceGraphiql: true,
     graphiql: true,
-    graphiqlRoute: '/api/graphiql',
-    graphqlRoute: '/api/graphql',
+    graphiqlRoute: "/api/graphiql",
+    graphqlRoute: "/api/graphql",
   }
 );
 

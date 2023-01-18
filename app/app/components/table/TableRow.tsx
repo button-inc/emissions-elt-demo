@@ -1,19 +1,19 @@
-import { styled } from '@stitches/react';
+import { styled } from "@stitches/react";
 
-import { IColumnType } from './Table';
-import { TableRowCell } from './TableRowCell';
+import { IColumnType } from "./Table";
+import { TableRowCell } from "./TableRowCell";
 
 interface Props<T> {
   data: T[];
   columns: IColumnType<T>[];
 }
 
-const TableRowItem = styled('tr', {
-  cursor: 'auto',
-  '&:nth-child(odd)': {
-    backgroundColor: '#f9f9f9',
+const TableRowItem = styled("tr", {
+  cursor: "auto",
+  "&:nth-child(odd)": {
+    backgroundColor: "#f9f9f9",
   },
-  '&:last-child': {
+  "&:last-child": {
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
   },

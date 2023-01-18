@@ -1,6 +1,6 @@
-import { request, gql } from 'graphql-request';
-import { cookies } from 'next/headers';
-import { Table } from '@/components/table/Table';
+import { request } from "graphql-request";
+import { cookies } from "next/headers";
+import { Table } from "@/components/table/Table";
 
 // 👇️ graphql-request to api endpoint
 async function getData(endpoint, query) {
@@ -10,8 +10,8 @@ async function getData(endpoint, query) {
   // 📌 IMPORTANT: add the browser session cookie with the encrypted JWT to this server side API request- to be used by middleware for route protection
   const headers = {
     Cookie:
-      'next-auth.session-token=' +
-      cookies().get('next-auth.session-token')?.value,
+      "next-auth.session-token=" +
+      cookies().get("next-auth.session-token")?.value,
   };
   const data = await request(endpoint, query, variables, headers);
   // 👉️ OK: return data

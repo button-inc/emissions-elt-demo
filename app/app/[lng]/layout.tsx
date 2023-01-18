@@ -1,4 +1,4 @@
-import DefaultLayout from '@/components/DefaultLayout';
+import DefaultLayout from "@/components/DefaultLayout";
 
 /*👇️ pre v13 pages/_app.js and pages/_document.js have been replaced with v13 single app/layout.js root layout*/
 /*Good to know:
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/*
-        <head /> will contain the components returned by the nearest parent head.tsx. 
+        <head /> will contain the components returned by the nearest parent head.tsx.
         Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />

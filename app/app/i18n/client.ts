@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import i18next, { Namespace, KeyPrefix } from 'i18next';
+import i18next, { Namespace, KeyPrefix } from "i18next";
 import {
   initReactI18next,
   useTranslation as useTranslationOrg,
   UseTranslationOptions,
   UseTranslationResponse,
-} from 'react-i18next';
-import resourcesToBackend from 'i18next-resources-to-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { getOptions } from './settings';
+} from "react-i18next";
+import resourcesToBackend from "i18next-resources-to-backend";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { getOptions } from "./settings";
 
 // 👇️ on client side the normal singleton is ok
 i18next
@@ -25,7 +25,7 @@ i18next
     ...getOptions(),
     lng: undefined, //  👉️ detect the language on client side
     detection: {
-      order: ['path', 'htmlTag', 'cookie', 'navigator'],
+      order: ["path", "htmlTag", "cookie", "navigator"],
     },
   });
 

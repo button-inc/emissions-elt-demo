@@ -1,4 +1,4 @@
-import Import from '@/components/Import';
+import Import from "@/components/Import";
 
 export default function Page({
   params: { lng },

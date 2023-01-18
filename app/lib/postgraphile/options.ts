@@ -1,4 +1,4 @@
-import { Options } from 'postgraphile';
+import { Options } from "postgraphile";
 
 export const options: Options = {
   dynamicJson: true,

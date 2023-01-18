@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 function NotFound() {
   return (
@@ -6,7 +6,7 @@ function NotFound() {
       <p>Ops, we have not found the page you requested.</p>
 
       <div>
-        <Link href={'/'}>Go back to the Home Page</Link>
+        <Link href={"/"}>Go back to the Home Page</Link>
       </div>
     </div>
   );

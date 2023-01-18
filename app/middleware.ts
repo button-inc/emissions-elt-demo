@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import acceptLanguage from 'accept-language';
-import { fallbackLng, languages } from './app/i18n/settings';
-import { getToken } from 'next-auth/jwt';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import acceptLanguage from "accept-language";
+import { fallbackLng, languages } from "./app/i18n/settings";
+import { getToken } from "next-auth/jwt";
 
 /*
-Middleware allows you to run code before a request is completed so you can modify the response by 
+Middleware allows you to run code before a request is completed so you can modify the response by
 rewriting, redirecting, modifying the request or response headers, or responding directly.
 */
 /*
@@ -33,30 +33,30 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };
 
 export async function middleware(req: NextRequest) {
   // 👇️ vars for route management
   const { pathname } = req.nextUrl;
-  const isRouteAuth = pathname.indexOf('auth') > -1;
-  const isRouteGraphQL = pathname.indexOf('api/graph') > -1;
-  const isRouteAPI = pathname.indexOf('/api/') > -1;
+  const isRouteAuth = pathname.indexOf("auth") > -1;
+  const isRouteGraphQL = pathname.indexOf("api/graph") > -1;
+  const isRouteAPI = pathname.indexOf("/api/") > -1;
   // 👇️ vars for user session details via next-auth getToken to decrypt jwt in request cookie
   const session = await getToken({
     req: req,
     secret: process.env.NEXTAUTH_SECRET,
   });
-  // 👇️ authenticated user's jwt role property (set from DB permission table in api/auth/nextauth)
+  // 👇️ authenticated user"s jwt role property (set from DB permission table in api/auth/nextauth)
   const role = session?.role;
   // 👇️ vars for app language management
   acceptLanguage.languages(languages);
-  const cookieName = 'i18next';
+  const cookieName = "i18next";
   let lng: string;
   if (req.cookies.has(cookieName))
     lng = acceptLanguage.get(req.cookies.get(cookieName).value);
-  if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'));
+  if (!lng) lng = acceptLanguage.get(req.headers.get("Accept-Language"));
   if (!lng) lng = fallbackLng;
 
   // 👇️ route management- allow calls to /auth for authentication
@@ -77,9 +77,9 @@ export async function middleware(req: NextRequest) {
     // 👀 *******************************TEMP GRAPHQL API******************************
 
     // 👇️ inspect pathname routes
-    const routes = pathname.split('/');
+    const routes = pathname.split("/");
 
-    // 👇️ routes with JUST a language param (ex: /en) need to be routed to user's home page- based on user's role
+    // 👇️ routes with JUST a language param (ex: /en) need to be routed to user"s home page- based on user"s role
     if (routes.length - 1 === 1) {
       // 👉️ route to user role home
       return NextResponse.redirect(new URL(`/${lng}/${role}/home`, req.url));
@@ -90,7 +90,7 @@ export async function middleware(req: NextRequest) {
       // ⛔️ Denied: request is not authorized for the requested route
       if (isRouteAPI === true) {
         return NextResponse.redirect(
-          new URL('/api/auth/unauthorized', req.url)
+          new URL("/api/auth/unauthorized", req.url)
         );
       }
       return NextResponse.redirect(new URL(`/${lng}/unauthorized`, req.url));
@@ -104,9 +104,9 @@ export async function middleware(req: NextRequest) {
       // ⛔️ Re-route with language path
       return NextResponse.redirect(new URL(`/${lng}${pathname}`, req.url));
     }
-    if (req.headers.has('referer')) {
+    if (req.headers.has("referer")) {
       // 👉️ called from oAuth provider
-      const refererUrl = new URL(req.headers.get('referer'));
+      const refererUrl = new URL(req.headers.get("referer"));
       const lngInReferer = languages.find((l) =>
         refererUrl.pathname.startsWith(`/${l}`)
       );

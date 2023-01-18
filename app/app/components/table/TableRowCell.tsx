@@ -1,20 +1,20 @@
-import { styled } from '@stitches/react';
-import { IColumnType } from '@/components/table/Table';
-import { getPropByPath } from '@/lib/utilities/helpers';
+import { styled } from "@stitches/react";
+import { IColumnType } from "@/components/table/Table";
+import { getPropByPath } from "@/lib/utilities/helpers";
 
 interface Props<T> {
   item: T;
   column: IColumnType<T>;
 }
 
-const TableCell = styled('td', {
+const TableCell = styled("td", {
   padding: 12,
   fontSize: 14,
-  color: 'grey',
+  color: "grey",
 });
 
 export function TableRowCell<T>({ item, column }: Props<T>): JSX.Element {
-  const value = getPropByPath(item, column.key, '');
+  const value = getPropByPath(item, column.key, "");
   return (
     <TableCell>{column.render ? column.render(column, item) : value}</TableCell>
   );

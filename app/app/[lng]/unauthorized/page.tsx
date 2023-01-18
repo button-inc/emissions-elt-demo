@@ -1,5 +1,5 @@
-'use client';
-import { useTranslation } from '@/i18n/client';
+"use client";
+import { useTranslation } from "@/i18n/client";
 
 export default function Page({
   params: { lng },
@@ -9,10 +9,10 @@ export default function Page({
   };
 }) {
   // 👇️ client language management
-  const { t } = useTranslation(lng, 'unauth');
+  const { t } = useTranslation(lng, "unauth");
   return (
     <>
-      <h1>⛔️ {t('message')}</h1>
+      <h1>⛔️ {t("message")}</h1>
     </>
   );
 }

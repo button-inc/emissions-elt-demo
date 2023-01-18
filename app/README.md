@@ -20,7 +20,7 @@ From the app root folder (the folder relative to the package.json file -$ cd app
 npm install
 ```
 
-2. Create an .env file in app root folder (based on env-sample.txt)
+2. Create an .env file in app root folder (see sample EOF)
 
 3. Start the dev server:
 
@@ -151,3 +151,25 @@ Below is an example the file structure for the 'home' route in the app and api d
 ```
 
 - [lng] is a dynamic folder accepting the language code within the app route.
+- .env example:
+  API_HOST=
+  DATABASE=
+  DATABASE_HOST=
+  DATABASE_PORT=
+  DATABASE_PROTOCOL=
+  DATABASE_SCHEMA_ADMIN=
+  DATABASE_SCHEMA_CLEAN=
+  DATABASE_SCHEMA_WORKSPACE=
+  DATABASE_SCHEMA_VAULT=
+  DATABASE_USER_ADMIN=
+  DATABASE_USER_PW_ADMIN=
+  DATABASE_USER_ANALYST=
+  DATABASE_USER_PW_ANALYST=
+  DATABASE_USER_DROPPER=
+  DATABASE_USER_PW_DROPPER=
+  DATABASE_USER_MANAGER=
+  DATABASE_USER_PW_MANAGER=
+  GOOGLE_CLIENT_ID=
+  GOOGLE_CLIENT_SECRET=
+  NEXTAUTH_URL=
+  NEXTAUTH_SECRET=

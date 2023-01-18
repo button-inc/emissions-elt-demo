@@ -1,7 +1,7 @@
 //https://github.com/danilowoz/react-content-loader
 //https://skeletonreact.com/
-import React from 'react';
-import ContentLoader from 'react-content-loader';
+import React from "react";
+import ContentLoader from "react-content-loader";
 
 const ThreeDots = (props) => (
   <ContentLoader

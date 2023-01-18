@@ -1,5 +1,5 @@
-import { languages, fallbackLng } from '@/i18n/settings';
-import { useTranslation } from '@/i18n';
+import { languages, fallbackLng } from "@/i18n/settings";
+import { useTranslation } from "@/i18n";
 
 export default async function Page({
   params: { lng },
@@ -14,7 +14,7 @@ export default async function Page({
 
   return (
     <>
-      <h1> {t('message')}</h1>
+      <h1> {t("message")}</h1>
     </>
   );
 }
