@@ -46,7 +46,6 @@ begin
   grant eed_admin, eed_internal, eed_external to eed_app;
 
   alter role eed_app with login password 'eed_app_password';
-  alter role eed_app with SUPERUSER;
 
   if not exists (
     select true
