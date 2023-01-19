@@ -19,6 +19,14 @@ create table if not exists data_science_workspace.insights_voyage(
   PRIMARY KEY (origin_area_id, destination_area_id)
 );
 
+-- dev roles
+grant all on all tables in schema data_science_workspace to eed_internal, eed_external, eed_admin;
+-- -- analyst
+grant all on all tables in schema data_science_workspace to analyst;
+-- manager
+grant all on all tables in schema data_science_workspace to manager;
+
+
 -- Removes vestigal tables if they exist
 drop table if exists eed.insights_voyage;
 drop table if exists eed.area_distance_map;

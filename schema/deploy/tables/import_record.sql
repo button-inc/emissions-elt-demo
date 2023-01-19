@@ -15,6 +15,13 @@ create table if not exists data_clean_room.import_record(
   submission_date TIMESTAMP not null DEFAULT NOW()
 );
 
+-- dev roles
+grant all on all tables in schema data_clean_room to eed_internal, eed_external, eed_admin;
+-- -- analyst
+grant all on all tables in schema data_clean_room to analyst;
+-- dropper
+grant all on all tables in schema data_clean_room to dropper;
+
 -- Removes vestigal tables if they exist
 drop table if exists eed.import_record;
 drop table if exists eed.track_format;
