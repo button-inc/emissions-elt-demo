@@ -69,7 +69,6 @@ def parse_zones_into_list(raw_study_zones):
   }
 
 def import_zone_data_into_db(parsed_study_zones):
-  unique_zones = parsed_study_zones["unique_zones"]
   zone_pair_list = parsed_study_zones["zone_pair_list"]
 
   conn = psycopg2.connect(database="eed",
@@ -79,14 +78,6 @@ def import_zone_data_into_db(parsed_study_zones):
 
   conn.autocommit = True
   cursor = conn.cursor()
-
-  for zone in unique_zones:
-    cursor.execute(
-      f"INSERT INTO data_science_workspace.study_area (area_name) "
-      f"VALUES (%(zone)s) "
-      f"ON CONFLICT (area_name) DO UPDATE SET updated_at = NOW()",
-      {"zone": zone}
-    )
 
   for zone_pair in zone_pair_list:
     cursor.execute(
