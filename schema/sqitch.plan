@@ -21,3 +21,4 @@ tables/insight-destination-processed [tables/insight-destination-processed@alpha
 tables/import_record [tables/import_record@alpha-23-01-18 add_data_schemas] 2023-01-18T17:11:51Z Josh Gamache <joshua@button.is> # Change import tables to use new schema
 tables/study_area_geometry 2023-01-19T17:00:50Z Josh Gamache <joshua@button.is> # Add table for study area hexes
 tables/add_id_to_insights_voyage [tables/insight-destination-processed@alpha-23-01-18] 2023-01-20T17:20:26Z Josh Gamache <joshua@button.is> # Adds an additional id column to insights voyage table
+computed_columns/voyage_combined_id 2023-01-20T17:57:07Z Josh Gamache <joshua@button.is> # Add computed column for insights_voyage table combining origing_id and destination_id
