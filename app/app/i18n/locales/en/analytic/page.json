@@ -1,3 +1,6 @@
 {
+  "column0": "Origin Area Id",
+  "column1": "Destination Area Id",
+  "column2": "Voyage Count",
   "message": "Analytics Page"
 }

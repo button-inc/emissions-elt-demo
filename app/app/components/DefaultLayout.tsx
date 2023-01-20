@@ -7,12 +7,12 @@ export default function DefaultLayout({ children }) {
   return (
     <div className="page-container">
       <Header />
-      <main className="content--vertical-center">
+      <div style={{ padding: "2rem" }}>
         {
           //👇️ Wrapping the SessionProvider obtained from next-auth so to have access to client side information in both client and server pages */
         }
         <SessionProvider>{children}</SessionProvider>
-      </main>
+      </div>
     </div>
   );
 }
