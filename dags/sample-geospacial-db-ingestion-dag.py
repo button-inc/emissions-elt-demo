@@ -58,6 +58,7 @@ def import_csv_and_upsert_to_db():
         f"ON CONFLICT (area_name) DO UPDATE SET updated_at = NOW(), hex_geometry = %(geometry)s",
         {"area_name": row[0], "geometry": row[1]}
       )
+  os.remove('temp.csv')
 
   conn.commit()
   conn.close()
