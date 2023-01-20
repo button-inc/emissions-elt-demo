@@ -19,3 +19,4 @@ add_data_schemas 2023-01-17T02:37:23Z eed_test_user <eed_test_user@button.is> # 
 @alpha-23-01-18 2023-01-18T16:21:40Z Josh Gamache <joshua@button.is> # Tag alpha-23-01-18.
 tables/insight-destination-processed [tables/insight-destination-processed@alpha-23-01-18 add_data_schemas] 2023-01-18T16:33:57Z Josh Gamache <joshua@button.is> # Change insights tables to use new schema
 tables/import_record [tables/import_record@alpha-23-01-18 add_data_schemas] 2023-01-18T17:11:51Z Josh Gamache <joshua@button.is> # Change import tables to use new schema
+tables/study_area_geometry 2023-01-19T17:00:50Z Josh Gamache <joshua@button.is> # Add table for study area hexes
