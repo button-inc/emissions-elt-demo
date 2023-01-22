@@ -1,7 +1,8 @@
 "use client";
 import { useTranslation } from "@/i18n/client";
-import Link from "next/link";
-import { Button, Grid } from "@button-inc/button-theme";
+import BoxLabel from "@/components/layout/BoxLabel";
+import DashBoard from "@/components/navigation/Dashboard";
+import { useSession } from "next-auth/react";
 
 export default function Page({
   params: { lng },
@@ -10,33 +11,19 @@ export default function Page({
     lng: string;
   };
 }) {
+  const { data: session } = useSession();
   // 👇️ language management, client side
   const { t } = useTranslation(lng, "dashboard");
-  // 👇️ link management
+  // 👇️ link management with translations
   const context = "manager";
-  const options = [
-    { title: t("view"), link: context + "/imported" },
-    { title: t("back"), link: context + "/home" },
-  ];
+  const options = [{ title: t("view"), link: context + "/imported" }];
+
+  const name = session && session?.user ? session?.user.name.split(" ")[0] : "";
+  const label = t("label") + ", " + name + "!";
   return (
     <>
-      <Grid style={{ padding: "2rem" }}>
-        <Grid.Row justify="space-around" align="center">
-          {options.map((option) => (
-            <Grid.Col key={option.title} span="30">
-              <Link href={option.link}>
-                <Button
-                  size="large"
-                  variant="secondary"
-                  style={{ width: "100%" }}
-                >
-                  {option.title}
-                </Button>
-              </Link>
-            </Grid.Col>
-          ))}
-        </Grid.Row>
-      </Grid>
+      <BoxLabel text={label}></BoxLabel>
+      <DashBoard options={options}></DashBoard>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import DefaultLayout from "@/components/DefaultLayout";
+import DefaultLayout from "@/components/layout/DefaultLayout";
 
 /*👇️ pre v13 pages/_app.js and pages/_document.js have been replaced with v13 single app/layout.js root layout*/
 /*Good to know:

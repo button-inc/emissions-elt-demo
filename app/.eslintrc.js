@@ -17,6 +17,12 @@ module.exports = {
     //   "error",
     //   { devDependencies: ["tests/**/*", "cypress/**/*"] },
     // ],
+    "react/no-unknown-property": [
+      2,
+      {
+        ignore: ["jsx"],
+      },
+    ],
     "import/extensions": [
       "error",
       "never",

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import acceptLanguage from "accept-language";
-import { fallbackLng, languages } from "./app/i18n/settings";
+import { fallbackLng, languages } from "@/i18n/settings";
 import { getToken } from "next-auth/jwt";
 
 /*
@@ -65,24 +65,26 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
+  // 👀 *******************************TEMP GRAPHQL API******************************
+  if (isRouteGraphQL === true) {
+    // 👉️ OK: route all /auth/* routes
+    return NextResponse.next();
+  }
+  // 👀 *******************************TEMP GRAPHQL API******************************
+
   // 👇️ route management- gate access users only authenticated by oAuth and authorized by DB permissions table
   if (session && role) {
     // 👉️ OK: authenticated and authorized
-
-    // 👀 *******************************TEMP GRAPHQL API******************************
-    if (isRouteGraphQL === true) {
-      // 👉️ OK: route all /auth/* routes
-      return NextResponse.next();
-    }
-    // 👀 *******************************TEMP GRAPHQL API******************************
 
     // 👇️ inspect pathname routes
     const routes = pathname.split("/");
 
     // 👇️ routes with JUST a language param (ex: /en) need to be routed to user"s home page- based on user"s role
     if (routes.length - 1 === 1) {
-      // 👉️ route to user role home
-      return NextResponse.redirect(new URL(`/${lng}/${role}/home`, req.url));
+      // 👉️ route to user role dashboard
+      return NextResponse.redirect(
+        new URL(`/${lng}/${role}/dashboard`, req.url)
+      );
     }
 
     // 👇️ validate routes matches jwt authenticated user role property

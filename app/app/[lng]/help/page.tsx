@@ -14,7 +14,7 @@ export default async function Page({
 
   return (
     <>
-      <h1> {t("analyst")}</h1>
+      <h1> {t("message")}</h1>
     </>
   );
 }

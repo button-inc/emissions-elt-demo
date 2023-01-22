@@ -1,0 +1,11 @@
+.avatar {
+  border-radius: 2rem;
+  float: left;
+  margin-top: 1rem;
+  margin-left: 0.4rem;
+  height: 2rem;
+  width: 2rem;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

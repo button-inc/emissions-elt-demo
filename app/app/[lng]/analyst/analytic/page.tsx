@@ -2,43 +2,17 @@ import { Suspense } from "react";
 import { languages, fallbackLng } from "@/i18n/settings";
 import { useTranslation } from "@/i18n";
 import { gql } from "graphql-request";
+import BoxLabel from "@/components/layout/BoxLabel";
 import { Spinner } from "@/components/layout/Spinner";
-import { IColumnType } from "@/components/table/Table";
-import TableQuery from "@/components/table/TableQuery";
+import DataQuery from "@/components/table/DataQuery";
+import { GridColDef } from "@mui/x-data-grid";
 
 // 👇️ graphQL query
-const endpoint = "api/analyst/graphql";
-
-// 👇️ data definition of imported data
-interface IData {
-  originAreaId: number;
-  destinationAreaId: number;
-  voyageCount: number;
-}
-
-// 👇️ column definition of imported data
-const columns: IColumnType<IData>[] = [
-  {
-    key: "originAreaId",
-    title: "0",
-    width: 200,
-  },
-  {
-    key: "destinationAreaId",
-    title: "1",
-    width: 200,
-  },
-  {
-    key: "voyageCount",
-    title: "2",
-    width: 200,
-  },
-];
-
 const query = gql`
   {
-    allInsightsVoyages {
+    insightsVoyages {
       nodes {
+        id
         originAreaId
         destinationAreaId
         voyageCount
@@ -46,6 +20,34 @@ const query = gql`
     }
   }
 `;
+// 👇️ graphQL query endpoint
+const endpoint = "api/analyst/graphql";
+
+// 👇️ DataTable column definition of query data
+const columns: GridColDef[] = [
+  {
+    field: "id",
+    width: 50,
+  },
+  {
+    field: "originAreaId",
+    headerName: "0",
+    type: "number",
+    width: 200,
+  },
+  {
+    field: "destinationAreaId",
+    headerName: "1",
+    type: "number",
+    width: 200,
+  },
+  {
+    field: "voyageCount",
+    headerName: "2",
+    type: "number",
+    width: 200,
+  },
+];
 export default async function Page({
   params: { lng },
 }: {
@@ -58,21 +60,23 @@ export default async function Page({
   const { t } = await useTranslation(lng, "analytic");
   // 👇️ translate column titles
   columns.map((column, index) => {
-    column.title = t("column" + index.toString());
+    if (column.headerName) {
+      column.headerName = t("column" + index.toString());
+    }
   });
 
   // 👉️ return: table with query data
   return (
     <>
       <div>
-        <h1>{t("message")}</h1>
+        <BoxLabel text={t("label")}></BoxLabel>
         <Suspense fallback={<Spinner />}>
           {/* @ts-expect-error Async Server Component */}
-          <TableQuery
+          <DataQuery
             endpoint={endpoint}
             query={query}
             columns={columns}
-          ></TableQuery>
+          ></DataQuery>
         </Suspense>
       </div>
     </>
