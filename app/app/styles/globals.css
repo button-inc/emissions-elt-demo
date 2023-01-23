@@ -25,24 +25,6 @@ a {
   }
 }
 
-.content--vertical-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 80vh;
-}
-
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.footer {
-  margin-top: auto;
-}
-
 .spin {
   display: inline-block;
   width: 50px;
@@ -62,4 +44,12 @@ a {
   to {
     -webkit-transform: rotate(360deg);
   }
+}
+footer .pg-menu-group.banner {
+  display: none;
+}
+.div--box-label {
+  padding: 16px;
+  background-color: #fcf3cf;
+  height: 75x;
 }

@@ -1,7 +1,6 @@
 import { request } from "graphql-request";
 import { cookies } from "next/headers";
-import { Table } from "@/components/table/Table";
-
+import DataTable from "./DataTable";
 // 👇️ graphql-request to api endpoint
 async function getData(endpoint, query) {
   // 👇️ vars for graphql-request
@@ -21,6 +20,6 @@ async function getData(endpoint, query) {
 export default async function Query({ endpoint, query, columns }) {
   // 👇️ data fetching, server side
   const data = await getData(endpoint, query);
-  // 👉️: RETURN dynamic table
-  return <Table data={data} columns={columns} />;
+  // 👉️ OK: return dynamic table
+  return <DataTable rows={data} columns={columns} />;
 }

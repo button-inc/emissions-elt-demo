@@ -1,5 +1,4 @@
 import Import from "@/components/Import";
-
 export default function Page({
   params: { lng },
 }: {
@@ -7,9 +6,5 @@ export default function Page({
     lng: string;
   };
 }) {
-  return (
-    <Import lng={lng}>
-      <p>Dropper Import</p>
-    </Import>
-  );
+  return <Import lng={lng}></Import>;
 }

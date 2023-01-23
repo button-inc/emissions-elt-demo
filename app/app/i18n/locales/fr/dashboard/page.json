@@ -4,5 +4,6 @@
   "back": "FR Back",
   "import": "FR Add New Datasets",
   "imported": "FR View Imported Datasets",
-  "insight": "FR Data Insights"
+  "insight": "FR Data Insights",
+  "label": "FR Welcome"
 }

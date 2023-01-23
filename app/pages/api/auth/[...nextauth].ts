@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
           const query =
             gql`
             {
-              allPermissions(condition: { email: "` +
+             permissions(condition: { email: "` +
             token.email +
             `" })  {
                 nodes {
@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
               }
             }`;
           const data = await request(endpoint, query);
-          return data?.allPermissions.nodes as any[];
+          return data[Object.keys(data)[0]].nodes as any[];
         }
         const userData = await getUserRole();
         if (userData) {

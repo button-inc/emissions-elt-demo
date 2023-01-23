@@ -1,13 +1,13 @@
 import { postgraphile } from "postgraphile";
-import { pgDropper } from "@/lib/postgraphile/pool/pgDropper";
+import { pgManager } from "@/lib/postgraphile/pool/pgManager";
 import { options } from "@/lib/postgraphile/options";
 
 const requestHandler = postgraphile(
-  pgDropper,
-  process.env.DATABASE_SCHEMA_VAULT,
+  pgManager,
+  process.env.DATABASE_SCHEMA_MANAGER,
   {
     ...options,
-    graphqlRoute: "/api/dropper/graphql/vault",
+    graphqlRoute: "/api/manager/graphql",
   }
 );
 
