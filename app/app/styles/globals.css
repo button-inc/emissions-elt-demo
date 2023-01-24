@@ -45,11 +45,9 @@ a {
     -webkit-transform: rotate(360deg);
   }
 }
-footer .pg-menu-group.banner {
-  display: none;
-}
+
 .div--box-label {
   padding: 16px;
-  background-color: #fcf3cf;
+  background-color: #f7f7f8;
   height: 75x;
 }

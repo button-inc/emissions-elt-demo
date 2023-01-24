@@ -11,22 +11,26 @@ export default function Footer() {
     { title: t("home"), href: "/" },
     {
       title: t("disclaimer"),
-      href: "https://www2.gov.bc.ca/gov/content/home/disclaimer",
+      href: "#",
     },
     {
       title: t("privacy"),
-      href: "https://www2.gov.bc.ca/gov/content/home/privacy",
+      href: "#",
     },
     {
       title: t("accessibility"),
-      href: "https://www2.gov.bc.ca/gov/content/home/accessible-government",
+      href: "#",
+    },
+    {
+      title: t("copyright"),
+      href: "#",
     },
   ];
   return (
     <>
       <footer>
         <nav className="pg-menu-container">
-          <span className="pg-menu-item menu">
+          <div className="pg-menu-item menu">
             <ul>
               {options.map((option) => (
                 <li key={option.title}>
@@ -34,7 +38,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </span>
+          </div>
         </nav>
       </footer>
       <style jsx>
@@ -46,8 +50,7 @@ export default function Footer() {
             display: flex;
             height: 50px;
             padding: 0 1.2rem 0 0;
-            background-color: #f6fafe;
-            border-bottom: 3px solid #3978e5;
+            background-color: #4b286d;
             font-size: 0.8rem;
           }
           .menu ul {
@@ -70,7 +73,7 @@ export default function Footer() {
             display: flex;
             font-size: 1em;
             font-weight: bold;
-            color: #000;
+            color: #fff;
             padding: 0 15px 0 15px;
             -webkit-text-decoration: none;
             text-decoration: none;
