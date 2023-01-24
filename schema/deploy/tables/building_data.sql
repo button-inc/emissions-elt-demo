@@ -4,35 +4,38 @@ BEGIN;
 
 create table if not exists data_clean_room.dwelling_populations(
   id SERIAL PRIMARY KEY,
-  reference_date INTEGER default 2021,
+  reference_date INTEGER not null,
   geographic_location TEXT not null,
   dwellings_occupied_by_usual_residents INTEGER,
-  population_in_dwellings INTEGER
+  population_in_dwellings INTEGER,
+  UNIQUE(reference_date,geographic_location)
 );
 
 create table if not exists data_science_workspace.building_populations(
   id SERIAL PRIMARY KEY,
-  reference_date INTEGER default 2021,
-  municipal_name TEXT not null,
+  reference_date INTEGER,
+  municipal_name INTEGER references data_science_workspace.municipal_district,
   dwellings_occupied_by_usual_residents INTEGER,
-  population_in_dwellings INTEGER
+  population_in_dwellings INTEGER,
+  UNIQUE(reference_date,municipal_name)
 );
 
 create table if not exists data_clean_room.buildings(
   id SERIAL PRIMARY KEY,
-  longitude decimal,
-  latitude decimal,
-  csduid text,
-  csdname text,
-  data_prov text,
-  build_id text,
-  shape_length decimal,
-  shape_footprint_area decimal
+  longitude decimal(16,12),
+  latitude decimal(16,12),
+  csduid varchar(10),
+  csdname varchar(100),
+  data_prov varchar(100),
+  build_id varchar(16),
+  shape_length decimal(18,12),
+  shape_footprint_area decimal(20,12),
+  UNIQUE (build_id)
 );
 
 create table if not exists data_science_workspace.municipal_building(
   id SERIAL primary key,
-  municipal_name text not null,
+  municipal_name INTEGER references data_science_workspace.municipal_district,
   total_buildings integer,
   total_building_area decimal,
   UNIQUE (municipal_name)
