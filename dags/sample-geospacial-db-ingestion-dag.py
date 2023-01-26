@@ -55,7 +55,7 @@ def import_csv_and_upsert_to_db():
       cursor.execute(
         f"INSERT INTO data_science_workspace.study_area_geometry(area_name, hex_geometry) "
         f"VALUES (%(area_name)s, %(geometry)s) "
-        f"ON CONFLICT (area_name) DO UPDATE SET updated_at = NOW(), hex_geometry = %(geometry)s",
+        f"ON CONFLICT (area_name) DO UPDATE SET hex_geometry = %(geometry)s",
         {"area_name": row[0], "geometry": row[1]}
       )
   os.remove('temp.csv')
