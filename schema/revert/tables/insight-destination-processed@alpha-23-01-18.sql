@@ -2,8 +2,8 @@
 
 BEGIN;
 
-drop table eed.area_distance_map;
-drop table eed.insights_voyage;
-drop table eed.study_area;
+drop table if exists eed.area_distance_map;
+drop table if exists eed.insights_voyage;
+drop table if exists eed.study_area;
 
 COMMIT;
