@@ -16,8 +16,7 @@ function Form() {
     return bodyStart + middle + bodyEnd;
   }
   // 👇 This token expires and must be refreshed through the Google OAuth Playground
-  const authToken =
-    "ya29.a0AVvZVsrEr5MdZiR-ofg2QI7G3P_4_PExxWVfbchd3KOZK6Ltmv8HX2e2iXTtGa_IoQylKNaryv4DLFs6wrVzp3jF_D1QCdsB5WXW63r5FzTiezSe8VkMBdcxDqeTYYO3GurNIAMnCWauV3lGpgF-th0OfKvzaCgYKAWASARMSFQGbdwaI880Qbn7nrzDo8SGyg3TasA0163";
+  const authToken = "";
 
   let binaryData;
 
