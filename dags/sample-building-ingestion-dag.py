@@ -20,6 +20,29 @@ default_args = {
 
 csv_building_area_filename = "bc_building_data.csv"
 csv_occupancy_filename = "9810003801-eng_bc_municipal.csv"
+record_user = 'joshua@button.is'
+
+def add_import_record(filename, user_email, track_format):
+  conn = psycopg2.connect(database="eed",
+              user=os.environ['eed_db_user'], password=os.environ['eed_db_pass'],
+              host=os.environ['eed_db_host'], port='5432'
+  )
+
+  conn.autocommit = True
+  cursor = conn.cursor()
+
+  cursor.execute(
+    f"INSERT INTO data_clean_room.import_record (file_name, uploaded_by_user_id, track_format_id) "
+    f"VALUES (%(filename)s, (SELECT id from eed.permissions WHERE email=%(user_id)s), (SELECT id from data_clean_room.track_format WHERE nickname=%(track)s)) ",
+    {
+      "filename": filename,
+      "user_id": user_email,
+      "track": track_format,
+    }
+  )
+
+  conn.commit()
+  conn.close()
 
 def import_raw_building_data_and_upsert_to_db():
   conn = psycopg2.connect(database="eed",
@@ -55,6 +78,8 @@ def import_raw_building_data_and_upsert_to_db():
 
   conn.commit()
   conn.close()
+
+  add_import_record(csv_building_area_filename, record_user, "csv:building dimensions")
 
 def import_raw_population_data_and_upsert_to_db():
   conn = psycopg2.connect(database="eed",
@@ -103,6 +128,8 @@ def import_raw_population_data_and_upsert_to_db():
 
   conn.commit()
   conn.close()
+
+  add_import_record(csv_occupancy_filename, record_user, "csv:building population")
 
 def load_density_data_to_workspace_db():
   conn = psycopg2.connect(database="eed",

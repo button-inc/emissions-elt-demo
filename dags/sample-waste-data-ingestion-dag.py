@@ -23,6 +23,29 @@ default_args = {
 geojson_regional_geospatial_filename = 'regional_district_shapes.geojson'
 geojson_municipal_geospatial_filename = 'municipal_district_shapes.geojson'
 csv_waste_records_filename = 'bc_municipal_solid_waste_disposal.csv'
+record_user = 'joshua@button.is'
+
+def add_import_record(filename, user_email, track_format):
+  conn = psycopg2.connect(database="eed",
+              user=os.environ['eed_db_user'], password=os.environ['eed_db_pass'],
+              host=os.environ['eed_db_host'], port='5432'
+  )
+
+  conn.autocommit = True
+  cursor = conn.cursor()
+
+  cursor.execute(
+    f"INSERT INTO data_clean_room.import_record (file_name, uploaded_by_user_id, track_format_id) "
+    f"VALUES (%(filename)s, (SELECT id from eed.permissions WHERE email=%(user_id)s), (SELECT id from data_clean_room.track_format WHERE nickname=%(track)s)) ",
+    {
+      "filename": filename,
+      "user_id": user_email,
+      "track": track_format,
+    }
+  )
+
+  conn.commit()
+  conn.close()
 
 def import_regional_geospatial_and_upsert_to_db():
   conn = psycopg2.connect(database="eed",
@@ -122,6 +145,8 @@ def import_regional_waste_data_and_upsert_to_clean_db():
 
   conn.commit()
   conn.close()
+
+  add_import_record(csv_waste_records_filename, record_user, "csv:waste")
 
 def transform_load_waste_data_to_workspace_db():
   conn = psycopg2.connect(database="eed",
