@@ -33,7 +33,7 @@ export default function DashBoard({ options }) {
             display: inline-block;
             outline: none;
             border-width: 0;
-            background-color: #bdd8f1;
+            background-color: #f4f9f2;
             padding: 0.78571429em 1.6em 0.78571429em;
             border-radius: 0.25rem;
             text-transform: none;
@@ -47,8 +47,8 @@ export default function DashBoard({ options }) {
             vertical-align: middle;
             -webkit-text-decoration: none;
             text-decoration: none;
-            box-shadow: 0px 0px 0px 2px #3667a6 inset !important;
-            color: #3667a6;
+            box-shadow: 0px 0px 0px 2px #2b8000 inset !important;
+            color: #2b8000;
             cursor: pointer;
           }
           p:hover {

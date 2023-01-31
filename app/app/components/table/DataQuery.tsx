@@ -1,6 +1,8 @@
 import { request } from "graphql-request";
 import { cookies } from "next/headers";
+import { flattenJSON } from "@/lib/utilities/helpers";
 import DataTable from "./DataTable";
+
 // 👇️ graphql-request to api endpoint
 async function getData(endpoint, query) {
   // 👇️ vars for graphql-request
@@ -12,14 +14,21 @@ async function getData(endpoint, query) {
       "next-auth.session-token=" +
       cookies().get("next-auth.session-token")?.value,
   };
-  const data = await request(endpoint, query, variables, headers);
+  // 👇️ data fetching via graphql-request
+  const response = await request(endpoint, query, variables, headers);
+  // 👇️ get the nodes of the first object from the response
+  const nodes = response[Object.keys(response)[0]].nodes;
+  // 👇️ flatten any nested nodes
+  const data = nodes.map((obj) => flattenJSON(obj));
+
   // 👉️ OK: return data
-  return data[Object.keys(data)[0]].nodes;
+  return data;
 }
 
 export default async function Query({ endpoint, query, columns }) {
   // 👇️ data fetching, server side
   const data = await getData(endpoint, query);
-  // 👉️ OK: return dynamic table
+
+  // 👉️ OK: return table with dynamic data/columns
   return <DataTable rows={data} columns={columns} />;
 }

@@ -1,4 +1,3 @@
-"use client";
 import { useTranslation } from "@/i18n/client";
 import { fallbackLng } from "@/i18n/settings";
 

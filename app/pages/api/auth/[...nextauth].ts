@@ -1,6 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { request, gql } from "graphql-request";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import GithubProvider from "next-auth/providers/github";
+import TwitterProvider from "next-auth/providers/twitter";
 
 // 👉️ INFO: the full list of options go: https://next-auth.js.org/configuration/options
 export const authOptions: NextAuthOptions = {
@@ -14,9 +17,23 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
+    }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_ID,
+      clientSecret: process.env.TWITTER_SECRET,
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    // 👉️Custom provider https://next-auth.js.org/v3/configuration/providers#using-a-custom-provider
   ],
-  theme: {
-    colorScheme: "light",
+  // 👇️ custom pages
+  pages: {
+    signIn: "../../auth/signin",
   },
   callbacks: {
     // 👇️ called whenever a JSON Web Token is created (i.e. at sign in) or updated (i.e whenever a session is accessed in the client).

@@ -1,14 +1,19 @@
 "use client";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
+import { SessionProvider } from "next-auth/react";
+import dynamic from "next/dynamic";
 
 export default function DefaultLayout({ children }) {
+  const Header = dynamic(() => import("@/components/layout/Header"), {
+    suspense: true,
+  });
+  const Footer = dynamic(() => import("@/components/layout/Footer"), {
+    suspense: true,
+  });
   return (
     <>
       {
-        //👇️ Wrapping the SessionProvider obtained from next-auth so to have access to client side information in both client and server pages */
+        //👇️ Wrapping the SessionProvider obtained from next-auth so to have access to client side information in both client and server pages. i.e: COOKIE */
       }
       <SessionProvider>
         <Header />

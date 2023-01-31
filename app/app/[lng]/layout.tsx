@@ -1,5 +1,5 @@
 import DefaultLayout from "@/components/layout/DefaultLayout";
-
+import StyledJsxRegistry from "@/lib/utilities/registry";
 /*👇️ pre v13 pages/_app.js and pages/_document.js have been replaced with v13 single app/layout.js root layout*/
 /*Good to know:
 The app directory must include a root layout.
@@ -18,8 +18,17 @@ export default function RootLayout({
         Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
+
       <body>
-        <DefaultLayout>{children}</DefaultLayout>
+        {
+          //👇️ wrap root layout with the registry for styled-jsx in client components
+        }
+        <StyledJsxRegistry>
+          {
+            //👇️ SessionProvider wrapper
+          }
+          <DefaultLayout>{children}</DefaultLayout>
+        </StyledJsxRegistry>
       </body>
     </html>
   );

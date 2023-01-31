@@ -2,8 +2,8 @@
   "analytic": "FR Data Analytics",
   "anon": "FR View Anonymized Data",
   "back": "FR Back",
-  "import": "FR Add New Datasets",
   "imported": "FR View Imported Datasets",
   "insight": "FR Data Insights",
-  "label": "FR Welcome"
+  "label": "FR Welcome",
+  "upload": "FR Add New Datasets"
 }

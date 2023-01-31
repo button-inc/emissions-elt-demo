@@ -15,7 +15,7 @@ export default function Page({
   const { t } = useTranslation(lng, "dashboard");
   // 👇️ link management with translations
   const options = [
-    { title: t("import"), href: "import" },
+    { title: t("upload"), href: "upload" },
     { title: t("imported"), href: "imported" },
     { title: t("anon"), href: "anonymize" },
     { title: t("analytic"), href: "analytic" },

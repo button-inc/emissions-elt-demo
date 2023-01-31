@@ -1,20 +1,15 @@
-import { languages, fallbackLng } from "@/i18n/settings";
-import { useTranslation } from "@/i18n";
-import BoxLabel from "@/components/layout/BoxLabel";
-export default async function Page({
+import Anonymize from "@/components/Anonymize";
+export default function Page({
   params: { lng },
 }: {
   params: {
     lng: string;
   };
 }) {
-  // 👇️ language management, server side
-  if (languages.indexOf(lng) < 0) lng = fallbackLng;
-  const { t } = await useTranslation(lng, "anonymize");
-
   return (
     <>
-      <BoxLabel text={t("label")}></BoxLabel>
+      {/* @ts-expect-error Server Component */}
+      <Anonymize lng={lng}></Anonymize>
     </>
   );
 }

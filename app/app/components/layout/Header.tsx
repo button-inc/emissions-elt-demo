@@ -1,6 +1,6 @@
 import { useTranslation } from "@/i18n/client";
 import { fallbackLng } from "@/i18n/settings";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -9,7 +9,6 @@ export default function Header() {
   const { t } = useTranslation(lng, "header");
   // 👇️ link management
   const options = [{ title: t("help"), href: "/help" }];
-  const signin = { title: t("signin"), href: "/api/auth/signin" };
   const signout = { title: t("signout"), href: "/api/auth/signout" };
   return (
     <>
@@ -23,17 +22,11 @@ export default function Header() {
             <ul>
               {options.map((option) => (
                 <li key={option.title}>
-                  <a href={option.href}>{option.title}</a>
+                  <a onClick={() => signOut()}>{option.title}</a>
                 </li>
               ))}
-              {!session && (
-                <>
-                  <li key={signin.title}>
-                    <a href={signin.href}>{signin.title}</a>
-                  </li>
-                </>
-              )}
-              {session?.user && (
+
+              {session && session.user && (
                 <>
                   <li key={signout.title}>
                     <a href={signout.href}>{signout.title}</a>
