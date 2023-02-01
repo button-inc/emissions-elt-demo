@@ -25,10 +25,10 @@ async function getData(endpoint, query) {
   return data;
 }
 
-export default async function Query({ endpoint, query, columns }) {
+export default async function Query({ endpoint, query, columns, cntx }) {
   // 👇️ data fetching, server side
   const data = await getData(endpoint, query);
 
   // 👉️ OK: return table with dynamic data/columns
-  return <DataTable rows={data} columns={columns} />;
+  return <DataTable rows={data} columns={columns} cntx={cntx} />;
 }
