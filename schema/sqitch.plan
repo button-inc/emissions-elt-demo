@@ -24,3 +24,4 @@ tables/add_id_to_insights_voyage [tables/insight-destination-processed@alpha-23-
 computed_columns/voyage_combined_id 2023-01-20T17:57:07Z Josh Gamache <joshua@button.is> # Add computed column for insights_voyage table combining origing_id and destination_id
 tables/waste_data 2023-01-20T22:19:23Z Josh Gamache <joshua@button.is> # Tables for waste reporting data
 tables/building_data 2023-01-23T22:22:51Z Josh Gamache <joshua@button.is> # Add tables for handling building data
+tables/raw_insights 2023-01-30T21:49:01Z Josh Gamache <joshua@button.is> # add raw insights tables for DCR
