@@ -2,8 +2,8 @@
   "baseline": "You are viewing your dashboard.",
   "analytic": "Data Analytics",
   "anon": "Anonymized Data",
-  "import": "Add New Datasets",
   "imported": "Imported Datasets",
   "insight": "Data Insights",
-  "label": "Welcome"
+  "label": "Welcome",
+  "upload": "Add New Datasets"
 }

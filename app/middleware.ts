@@ -4,7 +4,7 @@ import acceptLanguage from "accept-language";
 import { fallbackLng, languages } from "@/i18n/settings";
 import { getToken } from "next-auth/jwt";
 
-/*
+/* 📌
 Middleware allows you to run code before a request is completed so you can modify the response by
 rewriting, redirecting, modifying the request or response headers, or responding directly.
 */
@@ -19,12 +19,12 @@ afterFiles (rewrites) from next.config.js
 Dynamic Routes (/blog/[slug])
 fallback (rewrites) from next.config.js
 */
-/*
+
+/*👇️
 There are two ways to define which paths Middleware will run on:
 Custom matcher config
 Conditional statements
 */
-// 👇️ define matching routes handled by this middleware
 export const config = {
   matcher: [
     /*
@@ -65,13 +65,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // 👀 *******************************TEMP GRAPHQL API******************************
-  if (isRouteGraphQL === true) {
-    // 👉️ OK: route all /auth/* routes
-    return NextResponse.next();
+  if (process.env.ENVIRONMENT !== "production") {
+    // 👀 dev only
+    if (isRouteGraphQL === true) {
+      // 👉️ OK: route all /auth/* routes
+      return NextResponse.next();
+    }
   }
-  // 👀 *******************************TEMP GRAPHQL API******************************
-
   // 👇️ route management- gate access users only authenticated by oAuth and authorized by DB permissions table
   if (session && role) {
     // 👉️ OK: authenticated and authorized
@@ -120,6 +120,6 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   } else {
     // ⛔️ Denied: request is not authorized - route to auth login
-    return NextResponse.redirect(new URL(`/${lng}/auth`, req.url));
+    return NextResponse.redirect(new URL(`/${lng}/auth/signin`, req.url));
   }
 }

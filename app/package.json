@@ -38,7 +38,11 @@
     "react": "18.2.0",
     "react-content-loader": "^6.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "12.1.1"
+    "react-i18next": "12.1.1",
+    "styled-jsx": "^5.1.2",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.6",
+    "mui-datatables": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "18.7.13",

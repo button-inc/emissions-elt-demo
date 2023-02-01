@@ -6,5 +6,10 @@ export default function Page({
     lng: string;
   };
 }) {
-  return <Imported lng={lng}></Imported>;
+  return (
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Imported lng={lng}></Imported>
+    </>
+  );
 }

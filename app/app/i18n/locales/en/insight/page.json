@@ -1,3 +1,14 @@
 {
-  "label": "Insight Page"
+  "connMetabase": "METABASE:hostname, port, database, username, password",
+  "copied": "Copied!",
+  "emailTo": "faker@fakeemail.com",
+  "emailSubject": "ClimateTrax: BI Tool connector request",
+  "emailBody": "Request for connection string for BI Tool:",
+  "label": "Choose a BI Tool",
+  "looker": "Looker",
+  "metabase": "Metabase",
+  "powerbi": "Power BI",
+  "request": "Request a new BI Tool Connection",
+  "tableau": "Tableau",
+  "text": "Connection information for the BI Tool has been copied to your clipboard."
 }

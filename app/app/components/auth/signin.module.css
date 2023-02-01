@@ -1,0 +1,71 @@
+.card {
+  border: 1px solid var(--color-control-border);
+  border-radius: 5px;
+  margin: 50px auto;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  padding: 20px 50px;
+}
+.button {
+  appearance: auto;
+  writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: center;
+  cursor: default;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+  align-items: center;
+  background-color: var(--provider-bg, var(--color-background));
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 0 0 #000, 0 0 0 0 #000, 0 10px 15px -3px rgb(0 0 0 / 20%),
+    0 4px 6px -4px rgb(0 0 0 / 10%);
+  color: var(--provider-color, var(--color-primary));
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: 500;
+  justify-content: center;
+  margin: 0 0 0.75rem;
+  min-height: 62px;
+  padding: 0.75rem 1rem;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+}
+.button:has(img) span {
+  flex-grow: 1;
+}
+.signin form button,
+.signin > div button {
+  width: 100%;
+}
+.page {
+  display: grid;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  position: absolute;
+  width: 100%;
+}
+.page > div {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.signin {
+  -color-background: #fff;
+  --color-text: #000;
+  --color-primary: #444;
+  --color-control-border: #bbb;
+  --color-button-active-background: #f9f9f9;
+  --color-button-active-border: #aaa;
+  --color-seperator: #ccc;
+}

@@ -4,7 +4,11 @@ import { options } from "@/lib/postgraphile/options";
 
 const requestHandler = postgraphile(
   pgAnalyst,
-  process.env.DATABASE_SCHEMA_ADMIN,
+  [
+    process.env.DATABASE_SCHEMA_ADMIN,
+    process.env.DATABASE_SCHEMA_CLEAN,
+    process.env.DATABASE_SCHEMA_WORKSPACE,
+  ],
   {
     ...options,
     graphqlRoute: "/api/analyst/graphql",

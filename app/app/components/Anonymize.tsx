@@ -6,12 +6,14 @@ import DataTableSVG from "@/components/loading/DataTableSVG";
 import BoxLabel from "@/components/layout/BoxLabel";
 import DataQuery from "@/components/table/DataQuery";
 
+// 👇️ graphQL query endpoint
+const endpoint = "api/analyst/graphql";
+
 // 👇️ graphQL query
 const query = gql`
   {
     importRecords {
       nodes {
-        jobId
         fileName
         submissionDate
         trackFormat {
@@ -24,12 +26,8 @@ const query = gql`
     }
   }
 `;
-// 👇️ graphQL query endpoint
-const endpoint = "api/analyst/graphql";
-
 // 👇️ DataTable column definition- reflecting data response
 const columns = [
-  //{ name: "jobId", options: { display: false } },
   { label: "0", name: "fileName" },
   { label: "1", name: "nickname" },
   { label: "2", name: "submissionDate" },
@@ -38,7 +36,7 @@ const columns = [
 export default async function Page({ lng }) {
   // 👇️ language management, server side
   if (languages.indexOf(lng) < 0) lng = fallbackLng;
-  const { t } = await useTranslation(lng, "imported");
+  const { t } = await useTranslation(lng, "anonymize");
   // 👇️ translate column titles
   columns.map((column, index) => {
     if (column.label) {

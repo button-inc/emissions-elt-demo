@@ -1,5 +1,7 @@
 {
-  "column0": "Name",
-  "column1": "Role",
-  "label": "Imported Page"
+  "column0": "Dataset",
+  "column1": "Connector",
+  "column2": "Imported Date",
+  "column3": "Imported By",
+  "label": "Imported Datasets"
 }
