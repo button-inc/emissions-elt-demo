@@ -24,18 +24,15 @@ const query = gql`
     }
   }
 `;
-// 👇️ graphQL query endpoint
-const endpoint = "api/analyst/graphql";
-
 // 👇️ DataTable column definition- reflecting data response
 const columns = [
-  //{ name: "jobId", options: { display: false } },
+  { name: "jobId", options: { display: false } },
   { label: "0", name: "fileName" },
   { label: "1", name: "nickname" },
   { label: "2", name: "submissionDate" },
   { label: "3", name: "email" },
 ];
-export default async function Page({ lng }) {
+export default async function Page({ lng, endpoint }) {
   // 👇️ language management, server side
   if (languages.indexOf(lng) < 0) lng = fallbackLng;
   const { t } = await useTranslation(lng, "imported");
@@ -45,7 +42,7 @@ export default async function Page({ lng }) {
       column.label = t("column" + index.toString());
     }
   });
-
+  const cntx = "imported";
   // 👉️ RETURN: table with query data
   return (
     <>
@@ -57,6 +54,7 @@ export default async function Page({ lng }) {
             endpoint={endpoint}
             query={query}
             columns={columns}
+            cntx={cntx}
           ></DataQuery>
         </Suspense>
       </div>

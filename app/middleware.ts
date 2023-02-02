@@ -65,16 +65,18 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  if (process.env.ENVIRONMENT !== "production") {
-    // 👀 dev only
-    if (isRouteGraphQL === true) {
-      // 👉️ OK: route all /auth/* routes
-      return NextResponse.next();
-    }
-  }
   // 👇️ route management- gate access users only authenticated by oAuth and authorized by DB permissions table
   if (session && role) {
     // 👉️ OK: authenticated and authorized
+
+    // 👇️ route management- calls to graphql
+    if (process.env.ENVIRONMENT !== "production") {
+      // 👀 dev only
+      if (isRouteGraphQL === true) {
+        // 👉️ OK: route all /auth/* routes
+        return NextResponse.next();
+      }
+    }
 
     // 👇️ inspect pathname routes
     const routes = pathname.split("/");
@@ -120,6 +122,10 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   } else {
     // ⛔️ Denied: request is not authorized - route to auth login
-    return NextResponse.redirect(new URL(`/${lng}/auth/signin`, req.url));
+    if (isRouteAPI === true) {
+      return NextResponse.redirect(new URL("/api/auth/unauthorized", req.url));
+    } else {
+      return NextResponse.redirect(new URL(`/${lng}/auth/signin`, req.url));
+    }
   }
 }
