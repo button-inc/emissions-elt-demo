@@ -25,3 +25,4 @@ computed_columns/voyage_combined_id 2023-01-20T17:57:07Z Josh Gamache <joshua@bu
 tables/waste_data 2023-01-20T22:19:23Z Josh Gamache <joshua@button.is> # Tables for waste reporting data
 tables/building_data 2023-01-23T22:22:51Z Josh Gamache <joshua@button.is> # Add tables for handling building data
 tables/raw_insights 2023-01-30T21:49:01Z Josh Gamache <joshua@button.is> # add raw insights tables for DCR
+tables/dlp_analytics 2023-02-02T20:50:01Z Josh Gamache <joshua@button.is> # add tables to support dlp record keeping
