@@ -7,7 +7,7 @@ export default function Page({
   };
 }) {
   // 👇️ graphQL query endpoint
-  const endpoint = "api/analyst/graphql";
+  const endpoint = "api/manager/graphql";
   return (
     <>
       {/* @ts-expect-error Server Component */}

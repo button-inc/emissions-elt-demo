@@ -6,10 +6,12 @@ export default function Page({
     lng: string;
   };
 }) {
+  // 👇️ graphQL query endpoint
+  const endpoint = "api/analyst/graphql";
   return (
     <>
       {/* @ts-expect-error Server Component */}
-      <Imported lng={lng}></Imported>
+      <Imported lng={lng} endpoint={endpoint}></Imported>
     </>
   );
 }
