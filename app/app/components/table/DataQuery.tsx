@@ -18,7 +18,7 @@ async function getData(endpoint, query) {
   const response = await request(endpoint, query, variables, headers);
   // 👇️ get the nodes of the first object from the response
   const nodes = response[Object.keys(response)[0]].nodes;
-  // 👇️ flatten any nested nodes
+  // 👇️ flattens nested nodes
   const data = nodes.map((obj) => flattenJSON(obj));
 
   // 👉️ OK: return data

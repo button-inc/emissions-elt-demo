@@ -1,7 +1,9 @@
 import { useTranslation } from "@/i18n/client";
 import BoxLabel from "@/components/layout/BoxLabel";
-import DashBoard from "@/components/navigation/Dashboard";
+import DashBoard from "@/components/Dashboard";
 import { useSession } from "next-auth/react";
+import { dropperRoutes } from "@/lib/navigation/routes";
+
 export default function Page({
   params: { lng },
 }: {
@@ -12,15 +14,17 @@ export default function Page({
   const { data: session } = useSession();
   // 👇️ language management, client side
   const { t } = useTranslation(lng, "dashboard");
-  // 👇️ link management with translations
-  const options = [{ title: t("import"), href: "import" }];
+  // 👇️ translate route titles
+  dropperRoutes.map((item) => {
+    item.title = t(item.title);
+  });
 
   const name = session && session?.user ? session?.user.name.split(" ")[0] : "";
   const label = t("label") + ", " + name + "!";
   return (
     <>
       <BoxLabel text={label}></BoxLabel>
-      <DashBoard options={options}></DashBoard>
+      <DashBoard options={dropperRoutes}></DashBoard>
     </>
   );
 }
