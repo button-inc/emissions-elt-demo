@@ -1,7 +1,7 @@
 import { IDropdownItem } from "@/components/buttons/Dropdown";
 
 export const analystRoutes: Array<IDropdownItem> = [
-  { title: "upload", href: "upload" },
+  { title: "upload", href: "addNewDatasets" },
   { title: "imported", href: "imported" },
   { title: "anon", href: "anonymize" },
   { title: "analytic", href: "analytic" },
