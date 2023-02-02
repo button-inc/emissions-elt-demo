@@ -31,15 +31,15 @@ export const authOptions: NextAuthOptions = {
     }),
     // 👉️Custom provider https://next-auth.js.org/v3/configuration/providers#using-a-custom-provider
   ],
-  // 👇️ custom pages
+  // 👇️ defining custom pages
   pages: {
     signIn: "../../auth/signin",
   },
   callbacks: {
-    // 👇️ called whenever a JSON Web Token is created (i.e. at sign in) or updated (i.e whenever a session is accessed in the client).
+    // 👇️ called whenever a JSON Web Token is created - we can add to the JWT in this callback
     async jwt({ token }) {
-      // 👇️ if the jwt has no role, query our permissions table to get user role
-      if (!token?.role) {
+      // 👇️ add role to the token from our permissions table
+      if (!token.role) {
         async function getUserRole() {
           const endpoint = process.env.API_HOST + "api/auth/role";
           const query =
@@ -68,6 +68,12 @@ export const authOptions: NextAuthOptions = {
       }
       // 👉️ OK: return encrypted token stored in cookie: next-auth.session-token
       return token;
+    },
+    async session({ session, token }) {
+      // 👇️ extend the session object to get more information about the user from useSession()- see ap\types\next-auth.d
+      session.user.role = token.role;
+
+      return session;
     },
   },
 };
