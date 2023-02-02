@@ -15,6 +15,7 @@ export default function Page({
   const { data: session } = useSession();
   // 👇️ language management, client side
   const { t } = useTranslation(lng, "dashboard");
+
   // 👇️ translate route titles
   analystRoutes.map((item) => {
     item.title = t(item.title);
