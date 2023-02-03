@@ -1,12 +1,16 @@
 import os
 import csv
 import psycopg2
+from psycopg2 import sql
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from datetime import timedelta
 from google.cloud import storage
 from airflow.models import DAG
+import google.cloud.dlp
 
+# Instantiate DLP
+dlp = google.cloud.dlp_v2.DlpServiceClient()
 
 default_args = {
   'email': ['joshua@button.is'],
@@ -33,16 +37,20 @@ def add_import_record(filename, user_email, track_format):
 
   cursor.execute(
     f"INSERT INTO data_clean_room.import_record (file_name, uploaded_by_user_id, track_format_id) "
-    f"VALUES (%(filename)s, (SELECT id from eed.permissions WHERE email=%(user_id)s), (SELECT id from data_clean_room.track_format WHERE nickname=%(track)s)) ",
+    f"VALUES (%(filename)s, (SELECT id from eed.permissions WHERE email=%(user_id)s), (SELECT id from data_clean_room.track_format WHERE nickname=%(track)s)) "
+    f"RETURNING job_id",
     {
       "filename": filename,
       "user_id": user_email,
       "track": track_format,
     }
   )
+  inserted_job_id = cursor.fetchone()[0]
 
   conn.commit()
   conn.close()
+
+  return inserted_job_id
 
 def import_raw_building_data_and_upsert_to_db():
   conn = psycopg2.connect(database="eed",
@@ -79,7 +87,7 @@ def import_raw_building_data_and_upsert_to_db():
   conn.commit()
   conn.close()
 
-  add_import_record(csv_building_area_filename, record_user, "csv:building dimensions")
+  return add_import_record(csv_building_area_filename, record_user, "csv:building dimensions")
 
 def import_raw_population_data_and_upsert_to_db():
   conn = psycopg2.connect(database="eed",
@@ -129,7 +137,129 @@ def import_raw_population_data_and_upsert_to_db():
   conn.commit()
   conn.close()
 
-  add_import_record(csv_occupancy_filename, record_user, "csv:building population")
+  return add_import_record(csv_occupancy_filename, record_user, "csv:building population")
+
+def dlp_analyze_table(task_instance, task_id_source, target_table):
+  likelihood_map = {
+  "LIKELIHOOD_UNSPECIFIED": 0,
+  "VERY_UNLIKELY": 1,
+  "UNLIKELY": 2,
+  "POSSIBLE": 3,
+  "LIKELY": 4,
+  "VERY_LIKELY": 5
+  }
+
+  import_record_id = task_instance.xcom_pull(task_ids=task_id_source) # TODO: Make this parameterized
+
+
+  conn = psycopg2.connect(database="eed",
+              user=os.environ['eed_db_user'], password=os.environ['eed_db_pass'],
+              host=os.environ['eed_db_host'], port='5432'
+  )
+
+  conn.autocommit = True
+  cursor = conn.cursor()
+
+  # Fetch 20 rows and convert them into the json-table format that DLP requires
+  cursor.execute(
+    sql.SQL("select * from {} LIMIT 20").format(sql.Identifier(*target_table.split(".")))
+    )
+  colnames = [desc[0] for desc in cursor.description]
+  print(colnames)
+
+  table_json = {}
+  table_json["headers"] = [{"name": header} for header in colnames]
+
+  rows = []
+  for record in cursor:
+    rows.append({"values": [{"string_value": str(cell_value)} for cell_value in record]})
+  table_json["rows"] = rows
+
+  # Pass the json to DLP for analysis
+  item = {"table": table_json}
+
+  # By not specifying an info_types array, we query against all info types
+  inspect_config = {
+      "include_quote": True,
+  }
+
+  # Project ID conversion to full resource ID
+  project = "emissions-elt-demo"
+  parent = f"projects/{project}"
+
+  # Call the API
+  response = dlp.inspect_content(
+    request={
+      "parent": parent,
+      "inspect_config": inspect_config,
+      "item": item
+    }
+  )
+
+  # Process the results.
+  if response.result.findings:
+    columns_with_findings = {};
+
+    for finding in response.result.findings:
+      content_location = next(iter(finding.location.content_locations), {})
+      head = content_location.record_location.field_id.name
+      infotype_found = finding.info_type.name
+      how_likely = str(finding.likelihood).replace("Likelihood.", "")
+      how_likely_number =  likelihood_map[how_likely]
+      quote = finding.quote
+      finding_id = finding.finding_id
+
+      if head and head not in columns_with_findings:
+        columns_with_findings[head] = {
+          "infotype_found": infotype_found,
+          "likelihood_number": 0,
+          "all_likelyhoods": set(),
+          "quotes": set(),
+          "finding_ids": set()
+        }
+      if head in columns_with_findings:
+        columns_with_findings[head]["likelihood_number"] = max(how_likely_number, columns_with_findings[head]["likelihood_number"])
+        columns_with_findings[head]["all_likelyhoods"].add(how_likely)
+        columns_with_findings[head]["quotes"].add(str(quote))
+        columns_with_findings[head]["finding_ids"].add(str(finding_id))
+
+  else:
+    print("No findings.")
+
+  column_ids_inserted = set()
+
+  for column in colnames:
+    findings = columns_with_findings.get(column, {})
+    print(
+      f"Column Name: {column} with the following data: {findings}"
+    )
+    cursor.execute(
+      f"INSERT INTO data_clean_room.dlp_column_analysis(column_title, identified_info_type, max_likelihood, identified_likelihoods, quotes, findings_ids, to_anonymize) "
+      f"VALUES (%(column_title)s, %(identified_info_type)s, %(max_likelihood)s, %(identified_likelihoods)s, %(quotes)s, %(findings_ids)s, FALSE ) "
+      f"RETURNING id",
+      {
+        "column_title": column,
+        "identified_info_type": findings.get("infotype_found"),
+        "max_likelihood": findings.get("likelihood_number"),
+        "identified_likelihoods": list(findings.get("all_likelyhoods", [])),
+        "quotes": list(findings.get("quotes", [])),
+        "findings_ids": list(findings.get("finding_ids", [])),
+      }
+    )
+    column_ids_inserted.add(cursor.fetchone()[0])
+
+  print("Therese are the new ids:", column_ids_inserted)
+  print("This is the ID of the job added to the import record:", import_record_id)
+
+  cursor.execute(
+    f"INSERT INTO data_clean_room.dlp_table_analysis(import_record_id, columns_analyzed, completed) "
+    f"VALUES (%(record)s, %(columns)s, true) ",
+    {
+      "record": import_record_id,
+      "columns": list(column_ids_inserted)
+    }
+  )
+
 
 def load_density_data_to_workspace_db():
   conn = psycopg2.connect(database="eed",
@@ -199,6 +329,26 @@ population_csv = PythonOperator(
         dag=dag,
 )
 
+population_dlp = PythonOperator(
+        task_id='dlp_analyze_waste_table',
+        python_callable=dlp_analyze_table,
+        op_kwargs={
+          "task_id_source": "import_raw_population_data_and_upsert_to_db",
+          "target_table": "data_clean_room.dwelling_populations"
+          },
+        dag=dag,
+)
+
+building_dlp = PythonOperator(
+        task_id='dlp_analyze_waste_table',
+        python_callable=dlp_analyze_table,
+        op_kwargs={
+          "task_id_source": "municipal_building_raw_ingestion",
+          "target_table": "data_clean_room.buildings"
+          },
+        dag=dag,
+)
+
 load_density_data = PythonOperator(
         task_id='load_density_data_to_workspace_db',
         python_callable=load_density_data_to_workspace_db,
@@ -211,4 +361,4 @@ load_building_data = PythonOperator(
         dag=dag,
 )
 
-building_csv >> population_csv >> load_density_data >> load_building_data
+building_csv >> population_csv >> population_dlp >> load_density_data >> load_building_data

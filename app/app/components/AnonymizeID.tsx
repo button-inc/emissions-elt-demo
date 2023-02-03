@@ -36,11 +36,11 @@ export default async function Page({ lng, id, endpoint }) {
   ];
   // 👇️ language management, server side
   if (languages.indexOf(lng) < 0) lng = fallbackLng;
-  const { t } = await useTranslation(lng, "imported");
+  const { t } = await useTranslation(lng, "anonymizeID");
   // 👇️ translate column titles
-  columns.map((column, index) => {
+  columns.map((column) => {
     if (column.label) {
-      column.label = t("column" + index.toString());
+      column.label = t("column" + column.label.toString());
     }
   });
   // 👉️ RETURN: table with query data

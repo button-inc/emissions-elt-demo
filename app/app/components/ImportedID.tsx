@@ -6,46 +6,43 @@ import DataTableSVG from "@/components/loading/DataTableSVG";
 import BoxLabel from "@/components/layout/BoxLabel";
 import DataQuery from "@/components/table/DataQuery";
 
-// 👇️ graphQL query
-const query = gql`
-  {
-    importRecords {
-      nodes {
-        jobId
-        fileName
-        submissionDate
-        trackFormat {
-          nickname
-        }
-        uploadedByUser {
-          email
+export default async function Page({ lng, id, endpoint }) {
+  // 👇️ graphQL query
+  const query =
+    gql`
+    {
+      importRecords(condition: { jobId: ` +
+    id +
+    `}) {
+        nodes {
+          fileName
+          submissionDate
+          trackFormat {
+            nickname
+          }
+          uploadedByUser {
+            email
+          }
         }
       }
     }
-  }
-`;
-// 👇️ DataTable column definition- reflecting data response
-const columns = [
-  { name: "jobId", options: { display: false } },
-  { label: "0", name: "fileName" },
-  { label: "1", name: "nickname" },
-  { label: "2", name: "submissionDate" },
-  { label: "3", name: "email" },
-];
-export default async function Page({ lng, endpoint }) {
+  `;
+  // 👇️ DataTable column definition- reflecting data response
+  const columns = [
+    { label: "0", name: "fileName" },
+    { label: "1", name: "nickname" },
+    { label: "2", name: "submissionDate" },
+    { label: "3", name: "email" },
+  ];
   // 👇️ language management, server side
   if (languages.indexOf(lng) < 0) lng = fallbackLng;
-  const { t } = await useTranslation(lng, "imported");
+  const { t } = await useTranslation(lng, "importedID");
   // 👇️ translate column titles
   columns.map((column) => {
     if (column.label) {
       column.label = t("column" + column.label.toString());
     }
   });
-  // 🔥 workaround for error when trying to pass options as props with functions
-  // ❌ "functions cannot be passed directly to client components because they're not serializable"
-  // 👇️ used to changes options for @/components/table/DataTable
-  const cntx = "imported";
   // 👉️ RETURN: table with query data
   return (
     <>
@@ -57,7 +54,6 @@ export default async function Page({ lng, endpoint }) {
             endpoint={endpoint}
             query={query}
             columns={columns}
-            cntx={cntx}
           ></DataQuery>
         </Suspense>
       </div>

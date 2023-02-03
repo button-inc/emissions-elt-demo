@@ -1,8 +1,9 @@
 "use client";
 import { useTranslation } from "@/i18n/client";
 import BoxLabel from "@/components/layout/BoxLabel";
-import DashBoard from "@/components/navigation/Dashboard";
+import DashBoard from "@/components/Dashboard";
 import { useSession } from "next-auth/react";
+import { managerRoutes } from "@/lib/navigation/routes";
 
 export default function Page({
   params: { lng },
@@ -14,16 +15,17 @@ export default function Page({
   const { data: session } = useSession();
   // 👇️ language management, client side
   const { t } = useTranslation(lng, "dashboard");
-  // 👇️ link management with translations
-  const context = "manager";
-  const options = [{ title: t("view"), link: context + "/imported" }];
+  // 👇️ translate route titles
+  managerRoutes.map((item) => {
+    item.title = t(item.title);
+  });
 
   const name = session && session?.user ? session?.user.name.split(" ")[0] : "";
   const label = t("label") + ", " + name + "!";
   return (
     <>
       <BoxLabel text={label}></BoxLabel>
-      <DashBoard options={options}></DashBoard>
+      <DashBoard options={managerRoutes}></DashBoard>
     </>
   );
 }
