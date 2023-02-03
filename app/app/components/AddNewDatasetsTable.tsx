@@ -4,7 +4,7 @@ import { useTranslation } from "@/i18n";
 import { gql } from "graphql-request";
 import DataTableSVG from "@/components/loading/DataTableSVG";
 import BoxLabel from "@/components/layout/BoxLabel";
-import DataQuery from "@/components/table/DataQuery";
+import DataQueryWithEdit from "@/components/table/DataQueryWithEdit";
 
 // 👇️ graphQL query
 const query = gql`
@@ -51,11 +51,11 @@ export default async function Page({ lng, endpoint }) {
         <BoxLabel text={t("label")}></BoxLabel>
         <Suspense fallback={<DataTableSVG />}>
           {/* @ts-expect-error Async Server Component */}
-          <DataQuery
+          <DataQueryWithEdit
             endpoint={endpoint}
             query={query}
             columns={columns}
-          ></DataQuery>
+          ></DataQueryWithEdit>
         </Suspense>
       </div>
     </>
