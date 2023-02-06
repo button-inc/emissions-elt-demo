@@ -31,9 +31,6 @@
     }
   },
   "crumbs": {
-    "home": {
-      "tag": "Home"
-    },
     "analytic": {
       "tag": "Data analytics"
     },
@@ -55,6 +52,9 @@
       "connection": {
         "tag": "Connections"
       }
+    },
+    "home": {
+      "tag": "Home"
     },
     "imported": {
       "dataset": {

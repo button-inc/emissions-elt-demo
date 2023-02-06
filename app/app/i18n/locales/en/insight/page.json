@@ -2,8 +2,12 @@
   "connMetabase": "METABASE:hostname, port, database, username, password",
   "copied": "Copied!",
   "crumbs": {
-    "home": "Home",
-    "insight": "Data Insights"
+    "home": {
+      "tag": "Home"
+    },
+    "insight": {
+      "tag": "Connect a BI Tool"
+    }
   },
   "emailTo": "faker@fakeemail.com",
   "emailSubject": "ClimateTrax: BI Tool connector request",
