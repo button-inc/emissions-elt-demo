@@ -1,6 +1,6 @@
 import { languages, fallbackLng } from "@/i18n/settings";
 import { useTranslation } from "@/i18n";
-import BoxLabel from "@/components/layout/BoxLabel";
+import Tag from "@/components/layout/Tag";
 
 export default async function Page({ lng }) {
   // 👇️ language management, server side
@@ -9,7 +9,7 @@ export default async function Page({ lng }) {
 
   return (
     <>
-      <BoxLabel text={t("label")}></BoxLabel>
+      <Tag text={t("label")}></Tag>
     </>
   );
 }

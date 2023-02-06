@@ -1,5 +1,5 @@
 import { useTranslation } from "@/i18n/client";
-import BoxLabel from "@/components/layout/BoxLabel";
+import Tag from "@/components/layout/Tag";
 import DashBoard from "@/components/Dashboard";
 import { useSession } from "next-auth/react";
 import { dropperRoutes } from "@/lib/navigation/routes";
@@ -23,7 +23,7 @@ export default function Page({
   const label = t("label") + ", " + name + "!";
   return (
     <>
-      <BoxLabel text={label}></BoxLabel>
+      <Tag text={label}></Tag>
       <DashBoard options={dropperRoutes}></DashBoard>
     </>
   );

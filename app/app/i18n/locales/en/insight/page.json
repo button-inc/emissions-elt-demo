@@ -1,10 +1,13 @@
 {
   "connMetabase": "METABASE:hostname, port, database, username, password",
   "copied": "Copied!",
+  "crumbs": {
+    "home": "Home",
+    "insight": "Data Insights"
+  },
   "emailTo": "faker@fakeemail.com",
   "emailSubject": "ClimateTrax: BI Tool connector request",
   "emailBody": "Request for connection string for BI Tool:",
-  "label": "Choose a BI Tool",
   "looker": "Looker",
   "metabase": "Metabase",
   "powerbi": "Power BI",
