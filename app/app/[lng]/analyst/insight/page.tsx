@@ -1,5 +1,4 @@
-import Insight from "@/components/Insight";
-
+import Insight from "@/components/routes/Insight";
 export default function Page({
   params: { lng },
 }: {

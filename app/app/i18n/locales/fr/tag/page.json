@@ -1,0 +1,94 @@
+{
+  "analytic": {
+    "tag": "Data analytics"
+  },
+  "anonymized": {
+    "dataset": {
+      "columns": {
+        "0": "Dataset",
+        "1": "Connector",
+        "2": "Imported Date",
+        "3": "Imported By"
+      },
+      "tag": "Anonymized dataset"
+    },
+    "datasets": {
+      "columns": {
+        "0": "Dataset",
+        "1": "Connector",
+        "2": "Imported Date",
+        "3": "Imported By"
+      },
+      "tag": "Anonymized datasets"
+    }
+  },
+  "dataset": {
+    "available": {
+      "tag": "Available Datasets"
+    },
+    "connection": {
+      "tag": " Connections"
+    }
+  },
+  "crumbs": {
+    "home": {
+      "tag": "Home"
+    },
+    "analytic": {
+      "tag": "Data analytics"
+    },
+    "anonymized": {
+      "dataset": {
+        "tag": "Anonymized dataset"
+      },
+      "datasets": {
+        "tag": "Anonymized datasets"
+      }
+    },
+    "dataset": {
+      "add": {
+        "tag": "Add a new dataset"
+      },
+      "available": {
+        "tag": "Available datasets"
+      },
+      "connection": {
+        "tag": "Connections"
+      }
+    },
+    "imported": {
+      "dataset": {
+        "tag": "Imported dataset"
+      },
+      "datasets": {
+        "tag": "Imported datasets"
+      }
+    },
+    "insight": {
+      "tag": "Connect a BI Tool"
+    }
+  },
+  "imported": {
+    "dataset": {
+      "columns": {
+        "0": "Dataset",
+        "1": "Connector",
+        "2": "Imported Date",
+        "3": "Imported By"
+      },
+      "tag": "Imported dataset"
+    },
+    "datasets": {
+      "columns": {
+        "0": "Dataset",
+        "1": "Connector",
+        "2": "Imported Date",
+        "3": "Imported By"
+      },
+      "tag": "Imported datasets"
+    }
+  },
+  "insight": {
+    "tag": "Connect a BI Tool"
+  }
+}

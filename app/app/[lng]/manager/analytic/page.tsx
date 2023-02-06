@@ -1,6 +1,6 @@
 import { languages, fallbackLng } from "@/i18n/settings";
 import { useTranslation } from "@/i18n";
-import BoxLabel from "@/components/layout/BoxLabel";
+import Tag from "@/components/layout/Tag";
 
 export default async function Page({
   params: { lng },
@@ -17,7 +17,7 @@ export default async function Page({
   return (
     <>
       <div>
-        <BoxLabel text={t("label")}></BoxLabel>
+        <Tag text={t("label")}></Tag>
         <iframe
           src="http://34.125.212.21:3000/public/dashboard/fdf8e976-1b80-44ad-ade5-5097444352db"
           frameBorder="0"

@@ -1,34 +1,23 @@
 "use client";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
-import dynamic from "next/dynamic";
-
+import StyledJsxRegistry from "@/lib/utilities/registry";
+import Header from "@/components/layout/Header";
 export default function DefaultLayout({ children }) {
-  const Header = dynamic(() => import("@/components/layout/Header"), {
-    suspense: true,
-  });
-  const Footer = dynamic(() => import("@/components/layout/Footer"), {
-    suspense: true,
-  });
   return (
     <>
       {
-        //👇️ Wrapping the SessionProvider obtained from next-auth so to have access to client side information in both client and server pages. i.e: COOKIE */
+        //👇️ wrap root layout with the registry for styled-jsx components (currently client side only)
       }
-      <SessionProvider>
-        <Header />
-        <div className="page-container">{children}</div>
-        <Footer />
-      </SessionProvider>
-      <style jsx>
-        {`
-          .page-container {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-          }
-        `}
-      </style>
+      <StyledJsxRegistry>
+        {
+          //👇️ Wrapping the next-auth SessionProvider to have access to client side information in both client and server pages. i.e: COOKIE */
+        }
+        <SessionProvider>
+          <Header />
+          <div>{children}</div>
+        </SessionProvider>
+      </StyledJsxRegistry>
     </>
   );
 }

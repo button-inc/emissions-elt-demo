@@ -83,10 +83,8 @@ export async function middleware(req: NextRequest) {
 
     // 👇️ routes with JUST a language param (ex: /en) need to be routed to user"s home page- based on user"s role
     if (routes.length - 1 === 1) {
-      // 👉️ route to user role dashboard
-      return NextResponse.redirect(
-        new URL(`/${lng}/${role}/dashboard`, req.url)
-      );
+      // 👉️ route to user role home
+      return NextResponse.redirect(new URL(`/${lng}/${role}/home`, req.url));
     }
 
     // 👇️ validate routes matches jwt authenticated user role property

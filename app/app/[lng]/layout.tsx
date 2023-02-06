@@ -1,11 +1,13 @@
 import DefaultLayout from "@/components/layout/DefaultLayout";
-import StyledJsxRegistry from "@/lib/utilities/registry";
-/*👇️ pre v13 pages/_app.js and pages/_document.js have been replaced with v13 single app/layout.js root layout*/
-/*Good to know:
+
+/*
+📌 pre v13 pages/_app.js and pages/_document.js have been replaced with v13 app/layout.js root layout
+Good to know:
 The app directory must include a root layout.
+❗The root layout is a Server Component by default and can not be set to a Client Component.
 The root layout must define <html> and <body> tags since Next.js does not automatically create them.
 You can use the head.js special file to manage <head> HTML elements, for example, the <title> element.
-The root layout is a Server Component by default and can not be set to a Client Component.*/
+*/
 export default function RootLayout({
   children,
 }: {
@@ -21,14 +23,9 @@ export default function RootLayout({
 
       <body>
         {
-          //👇️ wrap root layout with the registry for styled-jsx in client components
+          //👇️ DefaultLayout wraps client-side providers
         }
-        <StyledJsxRegistry>
-          {
-            //👇️ SessionProvider wrapper
-          }
-          <DefaultLayout>{children}</DefaultLayout>
-        </StyledJsxRegistry>
+        <DefaultLayout>{children}</DefaultLayout>
       </body>
     </html>
   );

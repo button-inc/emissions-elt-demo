@@ -1,14 +1,17 @@
 {
-  "connMetabase": "hostname, port, database, username, password",
-  "copied": "FRCopied",
-  "emailTo": "FRfaker@fakeemail.com",
-  "emailSubject": "FRClimateTrax: BI Tool connector request",
-  "emailBody": "FRRequest for connection string for BI Tool:",
-  "label": "FRChoose a BI Tool",
+  "connMetabase": "METABASE:hostname, port, database, username, password",
+  "copied": "Copied!",
+  "crumbs": {
+    "home": "Home",
+    "insight": "Data Insights"
+  },
+  "emailTo": "faker@fakeemail.com",
+  "emailSubject": "ClimateTrax: BI Tool connector request",
+  "emailBody": "Request for connection string for BI Tool:",
   "looker": "Looker",
-  "metabase": "FRMetabase",
+  "metabase": "Metabase",
   "powerbi": "Power BI",
-  "request": "FRRequest a new BI Tool Connection",
+  "request": "Request a new BI Tool Connection",
   "tableau": "Tableau",
-  "text": "FRConnection information for the BI Tool has been copied to your clipboard."
+  "text": "Connection information for the BI Tool has been copied to your clipboard."
 }

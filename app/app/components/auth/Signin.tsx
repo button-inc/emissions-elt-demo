@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useTranslation } from "@/i18n/client";
-import BoxLabel from "@/components/layout/BoxLabel";
+import Tag from "@/components/layout/Tag";
 import styles from "./signin.module.css";
 
 export default function Signin({ lng, providers }) {
@@ -31,7 +31,7 @@ export default function Signin({ lng, providers }) {
   ));
   return (
     <>
-      <BoxLabel text={t("label")}></BoxLabel>
+      <Tag text={t("label")}></Tag>
       <div className={styles.page}>
         <div className={styles.signin}>
           <div className={styles.card}>

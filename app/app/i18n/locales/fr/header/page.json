@@ -1,13 +1,13 @@
 {
-  "analytic": "FR Data Analytics",
-  "anon": "FR Anonymized Data",
-  "imported": "FR Imported Datasets",
-  "insight": "FR Data Insights",
-  "label": "FR Welcome",
-  "upload": "FR Add New Datasets",
-  "help": "FR Help",
+  "analytic": "Data Analytics",
+  "anon": "Anonymized Data",
+  "imported": "Imported Datasets",
+  "insight": "Data Insights",
+  "label": "Welcome",
+  "upload": "Add New Datasets",
+  "help": "Help",
   "menu": "Menu",
   "title": "ClimateTrax",
-  "signin": "FR Sign-In",
-  "signout": "FR Sign-Out"
+  "signin": "Sign-In",
+  "signout": "Sign-Out"
 }

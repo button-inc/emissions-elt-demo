@@ -1,13 +1,19 @@
-import ImportedID from "@/components/ImportedID";
+import ImportedArea from "@/components/routes/imported/id/Area";
+
+// 👇️ graphQL query endpoint
+const endpoint = "api/analyst/graphql";
 
 export default function Page({ lng, params }) {
-  // 👇️ graphQL query endpoint
-  const endpoint = "api/analyst/graphql";
-
   return (
     <>
-      {/* @ts-expect-error Server Component */}
-      <ImportedID lng={lng} id={params.id} endpoint={endpoint}></ImportedID>
+      <div>
+        {/* @ts-expect-error Server Component */}
+        <ImportedArea
+          lng={lng}
+          id={params.id}
+          endpoint={endpoint}
+        ></ImportedArea>
+      </div>
     </>
   );
 }
