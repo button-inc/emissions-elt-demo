@@ -13,6 +13,11 @@
       "tag": "Anonymized dataset"
     },
     "datasets": {
+      "buttons": {
+        "analytic": {
+          "tag": "Go to Analytics"
+        }
+      },
       "columns": {
         "0": "Dataset",
         "1": "Connector",
@@ -70,6 +75,11 @@
   },
   "imported": {
     "dataset": {
+      "buttons": {
+        "anonymize": {
+          "tag": "Anonymize"
+        }
+      },
       "columns": {
         "0": "Dataset",
         "1": "Connector",

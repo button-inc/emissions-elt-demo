@@ -6,6 +6,7 @@ import DataTableQuery from "@/components/query/DataTableQuery";
 import Tag from "@/components/layout/Tag";
 import { columnsImportedArea } from "@/lib/table/columns";
 import { crumbsImportedArea } from "@/lib/navigation/crumbs";
+import ButtonLink from "@/components/button/Link";
 
 export default async function Page({ lng, id, endpoint }) {
   // 👇️ graphQL query
@@ -28,6 +29,13 @@ export default async function Page({ lng, id, endpoint }) {
       }
     }
   `;
+  // 👇️ screen buttons
+  const options = [
+    {
+      tag: "imported.dataset.buttons.anonymize.tag",
+      href: "../anonymized",
+    },
+  ];
   // 👇️ language management
   const { t } = await useTranslation(lng, "tag");
   // 👇️ translate titles
@@ -36,6 +44,9 @@ export default async function Page({ lng, id, endpoint }) {
   });
   crumbsImportedArea.map((item) => {
     item.title = t(item.title);
+  });
+  options.map((item) => {
+    item.tag = t(item.tag);
   });
   // 👉️ RETURN: table with query data
   return (
@@ -49,6 +60,7 @@ export default async function Page({ lng, id, endpoint }) {
           columns={columnsImportedArea}
         ></DataTableQuery>
       </Suspense>
+      <ButtonLink options={options} position="right" />
     </>
   );
 }

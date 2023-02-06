@@ -1,0 +1,20 @@
+{
+  "crumbs": {
+    "home": {
+      "tag": "Home"
+    },
+    "dataset": {
+      "add": {
+        "tag": "Add a new dataset"
+      }
+    }
+  },
+  "csv": "CSV",
+  "emailTo": "faker@fakeemail.com",
+  "emailSubject": "ClimateTrax: connector request",
+  "emailBody": "Request for connector:",
+  "google": "Google Sheets",
+  "json": "JSON",
+  "request": "Request a new Connector",
+  "tag": "Choose a data connector"
+}

@@ -1,4 +1,4 @@
-import Upload from "@/components/Upload";
+import Upload from "@/components/routes/dataset/Upload";
 export default function Page({
   params: { lng },
 }: {

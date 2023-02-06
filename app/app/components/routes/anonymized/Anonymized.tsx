@@ -6,6 +6,7 @@ import DataTableQuery from "@/components/query/DataTableQuery";
 import Tag from "@/components/layout/Tag";
 import { columnsAnonymized } from "@/lib/table/columns";
 import { crumbsAnonymized } from "@/lib/navigation/crumbs";
+import ButtonLink from "@/components/button/Link";
 
 // 👇️ graphQL query
 const query = gql`
@@ -32,6 +33,13 @@ const query = gql`
 const cntx = "anonymized";
 
 export default async function Page({ lng, endpoint }) {
+  // 👇️ screen buttons
+  const options = [
+    {
+      tag: "anonymized.datasets.buttons.analytic.tag",
+      href: "../analytic",
+    },
+  ];
   // 👇️ language management
   const { t } = await useTranslation(lng, "tag");
   // 👇️ translate titles
@@ -54,6 +62,7 @@ export default async function Page({ lng, endpoint }) {
           cntx={cntx}
         ></DataTableQuery>
       </Suspense>
+      <ButtonLink options={options} position="right" />
     </>
   );
 }

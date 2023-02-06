@@ -17,6 +17,7 @@ const insight = { title: "crumbs.insight.tag", href: "#" };
 export const crumbsAnalytic = [home, analytic];
 export const crumbsAnonymized = [home, anonymized];
 export const crumbsAnonymizedArea = [home, anonymized, anonymizedArea];
+export const crumbsDatasetAdd = [home, datasetAdd];
 export const crumbsDatasetAvailable = [home, datasetAdd, datasetAvailable];
 export const crumbsDatasetConnection = [home, datasetAdd, datasetConnection];
 export const crumbsHome = [home];

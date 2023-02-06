@@ -54,7 +54,7 @@ export default function Page({ lng }) {
 
   return (
     <>
-      <Tag lng={lng} crumbs={crumbsInsight} cntx="insight"></Tag>
+      <Tag tag={t("tag")} crumbs={crumbsInsight}></Tag>
       <div className="cards">
         <div className="card" onClick={handleClickRequest}>
           <div className="top1">
