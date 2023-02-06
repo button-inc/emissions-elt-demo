@@ -5,11 +5,8 @@ from airflow.utils.dates import days_ago
 from airflow.operators.python_operator import PythonOperator
 from airflow.models import DAG
 from google.cloud import storage
+from google.cloud import dlp_v2
 import json
-import google.cloud.dlp
-
-# Instantiate DLP
-dlp = google.cloud.dlp_v2.DlpServiceClient()
 
 default_args = {
   'email': ['joshua@button.is'],
@@ -176,6 +173,18 @@ def dlp_analyze_insights_table(task_instance):
   "LIKELY": 4,
   "VERY_LIKELY": 5
   }
+  reverse_likelihood_map = {
+  0: "LIKELIHOOD_UNSPECIFIED",
+  1: "VERY_UNLIKELY",
+  2: "UNLIKELY",
+  3: "POSSIBLE",
+  4: "LIKELY",
+  5: "VERY_LIKELY"
+  }
+
+
+  # Instantiate DLP
+  dlp = dlp_v2.DlpServiceClient()
 
   import_record_id = task_instance.xcom_pull(task_ids='import_and_upsert_to_db')
 
@@ -202,7 +211,7 @@ def dlp_analyze_insights_table(task_instance):
   table_json["rows"] = rows
 
   # Pass the json to DLP for analysis
-  item = {"table": table_json}
+  item: dlp_v2.ContentItem = {"table": table_json}
 
   # By not specifying an info_types array, we query against all info types
   inspect_config = {
@@ -214,13 +223,7 @@ def dlp_analyze_insights_table(task_instance):
   parent = f"projects/{project}"
 
   # Call the API
-  response = dlp.inspect_content(
-    request={
-      "parent": parent,
-      "inspect_config": inspect_config,
-      "item": item
-    }
-  )
+  response = dlp.inspect_content(parent=parent,inspect_config=inspect_config,item=item)
 
   # Process the results.
   if response.result.findings:
@@ -230,11 +233,12 @@ def dlp_analyze_insights_table(task_instance):
       content_location = next(iter(finding.location.content_locations), {})
       head = content_location.record_location.field_id.name
       infotype_found = finding.info_type.name
-      how_likely = str(finding.likelihood).replace("Likelihood.", "")
-      how_likely_number =  likelihood_map[how_likely]
+      how_likely_number = finding.likelihood
+      how_likely = reverse_likelihood_map.get(how_likely_number)
       quote = finding.quote
-      finding_id = finding.finding_id
+      finding_id = "" # ID not available in this API response
 
+      print(f"{head}, {infotype_found}, {how_likely}, {how_likely_number}")
       if head and head not in columns_with_findings:
         columns_with_findings[head] = {
           "infotype_found": infotype_found,

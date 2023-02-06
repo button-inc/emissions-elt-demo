@@ -7,10 +7,7 @@ from airflow.utils.dates import days_ago
 from datetime import timedelta
 from google.cloud import storage
 from airflow.models import DAG
-import google.cloud.dlp
-
-# Instantiate DLP
-dlp = google.cloud.dlp_v2.DlpServiceClient()
+from google.cloud import dlp_v2
 
 default_args = {
   'email': ['joshua@button.is'],
@@ -149,7 +146,18 @@ def dlp_analyze_table(task_instance, task_id_source, target_table):
   "VERY_LIKELY": 5
   }
 
-  import_record_id = task_instance.xcom_pull(task_ids=task_id_source) # TODO: Make this parameterized
+  reverse_likelihood_map = {
+  0: "LIKELIHOOD_UNSPECIFIED",
+  1: "VERY_UNLIKELY",
+  2: "UNLIKELY",
+  3: "POSSIBLE",
+  4: "LIKELY",
+  5: "VERY_LIKELY"
+  }
+
+  # Instantiate DLP
+  dlp = dlp_v2.DlpServiceClient()
+  import_record_id = task_instance.xcom_pull(task_ids=task_id_source)
 
 
   conn = psycopg2.connect(database="eed",
@@ -176,7 +184,7 @@ def dlp_analyze_table(task_instance, task_id_source, target_table):
   table_json["rows"] = rows
 
   # Pass the json to DLP for analysis
-  item = {"table": table_json}
+  item: dlp_v2.ContentItem = {"table": table_json}
 
   # By not specifying an info_types array, we query against all info types
   inspect_config = {
@@ -188,13 +196,7 @@ def dlp_analyze_table(task_instance, task_id_source, target_table):
   parent = f"projects/{project}"
 
   # Call the API
-  response = dlp.inspect_content(
-    request={
-      "parent": parent,
-      "inspect_config": inspect_config,
-      "item": item
-    }
-  )
+  response = dlp.inspect_content(parent=parent,inspect_config=inspect_config,item=item)
 
   # Process the results.
   if response.result.findings:
@@ -204,10 +206,10 @@ def dlp_analyze_table(task_instance, task_id_source, target_table):
       content_location = next(iter(finding.location.content_locations), {})
       head = content_location.record_location.field_id.name
       infotype_found = finding.info_type.name
-      how_likely = str(finding.likelihood).replace("Likelihood.", "")
-      how_likely_number =  likelihood_map[how_likely]
+      how_likely_number = finding.likelihood
+      how_likely = reverse_likelihood_map.get(how_likely_number)
       quote = finding.quote
-      finding_id = finding.finding_id
+      finding_id = "" # ID not available in this API response
 
       if head and head not in columns_with_findings:
         columns_with_findings[head] = {
@@ -217,6 +219,7 @@ def dlp_analyze_table(task_instance, task_id_source, target_table):
           "quotes": set(),
           "finding_ids": set()
         }
+      print(f"{head}, {infotype_found}, {how_likely}, {how_likely_number}")
       if head in columns_with_findings:
         columns_with_findings[head]["likelihood_number"] = max(how_likely_number, columns_with_findings[head]["likelihood_number"])
         columns_with_findings[head]["all_likelyhoods"].add(how_likely)
@@ -330,7 +333,7 @@ population_csv = PythonOperator(
 )
 
 population_dlp = PythonOperator(
-        task_id='dlp_analyze_waste_table',
+        task_id='dlp_analyze_population_table',
         python_callable=dlp_analyze_table,
         op_kwargs={
           "task_id_source": "import_raw_population_data_and_upsert_to_db",
@@ -340,7 +343,7 @@ population_dlp = PythonOperator(
 )
 
 building_dlp = PythonOperator(
-        task_id='dlp_analyze_waste_table',
+        task_id='dlp_analyze_building_table',
         python_callable=dlp_analyze_table,
         op_kwargs={
           "task_id_source": "municipal_building_raw_ingestion",
@@ -361,4 +364,4 @@ load_building_data = PythonOperator(
         dag=dag,
 )
 
-building_csv >> population_csv >> population_dlp >> load_density_data >> load_building_data
+building_csv >> population_csv >> population_dlp >> building_dlp >> load_density_data >> load_building_data
