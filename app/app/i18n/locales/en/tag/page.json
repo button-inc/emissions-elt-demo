@@ -69,6 +69,15 @@
     }
   },
   "imported": {
+    "analysis": {
+      "columns": {
+        "0": "Column Title",
+        "1": "Identified Info Type",
+        "2": "Likelihood",
+        "3": "Example",
+        "4": "Anonymize?"
+      }
+    },
     "dataset": {
       "columns": {
         "0": "Dataset",

@@ -7,27 +7,34 @@ import Tag from "@/components/layout/Tag";
 import { columnsImportedArea } from "@/lib/table/columns";
 import { crumbsImportedArea } from "@/lib/navigation/crumbs";
 
+// 👇️ used to changes options for @/components/table/DataTable
+const cntx = "dlpAnalysis";
+
 export default async function Page({ lng, id, endpoint }) {
   // 👇️ graphQL query
-  const query =
-    gql`
-    {
-      importRecords(condition: { jobId: ` +
-    id +
-    `}) {
-        nodes {
-          fileName
-          submissionDate
-          trackFormat {
-            nickname
-          }
-          uploadedByUser {
-            email
+  const query = gql`
+  {
+    dlpTableColumns(filter: { tableAnalysisId: { equalTo: ${id} } }) {
+      nodes {
+        columnAnalysis {
+          columnTitle
+          identifiedInfoType
+          maxLikelihood
+          toAnonymize
+          quotes
+        }
+        tableAnalysis {
+          importRecord {
+            fileName
+            trackFormat {
+              id
+            }
           }
         }
       }
     }
-  `;
+  }
+`;
   // 👇️ language management
   const { t } = await useTranslation(lng, "tag");
   // 👇️ translate titles
@@ -47,6 +54,7 @@ export default async function Page({ lng, id, endpoint }) {
           endpoint={endpoint}
           query={query}
           columns={columnsImportedArea}
+          cntx={cntx}
         ></DataTableQuery>
       </Suspense>
     </>

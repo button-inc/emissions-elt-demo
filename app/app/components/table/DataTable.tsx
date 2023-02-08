@@ -1,5 +1,6 @@
 "use client";
 import MUIDataTable from "mui-datatables";
+import { Checkbox } from "@mui/material";
 
 export default function DataTable({ rows, columns, cntx }): JSX.Element {
   // 👇️ used to changes options for calling component
@@ -24,6 +25,31 @@ export default function DataTable({ rows, columns, cntx }): JSX.Element {
 
   switch (cntx) {
     case "anonymized":
+    case "dlpAnalysis":
+      // 👇️ get first quote from quote array for example
+      if (rows) {
+        rows = rows.map((row) => {
+          return {
+            ...row,
+            quotes: row[0] || "", // Quotes return as object keys rather than an array due to flattening
+          };
+        });
+      }
+
+      // 👇️ change 'to Anonymize?' column to a checkbox
+      // Todo: Enable functionality of checkbox (ie. submit back to DB & use for DLP anonymization)
+      const toAnonymizeIndex = columns.findIndex(
+        (e) => e.name === "toAnonymize"
+      );
+      columns[toAnonymizeIndex] = {
+        ...columns[toAnonymizeIndex],
+        options: {
+          customBodyRender: (value) => (
+            <Checkbox checked={value} disabled size="small" />
+          ),
+        },
+      };
+      break;
     case "imported":
       opts = { onRowClick: handleRowClick };
       break;

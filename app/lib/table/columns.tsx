@@ -36,8 +36,9 @@ export const columnsImported = [
   { label: "imported.datasets.columns.3", name: "email" },
 ];
 export const columnsImportedArea = [
-  { label: "imported.dataset.columns.0", name: "fileName" },
-  { label: "imported.dataset.columns.1", name: "nickname" },
-  { label: "imported.dataset.columns.2", name: "submissionDate" },
-  { label: "imported.dataset.columns.3", name: "email" },
+  { label: "imported.analysis.columns.0", name: "columnTitle" },
+  { label: "imported.analysis.columns.1", name: "identifiedInfoType" },
+  { label: "imported.analysis.columns.2", name: "maxLikelihood" },
+  { label: "imported.analysis.columns.3", name: "quotes" },
+  { label: "imported.analysis.columns.4", name: "toAnonymize" },
 ];
