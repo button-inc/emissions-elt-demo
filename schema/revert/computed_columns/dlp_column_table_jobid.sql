@@ -2,6 +2,6 @@
 
 BEGIN;
 
-drop function if exists data_science_workspace.insights_voyage_voyage_id;
+drop function if exists data_clean_room.dlp_table_column_job_id;
 
 COMMIT;
