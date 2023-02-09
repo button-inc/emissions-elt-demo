@@ -1,4 +1,4 @@
-import Analytic from "@/components/routes/Analytic";
+import Analytic from "@/components/route/Analytic";
 export default function Page({
   params: { lng },
 }: {

@@ -1,4 +1,4 @@
-import AnonymizedArea from "app/components/routes/anonymized/id/Area";
+import AnonymizedArea from "@/components/route/anonymized/id/Area";
 
 export default function Page({ lng, params }) {
   // 👇️ graphQL query endpoint

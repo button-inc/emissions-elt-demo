@@ -1,4 +1,4 @@
-import DatasetConnection from "@/components/routes/dataset/connection/Connection";
+import DatasetConnection from "@/components/route/dataset/connection/Connection";
 
 export default function Page({
   params: { lng },

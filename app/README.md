@@ -53,7 +53,7 @@ Note: The `app/` directory can coexist with the existing `pages` directory f
 
 ### i18next
 
-Multi-lingual functionality within the Next.js app directory is realized using [i18next](https://www.i18next.com) (and [react-i18next](https://react.i18next.com)).
+Multi-lingual functionality within the Next.js app directory is realized using [i18next](https://www.i18next.com).
 
 See [blog post](https://locize.com/blog/next-13-app-dir-i18n) for more detail.
 
@@ -74,7 +74,7 @@ Next.js [Middleware ](https://nextjs.org/docs/advanced-features/middleware) allo
 
 Creating a GraphQL API server for data fetching can be accomplished WITHOUT needing to write a GraphQL schema by using [PostGraphile](https://www.graphile.org/postgraphile/). Postgraphile can introvert and reflect an existing relational database schema exposing the schema and it's contents, automatically, via a GraphQL compliant HTTP API.
 
-You can use PostGraphile via the CLI, the PostGraphile API, or as a Node.js framework middleware.
+You can use PostGraphile via the CLI, the PostGraphile API, or as a framework middleware.
 
 To get started, install PostGraphile
 
@@ -106,11 +106,24 @@ In ClimateTrax, we mount a PostGraphile instance as HTTP middleware within the N
 2. The Next.js API endpoint accepts the request containing a GraphQL query and uses a PostGraphile instance to query the Postgres database schema.
 3. Once the fetch request is resolved the Server Components renders the data.
 
+### UI
+
+The ClimateTrax UI attempts to create a TELUS brand type of web experience using [Telus Universal Design System](https://telus.github.io/universal-design-system/components/allium/web).
+
+All components are exported as named exports from root. The components must be wrapped in a theme provider called AlliumProvider. It is recommend to include the provider just once at the root of your application.
+
+Attempting to place this wrapper in the layout.tsx or the DefaultLayout,tsx file caused hydration errors. See more detail in "Issues" below.
+
+Also, the example github repos (below) returned error 404; so, reference examples are limited to the web link above.
+
+[GitHub](https://github.com/telus/universal-design-system)
+[Current work](https://github.com/orgs/telus/projects/159)
+
 ## ClimateTrax File Structure
 
 ### Overview
 
-Currently, ClimateTrax is trying the beta app directly (😋 delicious!) but, the app folder could be replaced by the pages folder if beta concerns are raised for production build.
+Currently, ClimateTrax uses the Next.js v13 beta app directly structure (😋 delicious!) but, the app folder could be replaced by the pages folder if beta concerns are raised for production build.
 
 ### Keeping Code Organized
 
@@ -151,25 +164,23 @@ Below is an example the file structure for the 'home' route in the app and api d
 ```
 
 - [lng] is a dynamic folder accepting the language code within the app route.
-- .env example:
-  API_HOST=
-  DATABASE=
-  DATABASE_HOST=
-  DATABASE_PORT=
-  DATABASE_PROTOCOL=
-  DATABASE_SCHEMA_ADMIN=
-  DATABASE_SCHEMA_CLEAN=
-  DATABASE_SCHEMA_WORKSPACE=
-  DATABASE_SCHEMA_VAULT=
-  DATABASE_USER_ADMIN=
-  DATABASE_USER_PW_ADMIN=
-  DATABASE_USER_ANALYST=
-  DATABASE_USER_PW_ANALYST=
-  DATABASE_USER_DROPPER=
-  DATABASE_USER_PW_DROPPER=
-  DATABASE_USER_MANAGER=
-  DATABASE_USER_PW_MANAGER=
-  GOOGLE_CLIENT_ID=
-  GOOGLE_CLIENT_SECRET=
-  NEXTAUTH_URL=
-  NEXTAUTH_SECRET=
+
+### Issues
+
+#### i18next:
+
+in previous versions of next.js the i18nInstance could be a singleton but, this seems to fail in next.js 13; so, each translation call creates a new instance. See: src/app/i18n/index.ts
+
+Note: if i18nInstance could be a singleton then the language, lng, parameter would not be necessary as toggling language could set the language property on the single i18nInstance instance.
+
+#### Telus Universal Design System:
+
+as attempts to wrap the components in the AlliumProvider by defining the provider once in the application root have not been successful, each Telus themed component is wrapped in the AlliumProvider tag.
+
+Also, the following browser console errors have been documented without but no resolution has been achieved.
+
+Warning: A props object containing a "key" prop is being spread into JSX:
+let props = {key: someKey, direction: ..., testID: ..., space: ...};
+<Spacer {...props} />
+
+Warning: Failed prop type: The prop `children` is marked as required in `Box`, but its value is `undefined`.

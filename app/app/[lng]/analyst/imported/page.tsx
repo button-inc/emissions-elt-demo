@@ -1,4 +1,4 @@
-import Imported from "@/components/routes/imported/Imported";
+import Imported from "@/components/route/imported/Imported";
 export default function Page({
   params: { lng },
 }: {

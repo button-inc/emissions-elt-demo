@@ -1,5 +1,5 @@
 import { getQueryData } from "@/lib/utilities/helpers";
-import ConnectionContainer from "@/components/routes/dataset/connection/Container";
+import ConnectionContainer from "@/components/route/dataset/connection/Container";
 
 export default async function Query({ endpoint, query, columns }) {
   // 👇️ data fetching, server side

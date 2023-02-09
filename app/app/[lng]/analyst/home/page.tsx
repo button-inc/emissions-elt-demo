@@ -1,4 +1,4 @@
-import Home from "@/components/routes/Home";
+import Home from "@/components/route/Home";
 import { routesAnalyst } from "@/lib/navigation/routes";
 
 export default function Page({
