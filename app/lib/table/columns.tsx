@@ -34,6 +34,7 @@ export const columnsImported = [
   { label: "imported.datasets.columns.1", name: "nickname" },
   { label: "imported.datasets.columns.2", name: "submissionDate" },
   { label: "imported.datasets.columns.3", name: "email" },
+  { label: "imported.datasets.columns.4", name: "sensitivity" },
 ];
 export const columnsImportedArea = [
   { label: "imported.analysis.columns.0", name: "columnTitle" },

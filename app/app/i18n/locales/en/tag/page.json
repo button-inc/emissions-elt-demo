@@ -92,7 +92,8 @@
         "0": "Dataset",
         "1": "Connector",
         "2": "Imported Date",
-        "3": "Imported By"
+        "3": "Imported By",
+        "4": "Sensitivity"
       },
       "tag": "Imported datasets"
     }

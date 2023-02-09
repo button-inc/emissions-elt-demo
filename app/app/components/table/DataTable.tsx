@@ -1,6 +1,7 @@
 "use client";
 import MUIDataTable from "mui-datatables";
 import { Checkbox } from "@mui/material";
+import { AlliumProvider, Link } from "@telus-uds/ds-allium";
 
 export default function DataTable({ rows, columns, cntx }): JSX.Element {
   // 👇️ used to changes options for calling component
@@ -51,6 +52,23 @@ export default function DataTable({ rows, columns, cntx }): JSX.Element {
       };
       break;
     case "imported":
+      // 👇️ change 'Sensitivity' column to link to dlp Analysis page
+      const sensitivityIndex = columns.findIndex(
+        (e) => e.name === "sensitivity"
+      );
+      columns[sensitivityIndex] = {
+        ...columns[sensitivityIndex],
+        options: {
+          customBodyRender: (_value, tableMeta) => {
+            const jobId = tableMeta.rowData[0];
+            return (
+              <AlliumProvider>
+                <Link href={`./imported/${jobId}`}>view report</Link>
+              </AlliumProvider>
+            );
+          },
+        },
+      };
       opts = { onRowClick: handleRowClick };
       break;
     case "connection":

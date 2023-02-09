@@ -14,7 +14,7 @@ export default async function Page({ lng, id, endpoint }) {
   // 👇️ graphQL query
   const query = gql`
   {
-    dlpTableColumns(filter: { tableAnalysisId: { equalTo: ${id} } }) {
+    dlpTableColumns(filter: { jobId: { equalTo: "${id}" } }) {
       nodes {
         columnAnalysis {
           columnTitle
@@ -23,14 +23,7 @@ export default async function Page({ lng, id, endpoint }) {
           toAnonymize
           quotes
         }
-        tableAnalysis {
-          importRecord {
-            fileName
-            trackFormat {
-              id
-            }
-          }
-        }
+        jobId
       }
     }
   }
