@@ -1,4 +1,4 @@
-import Anonymized from "app/components/routes/anonymized/Anonymized";
+import Anonymized from "@/components/route/anonymized/Anonymized";
 export default function Page({
   params: { lng },
 }: {

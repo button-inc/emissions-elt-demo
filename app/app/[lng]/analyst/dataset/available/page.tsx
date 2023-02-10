@@ -1,4 +1,4 @@
-import DatasetAvailable from "@/components/routes/dataset/Available";
+import DatasetAvailable from "@/components/route/dataset/Available";
 
 export default function Page({
   params: { lng },

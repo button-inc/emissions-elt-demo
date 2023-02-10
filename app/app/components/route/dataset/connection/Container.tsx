@@ -1,6 +1,6 @@
 "use client";
 import DataTable from "@/components/table/DataTable";
-import DatasetAdd from "@/components/routes/dataset/connection/Add";
+import DatasetAdd from "@/components/route/dataset/connection/Add";
 import { BaseProvider, Box, StackView } from "@telus-uds/components-base";
 import alliumTheme from "@telus-uds/theme-allium";
 export default function Page({ rows, columns }) {

@@ -1,4 +1,4 @@
-import ImportedArea from "@/components/routes/imported/id/Area";
+import ImportedArea from "@/components/route/imported/id/Area";
 
 // 👇️ graphQL query endpoint
 const endpoint = "api/analyst/graphql";
