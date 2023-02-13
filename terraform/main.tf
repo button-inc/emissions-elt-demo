@@ -31,6 +31,11 @@ module "custom_iam" {
   project = var.project
 }
 
+resource "google_project_service" "gcp_dlp_api" {
+  project = var.project
+  service = "dlp.googleapis.com"
+}
+
 module "postgres" {
   source  = "./modules/postgres"
   project = var.project

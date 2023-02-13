@@ -36,6 +36,14 @@ resource "google_service_account_iam_member" "cloud_compose_sa" {
   member             = format("serviceAccount:service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", var.project_number)
 }
 
+resource "google_service_account_iam_binding" "cloud_compose_sa" {
+  provider = google-beta
+  service_account_id = google_service_account.cloud_compose_sa.name
+  members   = [format("serviceAccount:service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", var.project_number)]
+  // Role for Public IP environments
+  role = "roles/dlp.user"
+}
+
 # Create an environment that uses the custom service account.
 # You can add more parameters that define other configuration parameters of your environment
 #
