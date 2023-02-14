@@ -63,6 +63,12 @@ module "cloud_composer" {
   depends_on     = [module.postgres, module.custom_iam]
 }
 
+module "metabase_vm" {
+  source  = "./modules/metabase_vm"
+  project = var.project
+  region  = var.region
+}
+
 module "triggers" {
   source               = "./modules/triggers"
   composer_dags_bucket = module.cloud_composer.composer_dags_bucket
