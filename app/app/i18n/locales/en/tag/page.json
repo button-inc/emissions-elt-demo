@@ -69,6 +69,15 @@
     }
   },
   "imported": {
+    "analysis": {
+      "columns": {
+        "0": "Column Title",
+        "1": "Identified Info Type",
+        "2": "Likelihood",
+        "3": "Example",
+        "4": "Anonymize?"
+      }
+    },
     "dataset": {
       "columns": {
         "0": "Dataset",
@@ -83,7 +92,8 @@
         "0": "Dataset",
         "1": "Connector",
         "2": "Imported Date",
-        "3": "Imported By"
+        "3": "Imported By",
+        "4": "Sensitivity"
       },
       "tag": "Imported datasets"
     }
