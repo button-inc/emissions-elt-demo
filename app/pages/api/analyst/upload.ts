@@ -1,5 +1,4 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-/*
+/*import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 // 👉️ import the Google Cloud client library
 import { Storage } from "@google-cloud/storage";
 // 👉️ import formdata parser library
@@ -98,11 +97,10 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(200).json({ message: "Welcome to API Routes!" });
   }
 };
+export default handler;
 */
 
 //TO DO: COMPLETE CODE ABOVE- SETUP ADC FOR local\container\GKE
-const handler: NextApiHandler = async (req, res) => {
+export default function handler(req, res) {
   res.status(200).json({ message: "WIP" });
-};
-
-export default handler;
+}
