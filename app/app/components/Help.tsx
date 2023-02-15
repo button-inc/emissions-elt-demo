@@ -1,6 +1,5 @@
 import { languages, fallbackLng } from "@/i18n/settings";
 import { useTranslation } from "@/i18n";
-import Tag from "@/components/layout/Tag";
 
 export default async function Page({ lng }) {
   // 👇️ language management, server side

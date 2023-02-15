@@ -11,9 +11,6 @@ export default function Page({ lng }) {
     item.title = t(item.title);
   });
 
-  // 👇️ store file upload
-  const [image, setImage] = useState();
-
   // 👇️ handler for click: request a new connection
   const handleClickRequest = () => {
     const emailTo = t("emailTo");
@@ -41,7 +38,7 @@ export default function Page({ lng }) {
         // 👇️ post form data with image to api
         const body = new FormData();
         body.append("file", file);
-        const response = await fetch("/api/analyst/upload", {
+        const data = await fetch("/api/analyst/upload", {
           method: "POST",
           body,
         })
