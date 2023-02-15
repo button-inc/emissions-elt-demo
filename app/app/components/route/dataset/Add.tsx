@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useTranslation } from "@/i18n/client";
 import Tag from "@/components/layout/Tag";
 import { crumbsDatasetAdd } from "@/lib/navigation/crumbs";
@@ -31,14 +30,13 @@ export default function Page({ lng }) {
   };
   // 👇️ handler for file input change
   const handleChangeInputFile = async (event) => {
-    debugger;
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file) {
         // 👇️ post form data with image to api
         const body = new FormData();
         body.append("file", file);
-        const data = await fetch("/api/analyst/upload", {
+        await fetch("/api/analyst/upload", {
           method: "POST",
           body,
         })
@@ -181,31 +179,6 @@ export default function Page({ lng }) {
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
               0 10px 10px rgba(0, 0, 0, 0.22);
             cursor: pointer;
-          }
-
-          .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30%;
-
-            background-color: white;
-            padding: 6rem;
-            border-radius: 5px;
-            box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-            z-index: 10;
-          }
-
-          .closemodal {
-            position: absolute;
-            top: 1.2rem;
-            right: 2rem;
-            font-size: 5rem;
-            color: #333;
-            cursor: pointer;
-            border: none;
-            background: none;
           }
         `}
       </style>
