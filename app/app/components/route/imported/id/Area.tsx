@@ -29,7 +29,7 @@ export default async function Page({ lng, id, endpoint }) {
     }
   `;
   // 👇️ language management
-  const { t } = await useTranslation(lng, "tag");
+  const { t } = await useTranslation(lng, "shared");
   // 👇️ translate titles
   columnsImportedArea.map((item) => {
     item.label = t(item.label);

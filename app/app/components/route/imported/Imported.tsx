@@ -33,7 +33,7 @@ const cntx = "imported";
 
 export default async function Page({ lng, endpoint }) {
   // 👇️ language management
-  const { t } = await useTranslation(lng, "tag");
+  const { t } = await useTranslation(lng, "shared");
   // 👇️ translate titles
   columnsImported.map((item) => {
     item.label = t(item.label);

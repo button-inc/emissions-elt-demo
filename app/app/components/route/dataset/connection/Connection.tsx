@@ -28,7 +28,7 @@ const query = gql`
 
 export default async function Page({ lng, endpoint }) {
   // 👇️ language management
-  const { t } = await useTranslation(lng, "tag");
+  const { t } = await useTranslation(lng, "shared");
   // 👇️ translate titles
   columnsDatasetConnection.map((item) => {
     item.label = t(item.label);

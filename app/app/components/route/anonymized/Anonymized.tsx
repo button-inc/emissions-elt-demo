@@ -33,7 +33,7 @@ const cntx = "anonymized";
 
 export default async function Page({ lng, endpoint }) {
   // 👇️ language management
-  const { t } = await useTranslation(lng, "tag");
+  const { t } = await useTranslation(lng, "shared");
   // 👇️ translate titles
   columnsAnonymized.map((item) => {
     item.label = t(item.label);

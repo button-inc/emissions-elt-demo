@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token }) {
       // 👇️ add role to the token from our permissions table
       if (!token.role) {
-        async function getUserRole() {
+        var getUserRole = async function () {
           const endpoint = process.env.API_HOST + "api/auth/role";
           const query =
             gql`
@@ -56,7 +56,8 @@ export const authOptions: NextAuthOptions = {
             }`;
           const data = await request(endpoint, query);
           return data[Object.keys(data)[0]].nodes as any[];
-        }
+        };
+
         const userData = await getUserRole();
         if (userData) {
           // 👉️ OK: set JWT role from our user record

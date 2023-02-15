@@ -1,4 +1,4 @@
-import Anonymize from "@/components/Anonymize";
+import Anonymized from "@/components/route/anonymized/Anonymized";
 export default function Page({
   params: { lng },
 }: {
@@ -7,11 +7,11 @@ export default function Page({
   };
 }) {
   // 👇️ graphQL query endpoint
-  const endpoint = "api/manager/graphql";
+  const endpoint = "api/analyst/graphql";
   return (
     <>
       {/* @ts-expect-error Server Component */}
-      <Anonymize lng={lng} endpoint={endpoint}></Anonymize>
+      <Anonymized lng={lng} endpoint={endpoint}></Anonymized>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { getProviders } from "next-auth/react";
-import Signin from "@/components/auth/Signin";
+import Signin from "@/components/route/auth/Signin";
 export default async function Page({
   params: { lng },
 }: {

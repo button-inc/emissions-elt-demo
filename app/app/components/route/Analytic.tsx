@@ -4,7 +4,7 @@ import Tag from "@/components/layout/Tag";
 import { crumbsAnalytic } from "@/lib/navigation/crumbs";
 export default function Page({ lng }) {
   // 👇️ language management
-  let { t } = useTranslation(lng, "tag");
+  let { t } = useTranslation(lng, "shared");
   // 👇️ translate titles
   crumbsAnalytic.map((item) => {
     item.title = t(item.title);
