@@ -1,4 +1,5 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+/*
 // 👉️ import the Google Cloud client library
 import { Storage } from "@google-cloud/storage";
 // 👉️ import formdata parser library
@@ -14,21 +15,18 @@ export const config = {
 
 // 👇️ persist file to GCS bucket
 async function saveFormData(file) {
-  // 👇️ pass-in the SECRET KEY from our Service Account
-  // the secret-key file has all the necessary data needed to authenticate with the Google Cloud
-  /*📌 IMPORTANT: 
-  The client libraries support Application Default Credentials (ADC)
-  So, no need to explicitly authenticate or manage tokens; these requirements are managed automatically by the authentication libraries.
-  To set up ADC se: : https://cloud.google.com/docs/authentication/provide-credentials-adc
-  1. Create a service account with the roles our application needs, and a key for that service account
-  2. Set the environment variable GOOGLE_APPLICATION_CREDENTIALS to the (external to the project) path of the JSON file that contains your service account key. 
-  Linux or macOS CLI
-  export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
-  Windows
-  $env:GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
-  Replace KEY_PATH with the path of the JSON file that contains your service account key.
-Note: this environment variable only applies to your current shell session, so if you open a new session, set the variable again.
-  */
+  //📌 IMPORTANT:
+  // The client libraries support Application Default Credentials (ADC)
+  // So, no need to explicitly authenticate or manage tokens; these requirements are managed automatically by the authentication libraries.
+  //To set up ADC se: : https://cloud.google.com/docs/authentication/provide-credentials-adc
+  // 1. Create a service account with the roles our application needs, and a key for that service account
+  // 2. Set the environment variable GOOGLE_APPLICATION_CREDENTIALS to the (external to the project) path of the JSON file that contains your service account key.
+  //Linux or macOS CLI
+  // export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
+  // Windows
+  // $env:GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
+  // Replace KEY_PATH with the path of the JSON file that contains your service account key.
+  //Note: this environment variable only applies to your current shell session, so if you open a new session, set the variable again.
   const storage = new Storage({
     projectId: process.env.GOOGLE_PROJECT_NAME,
   });
@@ -100,4 +98,11 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(200).json({ message: "Welcome to API Routes!" });
   }
 };
+*/
+
+//TO DO: COMPLETE CODE ABOVE- SETUP ADC FOR local\container\GKE
+const handler: NextApiHandler = async (req, res) => {
+  res.status(200).json({ message: "WIP" });
+};
+
 export default handler;
