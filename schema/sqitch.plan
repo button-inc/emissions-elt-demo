@@ -26,3 +26,5 @@ tables/waste_data 2023-01-20T22:19:23Z Josh Gamache <joshua@button.is> # Tables 
 tables/building_data 2023-01-23T22:22:51Z Josh Gamache <joshua@button.is> # Add tables for handling building data
 tables/raw_insights 2023-01-30T21:49:01Z Josh Gamache <joshua@button.is> # add raw insights tables for DCR
 tables/dlp_analytics 2023-02-02T20:50:01Z Josh Gamache <joshua@button.is> # add tables to support dlp record keeping
+tables/dlp_column_table_ref 2023-02-07T14:34:34Z Josh Gamache <joshua@button.is> # add many-many ref table for easier postgraphile queries
+computed_columns/dlp_column_table_jobid 2023-02-09T17:33:48Z Josh Gamache <joshua@button.is> # add a computed column to the m-m dlp table to surface the imported jobId
