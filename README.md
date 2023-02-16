@@ -42,6 +42,18 @@ After making changes to terraform code:
 - `terraform apply` to apply the changes to the cluster.
 - `terraform destroy` to tear down the resources.
 
+### Testing
+
+Testing is handled using the [Terratest](https://terratest.gruntwork.io/) framework. Test are written in Go. See `terraform/modules/metabase_vm/metabase_vm_test.go` for a first example. As the `go test` command does not have any actual go modules to compile, test files will need to be explicitly called.
+
+Current tests include:
+
+```shell
+go test terraform/modules/metabase_vm/metabase_vm_test.go -v -timeout 10m
+```
+
+**Important note!**: These tests deploy _and destroy_ actual working infrastructure, so when creating them ensure you don't conflict with production infrastructure. Also, there may be costs associated with the deploys!
+
 ## Metabase
 
 A Metabase instance is spun up in a GCP Compute Engine VM for Pilot usage. Each instantiation of EED's metabase will have a new IP, so you will need to go into the GCP Console to acquire that IP. When logged in, you can go to the [Compute Engine VM dashboard](https://console.cloud.google.com/compute/instances?project=emissions-elt-demo) and look for an instance named "eed-metabase". You can copy the external IP and access on port `:3000`.
