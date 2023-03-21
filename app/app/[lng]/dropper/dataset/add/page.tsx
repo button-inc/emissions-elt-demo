@@ -6,5 +6,5 @@ export default function Page({
     lng: string;
   };
 }) {
-  return <Add lng={lng} endpoint="/api/analyst/upload"></Add>;
+  return <Add lng={lng} endpoint="/api/dropper/upload"></Add>;
 }

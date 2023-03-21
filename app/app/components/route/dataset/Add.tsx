@@ -3,7 +3,7 @@ import { useTranslation } from "@/i18n/client";
 import Tag from "@/components/layout/Tag";
 import { crumbsDatasetAdd } from "@/lib/navigation/crumbs";
 
-export default function Page({ lng }) {
+export default function Page({ lng, endpoint }) {
   // 👇️ language management
   const { t } = useTranslation(lng, "dataset");
   crumbsDatasetAdd.map((item) => {
@@ -29,14 +29,15 @@ export default function Page({ lng }) {
     }
   };
   // 👇️ handler for file input change
+  /*Using GCP Cloud Storage signed URL allows you to upload the file to the specified location in Google Cloud Storage without the need for authentication or authorization.*/
   const handleChangeInputFile = async (event) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file) {
-        // 👇️ post form data with image to api
+        // 👇️ post form data to api
         const body = new FormData();
         body.append("file", file);
-        await fetch("/api/analyst/upload", {
+        await fetch(endpoint, {
           method: "POST",
           body,
         })
@@ -46,11 +47,11 @@ export default function Page({ lng }) {
           })
           .then((data) => {
             //TO DO...create record of successful file upload
-            // console.log(data);
+            console.log(data);
           })
           .catch((error) => {
             // handle the error
-            //  console.log(error);
+            console.log(error);
           });
       }
     }
