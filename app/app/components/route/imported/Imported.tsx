@@ -49,6 +49,7 @@ export default async function Page({ lng, endpoint }) {
       <Suspense fallback={<DataTableSVG />}>
         {/* @ts-expect-error Async Server Component */}
         <DataTableQuery
+          lng={lng}
           endpoint={endpoint}
           query={query}
           columns={columnsImported}

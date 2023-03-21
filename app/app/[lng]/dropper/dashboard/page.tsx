@@ -23,7 +23,7 @@ export default function Page({
   const label = t("label") + ", " + name + "!";
   return (
     <>
-      <Tag text={label}></Tag>
+      <Tag tag={label}></Tag>
       <DashBoard options={dropperRoutes}></DashBoard>
     </>
   );

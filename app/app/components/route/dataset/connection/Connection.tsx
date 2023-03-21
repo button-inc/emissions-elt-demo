@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { gql } from "graphql-request";
 import { useTranslation } from "@/i18n";
 import DataTableSVG from "@/components/loading/DataTableSVG";
-import DataSetQuery from "@/components/query/DataSetQuery";
+import DataSetQuery from "@/components/route/dataset/connection/Query";
 import Tag from "@/components/layout/Tag";
 import { columnsDatasetConnection } from "@/lib/table/columns";
 import { crumbsDatasetConnection } from "@/lib/navigation/crumbs";
@@ -47,6 +47,7 @@ export default async function Page({ lng, endpoint }) {
       <Suspense fallback={<DataTableSVG />}>
         {/* @ts-expect-error Async Server Component */}
         <DataSetQuery
+          lng={lng}
           endpoint={endpoint}
           query={query}
           columns={columnsDatasetConnection}

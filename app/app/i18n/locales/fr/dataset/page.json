@@ -1,0 +1,41 @@
+{
+  "add": {
+    "csv": "CSV",
+    "emailTo": "faker@fakeemail.com",
+    "emailSubject": "ClimateTrax: Add new dataset request",
+    "emailBody": "Request for new data connection:",
+    "google": "Google Sheets",
+    "json": "JSON",
+    "request": "Request a new dataset",
+    "tag": "Add a new dataset"
+  },
+  "connection": {
+    "add": {
+      "fields": {
+        "connection": "Connection ID",
+        "keyjson": "Key File JSON",
+        "keypath": "Key File Path",
+        "project": "Project ID",
+        "type": "Connection Type"
+      },
+      "save": "Save",
+      "tag": "Add a new connection"
+    }
+  },
+  "crumbs": {
+    "home": {
+      "tag": "Home"
+    },
+    "dataset": {
+      "add": {
+        "tag": "Add a new dataset"
+      },
+      "available": {
+        "tag": "Available datasets"
+      },
+      "connection": {
+        "tag": "Connections"
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ export default async function Page({
   return (
     <>
       <div>
-        <Tag text={t("label")}></Tag>
+        <Tag tag={t("label")}></Tag>
         <iframe
           src="http://34.125.212.21:3000/public/dashboard/fdf8e976-1b80-44ad-ade5-5097444352db"
           frameBorder="0"

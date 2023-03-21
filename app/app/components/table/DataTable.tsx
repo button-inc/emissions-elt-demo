@@ -1,30 +1,66 @@
 "use client";
 import MUIDataTable from "mui-datatables";
-import { Checkbox } from "@mui/material";
+import { Checkbox, IconButton, Tooltip } from "@mui/material";
+import DataObjectIcon from "@mui/icons-material/DataObject";
+import HubIcon from "@mui/icons-material/Hub";
 import { AlliumProvider, Link } from "@telus-uds/ds-allium";
 
-export default function DataTable({ rows, columns, cntx }): JSX.Element {
-  // 👇️ used to changes options for calling component
+import { useTranslation } from "@/i18n/client";
+import { textLabelsEN } from "@/i18n/locales/en/datatable/labels";
+import { textLabelsFR } from "@/i18n/locales/fr/datatable/labels";
+
+export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
+  console.log(lng);
+  // 👇️ language management
+  let { t } = useTranslation(lng, "datatable");
+
+  // 👇️ used to tranaslate the mui-datatable text, tooltips, etc.
+  const textLabels = lng === "fr" ? textLabelsFR : textLabelsEN;
+
+  // 👇️ used to changes options of the mui-datatable based on the calling component
   let opts = {};
-  const handleRowClick = (rowData) => {
+
+  // 👇️ handles click from available dataset\add new dataset icon
+  const handleClickIcon = (icon) => {
+    window.location.assign("./" + icon); // one level up
+  };
+
+  // 👇️ handles click from imported dataset\sensitivity column\view report action
+  const handleClickRowImported = (rowData) => {
     window.location.assign(
       window.location + "/" + rowData[0] + "?area=" + rowData[1]
     );
   };
 
-  /*  const handleCellClick = (cellMeta, colData) => {
-    console.log("cellMeta: " + cellMeta);
-    console.log("colData.colIndex: " + colData.colIndex);
-    console.log("colData.rowIndex: " + colData.rowIndex);
-    console.log("rows: " + rows[colData.rowIndex].fileName);
-    const name = rows[colData.rowIndex].fileName;
-    if (colData.colIndex === 4) {
-      window.location.assign("dataset/config?name=" + encodeURIComponent(name));
-    }
-  };
-  */
-
   switch (cntx) {
+    case "available":
+      opts = {
+        customToolbar: () => {
+          return (
+            <>
+              <Tooltip title={t("available.buttons.dataset.tooltip")}>
+                <IconButton
+                  onClick={() => {
+                    handleClickIcon("add");
+                  }}
+                >
+                  <DataObjectIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={t("available.buttons.connection.tooltip")}>
+                <IconButton
+                  onClick={() => {
+                    handleClickIcon("connection");
+                  }}
+                >
+                  <HubIcon />
+                </IconButton>
+              </Tooltip>
+            </>
+          );
+        },
+      };
+      break;
     case "anonymized":
     case "dlpAnalysis":
       // 👇️ get first quote from quote array for example
@@ -63,13 +99,15 @@ export default function DataTable({ rows, columns, cntx }): JSX.Element {
             const jobId = tableMeta.rowData[0];
             return (
               <AlliumProvider>
-                <Link href={`./imported/${jobId}`}>view report</Link>
+                <Link href={`./imported/${jobId}`}>
+                  {t("imported.links.report.title")}
+                </Link>
               </AlliumProvider>
             );
           },
         },
       };
-      opts = { onRowClick: handleRowClick };
+      opts = { onRowClick: handleClickRowImported };
       break;
     case "connection":
       // 👇️ add edit button to columns
@@ -93,9 +131,11 @@ export default function DataTable({ rows, columns, cntx }): JSX.Element {
       opts = {};
       break;
   }
+
   // 👇️ DataTable options
   const options = {
     ...opts,
+    textLabels,
     search: true,
     download: true,
     viewColumns: true,
@@ -105,7 +145,7 @@ export default function DataTable({ rows, columns, cntx }): JSX.Element {
     tableBodyHeight: "400px",
     selectableRows: "none",
   };
-  console.log(columns);
+
   // 👉️ RETURN: MUI datatable
   return (
     <>

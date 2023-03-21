@@ -1,4 +1,4 @@
-import Upload from "@/components/Upload";
+import Add from "@/components/route/dataset/Add";
 export default function Page({
   params: { lng },
 }: {
@@ -6,5 +6,5 @@ export default function Page({
     lng: string;
   };
 }) {
-  return <Upload lng={lng}></Upload>;
+  return <Add lng={lng}></Add>;
 }
