@@ -25,8 +25,8 @@ export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
     window.location.assign("./" + icon); // one level up
   };
 
-  // 👇️ handles click from imported dataset\sensitivity column\view report action
-  const handleClickRowImported = (rowData) => {
+  // 👇️ handles click from
+  const handleClickRow = (rowData) => {
     window.location.assign(
       window.location + "/" + rowData[0] + "?area=" + rowData[1]
     );
@@ -34,6 +34,7 @@ export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
 
   switch (cntx) {
     case "available":
+      // 👇️ temp icons in toolbar to navigate to "Add new..."
       opts = {
         customToolbar: () => {
           return (
@@ -62,6 +63,8 @@ export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
       };
       break;
     case "anonymized":
+      opts = { onRowClick: handleClickRow };
+      break;
     case "dlpAnalysis":
       // 👇️ get first quote from quote array for example
       if (rows) {
@@ -107,10 +110,10 @@ export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
           },
         },
       };
-      opts = { onRowClick: handleClickRowImported };
+      opts = { onRowClick: handleClickRow };
       break;
     case "connection":
-      // 👇️ add edit button to columns
+      // 👇️ add edit button to first column for each row
       if (!columns.some((e) => e.id === "edit")) {
         columns.unshift({
           id: "edit",

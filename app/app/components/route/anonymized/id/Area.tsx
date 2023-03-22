@@ -28,6 +28,9 @@ export default async function Page({ lng, id, endpoint }) {
       }
     }
   `;
+  console.log(query);
+  console.log(lng);
+
   // 👇️ language management
   const { t } = await useTranslation(lng, "tag");
   // 👇️ translate titles

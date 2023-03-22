@@ -4,17 +4,17 @@ const home = { title: "crumbs.home.tag", href: "/" };
 const analytic = { title: "crumbs.analytic.tag", href: "#" };
 const anonymized = {
   title: "crumbs.anonymized.datasets.tag",
-  href: "anonymize",
+  href: "../anonymized",
 };
-const anonymizedArea = { title: "crumbs.anonymized.datasets.tag", href: "#" };
+const anonymizedArea = { title: "crumbs.anonymized.dataset.tag", href: "#" };
 const datasetAdd = { title: "crumbs.dataset.add.tag", href: "#" };
 const datasetAvailable = {
   title: "crumbs.dataset.available.tag",
   href: "available",
 };
 const datasetConnection = { title: "crumbs.dataset.connection.tag", href: "#" };
-const imported = { title: "crumbs.imported.datasets.tag", href: "imported" };
-const importedArea = { title: "crumbs.imported.datasets.tag", href: "#" };
+const imported = { title: "crumbs.imported.datasets.tag", href: "../imported" };
+const importedArea = { title: "crumbs.imported.dataset.tag", href: "#" };
 const insight = { title: "crumbs.insight.tag", href: "#" };
 
 export const crumbsAnalytic = [home, analytic];
