@@ -1,4 +1,5 @@
-// 👇️ role based links
+// 👇️ role based links displayed on the home page
+
 export const routesAnalyst = [
   {
     button: "routes.dataset.button",
@@ -31,6 +32,7 @@ export const routesAnalyst = [
     title: "routes.analytic.title",
   },
 ];
+
 export const routesDropper = [
   {
     button: "routes.upload.button",
@@ -39,6 +41,7 @@ export const routesDropper = [
     title: "routes.upload.title",
   },
 ];
+
 export const routesManager = [
   {
     button: "routes.anonymized.button",

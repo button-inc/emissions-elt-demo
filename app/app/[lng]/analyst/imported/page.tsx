@@ -6,7 +6,7 @@ export default function Page({
     lng: string;
   };
 }) {
-  // 👇️ graphQL query endpoint
+  // 👇️ graphQL query endpoint for this role
   const endpoint = "api/analyst/graphql";
   return (
     <>

@@ -1,4 +1,5 @@
-import Anonymized from "@/components/route/anonymized/Anonymized";
+import DatasetConnection from "@/components/route/dataset/connection/Connection";
+
 export default function Page({
   params: { lng },
 }: {
@@ -6,12 +7,12 @@ export default function Page({
     lng: string;
   };
 }) {
-  // 👇️ graphQL query endpoint for this role
   const endpoint = "api/analyst/graphql";
+
   return (
     <>
       {/* @ts-expect-error Server Component */}
-      <Anonymized lng={lng} endpoint={endpoint}></Anonymized>
+      <DatasetConnection lng={lng} endpoint={endpoint}></DatasetConnection>
     </>
   );
 }

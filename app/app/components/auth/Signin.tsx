@@ -31,7 +31,7 @@ export default function Signin({ lng, providers }) {
   ));
   return (
     <>
-      <Tag text={t("label")}></Tag>
+      <Tag tag={t("label")}></Tag>
       <div className={styles.page}>
         <div className={styles.signin}>
           <div className={styles.card}>

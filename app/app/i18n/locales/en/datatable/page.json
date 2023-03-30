@@ -1,0 +1,21 @@
+{
+  "available": {
+    "buttons": {
+      "connection": {
+        "title": "New Connection",
+        "tooltip": "Add new connection"
+      },
+      "dataset": {
+        "title": "New Dataset",
+        "tooltip": "Add new dataset"
+      }
+    }
+  },
+  "imported": {
+    "links": {
+      "report": {
+        "title": "View Report"
+      }
+    }
+  }
+}

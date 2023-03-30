@@ -9,7 +9,7 @@ export default async function Page({ lng }) {
 
   return (
     <>
-      <Tag text={t("label")}></Tag>
+      <Tag tag={t("label")}></Tag>
     </>
   );
 }
