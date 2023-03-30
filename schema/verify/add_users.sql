@@ -8,5 +8,8 @@ SELECT 1 FROM eed.permissions WHERE email = 'joshua@button.is';
 SELECT 1 FROM eed.permissions WHERE email = 'shon.hogan@gmail.com';
 SELECT 1 FROM eed.permissions WHERE email = 'ballardrobinett@gmail.com';
 SELECT 1 FROM eed.permissions WHERE email = 'gabriel@button.iss';
+SELECT 1 FROM eed.permissions WHERE email = 'patrick@button.is';
+SELECT 1 FROM eed.permissions WHERE email = 'lin.yaokun1@gmail.com';
+SELECT 1 FROM eed.permissions WHERE email = 'mike@button.is';
 
 ROLLBACK;
