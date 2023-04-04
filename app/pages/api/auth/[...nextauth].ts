@@ -5,6 +5,24 @@ import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
 import TwitterProvider from "next-auth/providers/twitter";
 
+async function getUserRole(token) {
+  const endpoint = process.env.API_HOST + "api/auth/role";
+  const query =
+    gql`
+    {
+      permissions(condition: { email: "` +
+    token.email +
+    `" })  {
+        nodes {
+          email
+          userrole
+        }
+      }
+    }`;
+  const data = await request(endpoint, query);
+  return data[Object.keys(data)[0]].nodes as any[];
+}
+
 // 👉️ INFO: the full list of options go: https://next-auth.js.org/configuration/options
 export const authOptions: NextAuthOptions = {
   session: {
@@ -40,24 +58,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token }) {
       // 👇️ add role to the token from our permissions table
       if (!token.role) {
-        async function getUserRole() {
-          const endpoint = process.env.API_HOST + "api/auth/role";
-          const query =
-            gql`
-            {
-             permissions(condition: { email: "` +
-            token.email +
-            `" })  {
-                nodes {
-                  email
-                  userrole
-                }
-              }
-            }`;
-          const data = await request(endpoint, query);
-          return data[Object.keys(data)[0]].nodes as any[];
-        }
-        const userData = await getUserRole();
+        const userData = await getUserRole(token);
         if (userData) {
           // 👉️ OK: set JWT role from our user record
           token.role = userData[0].userrole;
