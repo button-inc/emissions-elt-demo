@@ -58,7 +58,15 @@ steps:
         "-c",
         "docker build -f ./app/Dockerfile -t us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app .",
       ]
-    secretEnv: ["PGUSER", "PGPASSWORD", "PGHOST"]
+    secretEnv:
+      [
+        "PGUSER",
+        "PGPASSWORD",
+        "PGHOST",
+        "NEXTAUTH_URL_INTERNAL",
+        "NEXTAUTH_URL",
+        "NEXTAUTH_SECRET",
+      ]
 
   # Docker Push
   - name: "gcr.io/cloud-builders/docker"
@@ -67,6 +75,7 @@ steps:
         "push",
         "us-west4-docker.pkg.dev/${PROJECT_ID}/eed-docker-artifact-repository/app",
       ]
+    secretEnv: ["NEXTAUTH_URL_INTERNAL", "NEXTAUTH_URL", "NEXTAUTH_SECRET"]
 
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
@@ -83,3 +92,9 @@ availableSecrets:
       env: "PGPASSWORD"
     - versionName: projects/${PROJECT_ID}/secrets/eed_db_host/versions/latest
       env: "PGHOST"
+    - versionName: projects/${PROJECT_ID}/secrets/eed_nextauth_url_internal/versions/latest
+      env: "NEXTAUTH_URL_INTERNAL"
+    - versionName: projects/${PROJECT_ID}/secrets/eed_nextauth_url/versions/latest
+      env: "NEXTAUTH_URL"
+    - versionName: projects/${PROJECT_ID}/secrets/eed_nextauth_secret/versions/latest
+      env: "NEXTAUTH_SECRET"
