@@ -29,6 +29,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["dumb-init", "--"]
 
 ENV NODE_ENV=production
+ENV NEXTAUTH_URL_INTERNAL=http://127.0.0.1:3000/
 
 RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
     yarn install --frozen-lockfile --production=false && \
