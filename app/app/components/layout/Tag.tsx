@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@telus-uds/components-base";
 import alliumTheme from "@telus-uds/theme-allium";
-export default function Page({ tag, crumbs }) {
+export default function Page({ tag, crumbs }: { tag: any; crumbs?: any[] }) {
   return (
     <>
       <BaseProvider defaultTheme={alliumTheme}>

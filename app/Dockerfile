@@ -28,7 +28,15 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x
 RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["dumb-init", "--"]
 
+ARG NA_SECRET
+ARG NA_GOOGLE_ID
+ARG NA_GOOGLE_SECRET
+
 ENV NODE_ENV=production
+ENV NEXTAUTH_URL_INTERNAL=http://127.0.0.1:3000/
+ENV NEXTAUTH_SECRET=$NA_SECRET
+ENV GOOGLE_CLIENT_ID=$NA_GOOGLE_ID
+ENV GOOGLE_CLIENT_SECRET=$NA_GOOGLE_SECRET
 
 RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
     yarn install --frozen-lockfile --production=false && \
