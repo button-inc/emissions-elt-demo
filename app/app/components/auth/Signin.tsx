@@ -15,7 +15,7 @@ export default function Signin({ lng, providers }) {
         className={styles.button}
         onClick={() =>
           signIn(provider["id"], {
-            callbackUrl: window.location.host,
+            callbackUrl: "/",
           })
         }
       >
