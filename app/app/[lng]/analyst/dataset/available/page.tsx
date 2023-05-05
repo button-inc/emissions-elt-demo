@@ -1,5 +1,5 @@
 import DatasetAvailable from "@/components/route/dataset/Available";
-
+export const dynamic = "force-dynamic";
 export default function Page({
   params: { lng },
 }: {

@@ -1,4 +1,5 @@
 import AnonymizedArea from "@/components/route/anonymized/id/Area";
+export const dynamic = "force-dynamic";
 
 export default function Page({ params }) {
   // 👇️ graphQL query endpoint for this role
