@@ -3,14 +3,12 @@ import MUIDataTable from "mui-datatables";
 import { Checkbox, IconButton, Tooltip } from "@mui/material";
 import DataObjectIcon from "@mui/icons-material/DataObject";
 import HubIcon from "@mui/icons-material/Hub";
-import { AlliumProvider, Link } from "@telus-uds/ds-allium";
 
 import { useTranslation } from "@/i18n/client";
 import { textLabelsEN } from "@/i18n/locales/en/datatable/labels";
 import { textLabelsFR } from "@/i18n/locales/fr/datatable/labels";
 
 export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
-  console.log(lng);
   // 👇️ language management
   let { t } = useTranslation(lng, "datatable");
 
@@ -98,15 +96,9 @@ export default function DataTable({ lng, rows, columns, cntx }): JSX.Element {
       columns[sensitivityIndex] = {
         ...columns[sensitivityIndex],
         options: {
-          customBodyRender: (_value, tableMeta) => {
-            const jobId = tableMeta.rowData[0];
-            return (
-              <AlliumProvider>
-                <Link href={`./imported/${jobId}`}>
-                  {t("imported.links.report.title")}
-                </Link>
-              </AlliumProvider>
-            );
+          customBodyRender: () => {
+            // const jobId = tableMeta.rowData[0];
+            return <span>{t("imported.links.report.title")}</span>;
           },
         },
       };

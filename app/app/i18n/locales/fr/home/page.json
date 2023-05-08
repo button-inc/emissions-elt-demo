@@ -11,7 +11,7 @@
       "title": "Calculating your emissions"
     },
     "anonymized": {
-      "button": "Manage",
+      "button": "Anonymized datasets",
       "content": "Review your anonymized datasets, review errors and rerun the anonymization process.",
       "title": "Manage your anonymized datasets"
     },

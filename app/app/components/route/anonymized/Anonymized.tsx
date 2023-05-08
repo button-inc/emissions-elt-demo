@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { gql } from "graphql-request";
 import { useTranslation } from "@/i18n";
-import DataTableSVG from "@/components/loading/DataTableSVG";
+import Spinner from "@/components/loading/Spinner";
 import DataTableQuery from "@/components/query/DataTableQuery";
 import Tag from "@/components/layout/Tag";
 import { columnsAnonymized } from "@/lib/table/columns";
@@ -45,7 +45,7 @@ export default async function Page({ lng, endpoint }) {
   return (
     <>
       <Tag tag={t("anonymized.datasets.tag")} crumbs={crumbsAnonymized}></Tag>
-      <Suspense fallback={<DataTableSVG />}>
+      <Suspense fallback={<Spinner />}>
         {/* @ts-expect-error Async Server Component */}
         <DataTableQuery
           lng={lng}

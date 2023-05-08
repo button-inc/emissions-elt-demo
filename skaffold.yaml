@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: emissions-elt-demo
+build:
+  artifacts:
+    - image: >-
+        us-west4-docker.pkg.dev/emissions-elt-demo/eed-docker-artifact-repository/app
+      context: app
+      docker:
+        dockerfile: Dockerfile
+  tagPolicy:
+    sha256: {}
+manifests:
+  rawYaml:
+    - kubernetes/app-deployment.yaml
+    - kubernetes/app-load-balancer.yaml
