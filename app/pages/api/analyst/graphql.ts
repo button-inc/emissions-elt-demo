@@ -18,6 +18,7 @@ const requestHandler = postgraphile(
 export const config = {
   api: {
     bodyParser: false,
+    externalResolver: true,
   },
 };
 export default requestHandler;
