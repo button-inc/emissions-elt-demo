@@ -61,7 +61,7 @@
         "tag": "Imported dataset"
       },
       "datasets": {
-        "tag": "Imported datasets"
+        "tag": "Anonymize a dataset"
       }
     },
     "insight": {
@@ -95,7 +95,7 @@
         "3": "Imported By",
         "4": "Sensitivity"
       },
-      "tag": "Imported datasets"
+      "tag": "Anonymize a dataset"
     }
   },
   "insight": {

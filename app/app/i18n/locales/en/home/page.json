@@ -11,12 +11,12 @@
       "title": "Calculating your emissions"
     },
     "anonymized": {
-      "button": "Manage",
+      "button": "Anonymized datasets",
       "content": "Review your anonymized datasets, review errors and rerun the anonymization process.",
       "title": "Manage your anonymized datasets"
     },
     "dataset": {
-      "button": "Add a new dataset",
+      "button": "Available datasets",
       "content": "Upload emissions data to your ClimateTrax dashboard, choosing from a library of available datasets. If you can't find the data you need, configure your connection or request a data connection.",
       "title": "Import datasets to your dashboard"
     },

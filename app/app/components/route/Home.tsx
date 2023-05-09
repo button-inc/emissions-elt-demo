@@ -3,19 +3,10 @@ import { useSession } from "next-auth/react";
 import { useTranslation } from "@/i18n/client";
 import Tag from "@/components/layout/Tag";
 import { crumbsHome } from "@/lib/navigation/crumbs";
-import {
-  BaseProvider,
-  Box,
-  ButtonLink,
-  Card,
-  Spacer,
-  Typography,
-} from "@telus-uds/components-base";
-import alliumTheme from "@telus-uds/theme-allium";
+
 export default function Page({ lng, options }) {
   // 👇️ language management
   let { t } = useTranslation(lng, "home");
-
   // 👇️ translate titles
   options.map((item) => {
     item.button = t(item.button);
@@ -32,55 +23,20 @@ export default function Page({ lng, options }) {
   const tag = t("tag") + ", " + name + "!";
   return (
     <>
-      <BaseProvider defaultTheme={alliumTheme}>
-        <Tag tag={tag} crumbs={crumbsHome}></Tag>
-        <div className="content">
-          <div className="container">
-            {options.map((option, index) => (
-              <>
-                <div className="card" key={index}>
-                  <Card>
-                    <Box>
-                      <Typography block variant={{ size: "h2" }}>
-                        {option.title}
-                      </Typography>
-                      <Spacer space={2} />
-                      <Box>
-                        <Typography>{option.content}</Typography>
-                        <Box top={4}>
-                          <ButtonLink href={option.href}>
-                            {option.button}
-                          </ButtonLink>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Card>
-                </div>
-              </>
-            ))}
+      <Tag tag={tag} crumbs={crumbsHome}></Tag>
+      <div className="grid gap-14 lg:grid-cols-3">
+        {options.map((item, key) => (
+          <div className="w-full rounded-lg shadow-md lg:max-w-sm" key={key}>
+            <div className="p-4">
+              <h4 className="text-xl text-purple-800">{item.title}</h4>
+              <p className="mb-2 leading-normal">{item.content}</p>
+              <button className="rounded-lg px-4 py-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-green-100 duration-300">
+                <a href={item.href}>{item.button}</a>
+              </button>
+            </div>
           </div>
-        </div>
-      </BaseProvider>
-      <style jsx>
-        {`
-          .content {
-            margin-top: 10px;
-          }
-
-          div .container {
-            width: 75%;
-          }
-          .card {
-            display: inline-block;
-            width: 300px;
-            height: 400px;
-            margin-left: 50px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-          }
-        `}
-      </style>
+        ))}
+      </div>
     </>
   );
 }

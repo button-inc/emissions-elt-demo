@@ -15,7 +15,7 @@ export default function DefaultLayout({ children }) {
         }
         <SessionProvider>
           <Header />
-          <div>{children}</div>
+          <div className="py-4 px-6">{children}</div>
         </SessionProvider>
       </StyledJsxRegistry>
     </>

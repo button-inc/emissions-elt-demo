@@ -1,5 +1,5 @@
 "use client";
-export function Spinner() {
+export default function Spinner() {
   return (
     <>
       <div className="spin"></div>

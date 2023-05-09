@@ -17,5 +17,6 @@
   "powerbi": "Power BI",
   "request": "Request a new BI Tool Connection",
   "tableau": "Tableau",
+  "tag": "Connect a BI Tool",
   "text": "Connection information for the BI Tool has been copied to your clipboard."
 }
