@@ -1,4 +1,5 @@
 import ImportedArea from "@/components/route/imported/id/Area";
+export const dynamic = "force-dynamic";
 
 // 👇️ graphQL query endpoint for this role
 const endpoint = "api/analyst/graphql";

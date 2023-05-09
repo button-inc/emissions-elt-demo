@@ -12,21 +12,22 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   return (
     <>
       <div className="flex gap-2 items-start">
-        {items.map((crumb, i) => {
-          const isLastItem = i === items.length - 1;
-          return (
-            <a
-              key={i}
-              href={crumb.href}
-              className={`${
-                isLastItem ? "" : "hover:text-purple-800 hover:underline"
-              }`}
-            >
-              {crumb.title}
-              {!isLastItem && <span> / </span>}
-            </a>
-          );
-        })}
+        {items &&
+          items.map((crumb, i) => {
+            const isLastItem = i === items.length - 1;
+            return (
+              <a
+                key={i}
+                href={crumb.href}
+                className={`${
+                  isLastItem ? "" : "hover:text-purple-800 hover:underline"
+                }`}
+              >
+                {crumb.title}
+                {!isLastItem && <span> / </span>}
+              </a>
+            );
+          })}
       </div>
     </>
   );

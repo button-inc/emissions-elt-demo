@@ -1,4 +1,5 @@
 import Imported from "@/components/route/imported/Imported";
+export const dynamic = "force-dynamic";
 export default function Page({
   params: { lng },
 }: {
