@@ -11,5 +11,7 @@ DELETE FROM eed.permissions WHERE email = 'gabriel@button.is.com';
 DELETE FROM eed.permissions WHERE email = 'patrick@button.is';
 DELETE FROM eed.permissions WHERE email = 'lin.yaokun1@gmail.com';
 DELETE FROM eed.permissions WHERE email = 'mike@button.is';
+DELETE FROM eed.permissions WHERE email = 'climatetrax.analyst@gmail.com';
+DELETE FROM eed.permissions WHERE email = 'climatetrax.manager@gmail.com';
 
 COMMIT;

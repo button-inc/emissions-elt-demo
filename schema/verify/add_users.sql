@@ -11,5 +11,7 @@ SELECT 1 FROM eed.permissions WHERE email = 'gabriel@button.iss';
 SELECT 1 FROM eed.permissions WHERE email = 'patrick@button.is';
 SELECT 1 FROM eed.permissions WHERE email = 'lin.yaokun1@gmail.com';
 SELECT 1 FROM eed.permissions WHERE email = 'mike@button.is';
+SELECT 1 FROM eed.permissions WHERE email = 'climatetrax.analyst@gmail.com';
+SELECT 1 FROM eed.permissions WHERE email = 'climatetrax.manager@gmail.com';
 
 ROLLBACK;
