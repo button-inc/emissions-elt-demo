@@ -31,6 +31,11 @@ module "custom_iam" {
   project = var.project
 }
 
+resource "google_project_service" "gcp_dlp_api" {
+  project = var.project
+  service = "dlp.googleapis.com"
+}
+
 module "postgres" {
   source  = "./modules/postgres"
   project = var.project
@@ -56,6 +61,12 @@ module "cloud_composer" {
   eed_db_user    = module.postgres.db_instance_username
   eed_db_pass    = module.postgres.db_instance_generated_user_password
   depends_on     = [module.postgres, module.custom_iam]
+}
+
+module "metabase_vm" {
+  source  = "./modules/metabase_vm"
+  project = var.project
+  region  = var.region
 }
 
 module "triggers" {
