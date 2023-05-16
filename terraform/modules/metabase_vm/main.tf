@@ -28,7 +28,7 @@ resource "google_compute_instance" "metabase_vm" {
   }
 
   network_interface {
-    network = var.network_name
+    network = google_compute_network.default.name
 
     access_config {}
   }
@@ -49,7 +49,7 @@ resource "google_compute_network" "default" {
 
 resource "google_compute_firewall" "metabase" {
   name        = var.metabase_name
-  network     = var.network_name
+  network     = google_compute_network.default.name
   description = "Connection port for eed-metabase"
   direction   = "INGRESS"
 
