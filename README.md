@@ -8,6 +8,8 @@ The list of what it is tracking can be found in `.gitattributes`, currently `ter
 To add to the tracked list, use
 `git lfs track <>` where <> could be `"*.someFileExtension"`, `path/to/dir/**` for an entire directory.
 
+Add environment variables to `/app/.env`
+
 ## Tooling initialization
 
 ### asdf
