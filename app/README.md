@@ -17,16 +17,18 @@ From the app root folder (the folder relative to the package.json file -$ cd app
 1. Install dependencies:
 
 ```sh
-npm install
+yarn
 ```
 
-2. Create an .env file in app root folder (see sample EOF)
+2. Create an .env file in app root folder (see 1Password)
 
 3. Start the dev server:
 
 ```sh
-npm run dev
+yarn dev
 ```
+
+4. Open [http://localhost:3000](http://localhost:3000) and Sign in with Google using the test credentials (see 1Password). You may need to open a private browsing session to avoid trying to sign in with your current google account
 
 Next.js 13 introduced a new file-system based router which works in a new directory named app.
 

@@ -1,15 +1,4 @@
-default_stages:
-  [
-    commit,
-    merge-commit,
-    push,
-    prepare-commit-msg,
-    post-checkout,
-    post-commit,
-    post-merge,
-    post-rewrite,
-    manual,
-  ]
+default_stages: [commit]
 exclude: >
   (?x)^(
       test\.tsx\.snap$

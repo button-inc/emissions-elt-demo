@@ -7,3 +7,7 @@ schema/schema.graphql
 coverage
 ../chart/**/templates/**/*.yaml
 ../.github/ISSUE_TEMPLATE/
+**/.git
+**/.svn
+**/.hg
+**/node_modules
